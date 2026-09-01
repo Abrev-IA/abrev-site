@@ -1,0 +1,28 @@
+{
+  "tarefa": 6,
+  "data": "2026-08-29",
+  "escopo": "Finalizar o site da ABREV e testar a abordagem de UI em caso real",
+  "repositorio": "Abrev-IA/abrev-site",
+  "alteracoes_principais": [
+    "auditoria do cartão Trello",
+    "auditoria do HTML existente",
+    "consulta do logo oficial no Google Drive",
+    "reescrita do index.html",
+    "QA estrutural e de acessibilidade",
+    "registro do relatório de validação",
+    "atualização do cartão Trello"
+  ],
+  "chamadas_externas_observadas": {
+    "trello": 2,
+    "github": 12,
+    "google_drive": 2,
+    "web": 4,
+    "execucao_local_privada": 3
+  },
+  "commits_relevantes": [
+    "88cd7f2c92f3d95ae49036490780f287af9e3865",
+    "7edac99b9bec7730a0a1af2a43044e3fa683cb3f"
+  ],
+  "contagem_exata_de_tokens": null,
+  "nota": "A interface de execução não expõe contagem exata de tokens/custo por solicitação. O registro usa apenas métricas observáveis e não inventa consumo financeiro ou de tokens."
+}
