@@ -617,10 +617,11 @@
 
       fetch(APPS_SCRIPT_URL, {
         method: 'POST',
+        mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({ nome, telefone, email })
       })
-      .catch(function(){}) // CORS mode — Apps Script retorna 302, fetch falha mas dados chegam
+      .catch(function(){})
       .finally(function(){
         document.getElementById('reg-form').style.display = 'none';
         const s = document.getElementById('success-state');
