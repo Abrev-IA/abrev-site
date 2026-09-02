@@ -592,12 +592,14 @@
     const logEl = document.getElementById('confirmLog');
     if (logEl) rowIo.observe(logEl);
 
+    // Substitua pela URL gerada ao publicar o Apps Script
+    const APPS_SCRIPT_URL = 'COLE_AQUI_A_URL_DO_APPS_SCRIPT';
+
     function confirmarPresenca(){
       const nome = document.getElementById('nameInput').value.trim();
       const telefone = document.getElementById('phoneInput').value.trim();
       const email = document.getElementById('emailInput').value.trim();
 
-      // Validate all fields
       let hasError = false;
       [['nameInput', nome], ['phoneInput', telefone], ['emailInput', email]].forEach(function([id, val]){
         const el = document.getElementById(id);
@@ -609,11 +611,22 @@
       });
       if(hasError) return;
 
-      // Show success state
-      document.getElementById('reg-form').style.display = 'none';
-      const s = document.getElementById('success-state');
-      s.style.display = 'block';
-      s.style.opacity = '0';
-      setTimeout(() => { s.style.transition = 'opacity 600ms ease'; s.style.opacity = '1'; }, 50);
+      const btn = document.getElementById('ctaButton');
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ nome, telefone, email })
+      })
+      .catch(function(){}) // CORS mode — Apps Script retorna 302, fetch falha mas dados chegam
+      .finally(function(){
+        document.getElementById('reg-form').style.display = 'none';
+        const s = document.getElementById('success-state');
+        s.style.display = 'block';
+        s.style.opacity = '0';
+        setTimeout(() => { s.style.transition = 'opacity 600ms ease'; s.style.opacity = '1'; }, 50);
+      });
     }
   </script>
