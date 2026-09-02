@@ -615,11 +615,15 @@
       btn.disabled = true;
       btn.textContent = 'Enviando…';
 
+      const formData = new FormData();
+      formData.append('nome', nome);
+      formData.append('telefone', telefone);
+      formData.append('email', email);
+
       fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ nome, telefone, email })
+        body: formData
       })
       .catch(function(){})
       .finally(function(){
