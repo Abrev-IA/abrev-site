@@ -305,6 +305,11 @@
   .confirm-row .name{font-weight:600; color:var(--cream); font-size:14.5px;}
   .confirm-row .role{color:rgba(254,251,245,0.6); font-size:12px; display:block; line-height:1.4; margin-top:2px;}
   .confirm-row .abrev-title{color:var(--green); font-size:11px; font-weight:700; display:block; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:1px;}
+  .reg-form-title{color:var(--cream); font-size:1.1rem; font-weight:700; text-align:center; margin:0 0 18px; letter-spacing:0.01em;}
+  .name-select-wrap{position:relative; display:flex; align-items:center; gap:10px; width:100%;}
+  .name-select{appearance:none; -webkit-appearance:none; cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23FEFBF5' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:36px; color:var(--cream);}
+  .name-select option{background:#1B2F3F; color:var(--cream);}
+  .confirmed-badge{white-space:nowrap; color:var(--green); font-size:13px; font-weight:700; flex-shrink:0;}
   .confirm-row .status{
     margin-left:auto;
     margin-top:5px;
@@ -586,8 +591,23 @@
         </a>
       </div>
 
+      <h2 class="reg-form-title">Confirmar Participação do Conselho da Abrev</h2>
       <div id="reg-form">
-        <input type="text" class="name-input" id="nameInput" placeholder="Seu nome completo" autocomplete="name">
+        <div class="name-select-wrap">
+          <select class="name-input name-select" id="nameInput">
+            <option value="">Selecione seu nome</option>
+            <option value="Pedro Chiamulera">Pedro Chiamulera</option>
+            <option value="Mauricio Cwajgenbaum">Mauricio Cwajgenbaum</option>
+            <option value="Fábio Escaleira">Fábio Escaleira</option>
+            <option value="Diogo Inoue">Diogo Inoue</option>
+            <option value="Mario Eduardo Bueno Ferreira">Mario Eduardo Bueno Ferreira</option>
+            <option value="Pedro Baron">Pedro Baron</option>
+            <option value="Vinicius Pessin">Vinicius Pessin</option>
+            <option value="Fernando Boscolo">Fernando Boscolo</option>
+            <option value="Ângelo Vicente">Ângelo Vicente</option>
+          </select>
+          <span class="confirmed-badge" id="confirmedBadge" style="display:none;">Confirmado ✓</span>
+        </div>
         <input type="tel" class="name-input" id="phoneInput" placeholder="Telefone (WhatsApp)" autocomplete="tel">
         <input type="email" class="name-input" id="emailInput" placeholder="Seu e-mail" autocomplete="email">
         <button type="button" class="cta-button" id="ctaButton" onclick="confirmarPresenca()">Confirmar presença</button>
@@ -642,7 +662,23 @@
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxPlpdw_ajFvgMba0FTaTbMNT-GuWQJxoKQi1mb1VZ5phbAZRuNmWIun00CHl-Wu85w/exec';
 
     function confirmarPresenca(){
-      const nome = document.getElementById('nameInput').value.trim();
+      // Show confirmed badge on select change
+  (function(){
+    var confirmed = ["Pedro Chiamulera", "Mauricio Cwajgenbaum", "Fábio Escaleira", "Diogo Inoue", "Mario Eduardo Bueno Ferreira", "Pedro Baron", "Vinicius Pessin", "Fernando Boscolo", "Ângelo Vicente"];
+    var sel = document.getElementById('nameInput');
+    var badge = document.getElementById('confirmedBadge');
+    if(sel && badge){
+      sel.addEventListener('change', function(){
+        if(sel.value && confirmed.indexOf(sel.value) > -1){
+          badge.style.display = 'inline';
+        } else {
+          badge.style.display = 'none';
+        }
+      });
+    }
+  })();
+
+  const nome = document.getElementById('nameInput').value.trim();
       const telefone = document.getElementById('phoneInput').value.trim();
       const email = document.getElementById('emailInput').value.trim();
 
