@@ -6,6 +6,20 @@
 <meta name="description" content="ABREV — Associação Brasileira de Reversa do Varejo. Conhecimento, conexão e transformação para estruturar a logística reversa no varejo.">
 <meta name="theme-color" content="#102b3b">
 <title>ABREV | Associação Brasileira de Reversa do Varejo</title>
+<!-- Google tag (gtag.js) com Consent Mode v2 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D2D314Q1CQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('consent', 'default', {
+    'analytics_storage':'denied','ad_storage':'denied',
+    'ad_user_data':'denied','ad_personalization':'denied'
+  });
+  try{ if(localStorage.getItem('abrev_cookie_consent')==='accepted'){
+    gtag('consent','update',{'analytics_storage':'granted'}); } }catch(e){}
+  gtag('config', 'G-D2D314Q1CQ');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
@@ -27,6 +41,14 @@
 @media(max-width:940px){.menu{display:block}.links{display:none;position:fixed;top:82px;left:0;right:0;background:var(--cream);padding:26px 20px;flex-direction:column;align-items:stretch;border-bottom:1px solid var(--line)}.links.open{display:flex}.heroGrid,.split,.join{grid-template-columns:1fr}.heroGrid{padding:66px 0}.heroVisual{height:500px}.ecoGrid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr 1fr}.flow:before{display:none}.benefitGrid{grid-template-columns:1fr 1fr}.join .btn{justify-self:start}.foot{grid-template-columns:1fr 1fr}.photoBand{height:680px;grid-template-columns:1fr}.modalCard{grid-template-columns:1fr}.modalImage{display:none}}
 @media(max-width:620px){.wrap{width:min(100% - 28px,1200px)}.navin{height:72px}.links{top:72px}.brand img{width:165px}.hero{min-height:auto}.heroGrid{min-height:auto;gap:46px}.heroVisual{height:420px}.heroPhoto{inset:0 10px 50px 0}.floatCard{max-width:180px;padding:15px}.fc1{left:8px}.fc2{right:0;top:32px}.ticker span{padding:13px 18px}.section{padding:78px 0}.visualStack{min-height:450px}.signal{width:92px;height:92px}.ecoHead{display:block}.ecoGrid,.benefitGrid,.flow,.foot{grid-template-columns:1fr}.join{padding:34px 24px}.actions .btn{width:100%}.photoBand{height:560px}.modalBody{padding:34px 24px}.modalBody h3{font-size:1.9rem}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+.cookie-banner{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:560px;margin:0 auto;background:var(--navy);color:var(--cream);border-radius:14px;padding:18px 20px;box-shadow:0 12px 40px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:12px;font-size:13px;line-height:1.55}
+.cookie-banner a{color:#4cc3ea;font-weight:600}
+.cookie-actions{display:flex;gap:10px;justify-content:flex-end}
+.cookie-actions button{font-family:inherit;font-size:13px;font-weight:700;padding:9px 18px;border-radius:20px;border:none;cursor:pointer}
+#cookie-reject{background:transparent;color:rgba(251,248,240,.75);border:1px solid rgba(251,248,240,.3)}
+#cookie-accept{background:var(--green);color:var(--navy)}
+@media(min-width:520px){.cookie-banner{flex-direction:row;align-items:center;justify-content:space-between}.cookie-actions{flex-shrink:0}}
 </style>
 </head>
 <body>
@@ -48,6 +70,16 @@ const menu=document.querySelector('.menu'),links=document.querySelector('.links'
 const modal=document.getElementById('reportModal');const openModal=()=>{modal.classList.add('show');document.body.style.overflow='hidden'};const closeModal=()=>{modal.classList.remove('show');document.body.style.overflow=''};document.querySelectorAll('.openReport').forEach(b=>b.addEventListener('click',openModal));modal.querySelector('.close').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 let autoShown=false;window.addEventListener('scroll',()=>{if(autoShown)return;const max=document.documentElement.scrollHeight-innerHeight;if(max>0&&scrollY/max>.32){autoShown=true;openModal()}},{passive:true});
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Aviso de cookies" hidden>
+<p style="margin:0">Usamos cookies para analisar o tráfego e melhorar sua experiência. Saiba mais na <a href="/politica-privacidade.html">Política de Privacidade</a>.</p>
+<div class="cookie-actions"><button type="button" id="cookie-reject">Recusar</button><button type="button" id="cookie-accept">Aceitar</button></div>
+</div>
+<script>
+(function(){var b=document.getElementById('cookie-banner');var c=null;try{c=localStorage.getItem('abrev_cookie_consent')}catch(e){}if(!c){b.hidden=false}
+function s(v){try{localStorage.setItem('abrev_cookie_consent',v)}catch(e){}if(v==='accepted'&&typeof gtag==='function'){gtag('consent','update',{'analytics_storage':'granted'})}b.hidden=true}
+document.getElementById('cookie-accept').addEventListener('click',function(){s('accepted')});
+document.getElementById('cookie-reject').addEventListener('click',function(){s('rejected')});})();
 </script>
 </body>
 </html>

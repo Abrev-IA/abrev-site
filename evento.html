@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ABREV · Conselho Consultivo</title>
+<!-- Google tag (gtag.js) com Consent Mode v2 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D2D314Q1CQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('consent', 'default', {
+    'analytics_storage':'denied','ad_storage':'denied',
+    'ad_user_data':'denied','ad_personalization':'denied'
+  });
+  try{ if(localStorage.getItem('abrev_cookie_consent')==='accepted'){
+    gtag('consent','update',{'analytics_storage':'granted'}); } }catch(e){}
+  gtag('config', 'G-D2D314Q1CQ');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -454,7 +468,28 @@
   }
   .success-title{ color:var(--cream); font-size:1.5rem; font-weight:700; margin:0 0 12px; }
   .success-msg{ color:rgba(254,251,245,0.82); line-height:1.7; margin:0; }
-  </style>
+  
+  .cookie-banner{
+    position:fixed; left:16px; right:16px; bottom:16px; z-index:9999;
+    max-width:560px; margin:0 auto;
+    background:var(--navy); color:var(--cream);
+    border-radius:14px; padding:18px 20px;
+    box-shadow:0 12px 40px rgba(0,0,0,0.35);
+    display:flex; flex-direction:column; gap:12px;
+    font-size:13px; line-height:1.55;
+  }
+  .cookie-banner a{color:var(--sky); font-weight:600;}
+  .cookie-actions{display:flex; gap:10px; justify-content:flex-end;}
+  .cookie-actions button{
+    font-family:inherit; font-size:13px; font-weight:700;
+    padding:9px 18px; border-radius:20px; border:none; cursor:pointer;
+    transition:transform 160ms ease, opacity 160ms ease;
+  }
+  .cookie-actions button:hover{transform:translateY(-1px);}
+  #cookie-reject{background:transparent; color:rgba(254,251,245,0.75); border:1px solid rgba(254,251,245,0.3);}
+  #cookie-accept{background:var(--lime); color:var(--navy);}
+  @media(min-width:520px){ .cookie-banner{flex-direction:row; align-items:center; justify-content:space-between;} .cookie-actions{flex-shrink:0;} }
+</style>
 </head>
 <body>
 
@@ -754,6 +789,7 @@
       })
       .catch(function(){})
       .finally(function(){
+        if(typeof gtag==='function'){ gtag('event','confirmar_presenca',{event_category:'engagement'}); }
         document.getElementById('reg-form').style.display = 'none';
         const s = document.getElementById('success-state');
         s.style.display = 'block';
