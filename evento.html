@@ -803,7 +803,7 @@
     }
   </script>
 
-  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Aviso de cookies" hidden>
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Aviso de cookies" style="display:none;">
     <p style="margin:0;">Usamos cookies para analisar o tráfego e melhorar sua experiência. Saiba mais na <a href="/politica-privacidade.html">Política de Privacidade</a>.</p>
     <div class="cookie-actions">
       <button type="button" id="cookie-reject">Recusar</button>
@@ -815,13 +815,13 @@
       var banner=document.getElementById('cookie-banner');
       var choice=null;
       try{ choice=localStorage.getItem('abrev_cookie_consent'); }catch(e){}
-      if(!choice){ banner.hidden=false; }
+      if(!choice){ banner.style.display='flex'; }
       function setChoice(v){
         try{ localStorage.setItem('abrev_cookie_consent',v); }catch(e){}
         if(v==='accepted' && typeof gtag==='function'){
           gtag('consent','update',{'analytics_storage':'granted'});
         }
-        banner.hidden=true;
+        banner.style.display='none';
       }
       document.getElementById('cookie-accept').addEventListener('click',function(){ setChoice('accepted'); });
       document.getElementById('cookie-reject').addEventListener('click',function(){ setChoice('rejected'); });

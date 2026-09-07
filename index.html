@@ -75,13 +75,13 @@ const modal=document.getElementById('reportModal');const openModal=()=>{modal.cl
 let autoShown=false;window.addEventListener('scroll',()=>{if(autoShown)return;const max=document.documentElement.scrollHeight-innerHeight;if(max>0&&scrollY/max>.32){autoShown=true;openModal()}},{passive:true});
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Aviso de cookies" hidden>
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Aviso de cookies" style="display:none;">
 <p style="margin:0">Usamos cookies para analisar o tráfego e melhorar sua experiência. Saiba mais na <a href="/politica-privacidade.html">Política de Privacidade</a>.</p>
 <div class="cookie-actions"><button type="button" id="cookie-reject">Recusar</button><button type="button" id="cookie-accept">Aceitar</button></div>
 </div>
 <script>
-(function(){var b=document.getElementById('cookie-banner');var c=null;try{c=localStorage.getItem('abrev_cookie_consent')}catch(e){}if(!c){b.hidden=false}
-function s(v){try{localStorage.setItem('abrev_cookie_consent',v)}catch(e){}if(v==='accepted'&&typeof gtag==='function'){gtag('consent','update',{'analytics_storage':'granted'})}b.hidden=true}
+(function(){var b=document.getElementById('cookie-banner');var c=null;try{c=localStorage.getItem('abrev_cookie_consent')}catch(e){}if(!c){b.style.display='flex'}
+function s(v){try{localStorage.setItem('abrev_cookie_consent',v)}catch(e){}if(v==='accepted'&&typeof gtag==='function'){gtag('consent','update',{'analytics_storage':'granted'})}b.style.display='none'}
 document.getElementById('cookie-accept').addEventListener('click',function(){s('accepted')});
 document.getElementById('cookie-reject').addEventListener('click',function(){s('rejected')});})();
 </script>
