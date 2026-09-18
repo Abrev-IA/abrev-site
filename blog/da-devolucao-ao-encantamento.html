@@ -136,6 +136,15 @@ a{color:inherit}
 .cta .btn{justify-self:end;background:var(--navy);color:#fff;text-decoration:none;padding:16px 30px;border-radius:999px;font:800 .96rem var(--d);white-space:nowrap;transition:.2s}
 .cta .btn:hover{background:var(--navy2);transform:translateY(-2px)}
 
+/* Send / share bar */
+.sharebar{max-width:760px;margin:26px auto 0;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 22px;box-shadow:0 12px 34px rgba(21,50,68,.06)}
+.sharebar .lbl{font:700 .92rem var(--b);color:var(--navy)}
+.sharebar .lbl span{display:block;font:600 .8rem var(--b);color:var(--muted)}
+.sendbtn{display:inline-flex;align-items:center;gap:9px;background:var(--navy);color:#fff;border:0;cursor:pointer;padding:13px 24px;border-radius:999px;font:800 .9rem var(--d);transition:.2s}
+.sendbtn:hover{background:var(--teal);transform:translateY(-2px)}
+.sendbtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:560px){.sharebar{flex-direction:column;align-items:stretch;text-align:center}.sendbtn{justify-content:center}}
+
 /* Footer */
 .footer{background:#061720;color:#fff;padding:66px 0 26px;margin-top:40px}
 .foot{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:36px}
@@ -189,6 +198,17 @@ a{color:inherit}
       <span><span aria-hidden="true">📅</span> <b>5 de setembro de 2026</b></span>
       <span><span aria-hidden="true">⏱️</span> <b>8 min de leitura</b></span>
     </div>
+  </div>
+</div>
+
+<!-- ENVIAR CONTEÚDO POR E-MAIL -->
+<div class="wrap">
+  <div class="sharebar reveal">
+    <span class="lbl">Gostou deste conteúdo?<span>Envie o artigo completo por e-mail para você ou seu time.</span></span>
+    <button type="button" class="sendbtn" id="sendEmailBtn" aria-label="Enviar o conteúdo completo deste artigo por e-mail">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+      Enviar por e-mail
+    </button>
   </div>
 </div>
 
@@ -423,6 +443,39 @@ a{color:inherit}
 // scroll reveal
 const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Enviar conteúdo completo por e-mail (mailto — sem back-end)
+(function(){
+  var btn=document.getElementById('sendEmailBtn');
+  if(!btn) return;
+  var canonical=document.querySelector('link[rel=canonical]');
+  var url=(canonical&&canonical.href)||location.href;
+  var title=(document.title.split('|')[0]||'').trim()||'Artigo ABREV';
+
+  function plainText(){
+    var out=[];
+    var lede=document.querySelector('.arthero .lede');
+    if(lede) out.push(lede.textContent.replace(/\s+/g,' ').trim());
+    document.querySelectorAll('.article h2, .article h3, .article p, .article li').forEach(function(el){
+      var t=el.textContent.replace(/\s+/g,' ').trim();
+      if(!t) return;
+      var tag=el.tagName;
+      if(tag==='H2'||tag==='H3') out.push('\n'+t.toUpperCase());
+      else if(tag==='LI') out.push('• '+t);
+      else out.push(t);
+    });
+    return out.join('\n\n');
+  }
+
+  btn.addEventListener('click',function(){
+    var sep='\n\n———————————————\n\n';
+    var body='Compartilho este conteúdo da ABREV:\n\n'+title+'\n'+url+sep+
+             plainText()+sep+
+             'Leia a versão completa, com gráficos e fontes, em:\n'+url+'\n\n— ABREV · Associação Brasileira de Reversa do Varejo';
+    var mailto='mailto:?subject='+encodeURIComponent(title)+'&body='+encodeURIComponent(body);
+    window.location.href=mailto;
+  });
+})();
 </script>
 </body>
 </html>
