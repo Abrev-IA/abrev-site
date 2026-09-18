@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Faça parte da comunidade ABREV. Preencha o formulário de associação e passe pela avaliação da diretoria para se tornar associado da Associação Brasileira de Reversa do Varejo.">
+<meta name="theme-color" content="#102b3b">
+<title>Faça parte da comunidade | ABREV — Associação Brasileira de Reversa do Varejo</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ABREV">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Faça parte da comunidade ABREV">
+<meta property="og:description" content="Preencha o formulário de associação e passe pela avaliação da diretoria para se tornar associado da ABREV.">
+<meta property="og:url" content="https://abrev.org/comunidade.html">
+<meta property="og:image" content="https://abrev.org/blog/assets/abrev-logo.png">
+<link rel="canonical" href="https://abrev.org/comunidade.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{--navy:#153244;--navy2:#091d29;--green:#a4c63d;--teal:#0ca2a6;--yellow:#f7c842;--cream:#fbf8f0;--white:#fff;--ink:#183545;--muted:#607581;--line:rgba(21,50,68,.12);--d:'Montserrat',sans-serif;--b:'Inter',sans-serif;--shadow:0 24px 70px rgba(7,26,37,.16)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--b);line-height:1.7;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:min(1200px,calc(100% - 40px));margin:auto}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:16px;top:16px;z-index:9999;background:#fff;padding:10px 14px;border-radius:8px}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+
+/* ---- Header (idêntico ao site) ---- */
+.nav{position:sticky;top:0;z-index:100;background:rgba(251,248,240,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.navin{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand img{width:180px}
+.links{display:flex;gap:30px;align-items:center}
+.links a{font:600 .92rem var(--b);text-decoration:none;color:var(--ink);opacity:.82;transition:.2s}
+.links a:hover,.links a[aria-current]{opacity:1;color:var(--teal)}
+.navcta{background:var(--navy);color:#fff!important;padding:11px 20px;border-radius:999px;opacity:1!important}
+.navcta:hover{background:var(--teal)}
+.menu{display:none;border:0;background:none;padding:10px;cursor:pointer}
+.menu span{display:block;width:24px;height:2px;background:var(--navy);margin:5px 0}
+
+/* ---- Hero ---- */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;padding:72px 0 96px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-140px;top:-140px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(12,162,166,.35),transparent 60%)}
+.hero:before{content:"";position:absolute;left:-120px;bottom:-180px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(164,198,61,.24),transparent 62%)}
+.crumbs{font:600 .78rem var(--b);color:rgba(255,255,255,.78);margin-bottom:22px;position:relative;z-index:1}
+.crumbs a{color:rgba(255,255,255,.8);text-decoration:none}
+.crumbs a:hover{color:var(--green)}
+.hero .pill{display:inline-block;background:var(--green);color:var(--navy2);font:800 .7rem var(--d);letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px;position:relative;z-index:1}
+.hero h1{font:900 clamp(2.3rem,5.4vw,3.9rem)/1.04 var(--d);margin:20px 0 16px;max-width:18ch;position:relative;z-index:1}
+.hero .lede{font-size:clamp(1.05rem,2vw,1.32rem);color:rgba(255,255,255,.84);max-width:60ch;margin:0 0 30px;position:relative;z-index:1}
+.hero .btn{display:inline-block;background:var(--yellow);color:var(--navy2);text-decoration:none;padding:15px 30px;border-radius:999px;font:800 .95rem var(--d);position:relative;z-index:1;transition:.2s}
+.hero .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(247,200,66,.28)}
+
+/* ---- Passos ---- */
+.section{padding:64px 0}
+.kicker{font:800 .74rem var(--d);letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 14px}
+.section h2{font:900 clamp(1.6rem,3.2vw,2.3rem)/1.1 var(--d);color:var(--navy);margin:0 0 10px}
+.section .sub{color:var(--muted);max-width:64ch;margin:0 0 34px;font-size:1.05rem}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px 26px;box-shadow:0 14px 40px rgba(21,50,68,.06);position:relative}
+.step .n{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font:900 1.1rem var(--d);margin-bottom:16px}
+.step:nth-child(2) .n{background:var(--teal)}
+.step:nth-child(3) .n{background:var(--green);color:var(--navy2)}
+.step h3{font:800 1.15rem var(--d);color:var(--navy);margin:0 0 8px}
+.step p{margin:0;color:var(--muted);font-size:.98rem}
+
+/* ---- Formulário ---- */
+.formsec{background:#fff;border-top:1px solid var(--line)}
+.formcard{max-width:820px;margin:0 auto;text-align:center}
+.formcard h2{font:900 clamp(1.6rem,3.2vw,2.3rem)/1.1 var(--d);color:var(--navy);margin:0 0 10px}
+.formcard p{color:var(--muted);max-width:60ch;margin:0 auto 26px;font-size:1.05rem}
+.formwrap{border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 16px 44px rgba(21,50,68,.08);background:var(--cream);min-height:520px}
+.formwrap iframe{width:100%;min-height:1200px;border:0;display:block;background:#fff}
+.formfallback{padding:48px 28px;color:var(--muted)}
+.formfallback .btn{display:inline-block;margin-top:18px;background:var(--navy);color:#fff;text-decoration:none;padding:15px 30px;border-radius:999px;font:800 .95rem var(--d);transition:.2s}
+.formfallback .btn:hover{background:var(--teal);transform:translateY(-2px)}
+.openbtn{display:inline-flex;align-items:center;gap:9px;margin-top:22px;background:var(--navy);color:#fff;text-decoration:none;padding:15px 30px;border-radius:999px;font:800 .95rem var(--d);transition:.2s}
+.openbtn:hover{background:var(--teal);transform:translateY(-2px)}
+.note{font-size:.86rem;color:var(--muted);max-width:60ch;margin:22px auto 0;padding-top:18px;border-top:1px solid var(--line)}
+
+/* ---- Footer ---- */
+.footer{background:#061720;color:#fff;padding:66px 0 26px;margin-top:20px}
+.foot{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:36px}
+.footer img{width:210px}
+.footer h4{font:800 .72rem var(--d);text-transform:uppercase;letter-spacing:.12em;color:var(--green);margin:0 0 13px}
+.footer p,.footer a{color:rgba(255,255,255,.62);text-decoration:none}
+.footer a:hover{color:#fff}
+.fine{margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:.78rem;color:rgba(255,255,255,.38)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:.7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:820px){
+  .links{display:none}
+  .links.open{display:flex;flex-direction:column;align-items:flex-start;gap:16px;position:absolute;top:64px;right:20px;left:20px;background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+  .menu{display:block}
+  .steps,.foot{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#formulario">Pular para o formulário</a>
+
+<!-- HEADER -->
+<header class="nav">
+  <div class="wrap navin">
+    <a class="brand" href="/"><img src="blog/assets/abrev-logo.png" alt="ABREV — Associação Brasileira de Reversa do Varejo"></a>
+    <button class="menu" aria-label="Abrir menu" aria-expanded="false" onclick="var l=document.querySelector('.links'),o=l.classList.toggle('open');this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Fechar menu':'Abrir menu')"><span></span><span></span><span></span></button>
+    <nav class="links" aria-label="Navegação principal">
+      <a href="/#sobre">Quem somos</a>
+      <a href="/#ecossistema">Ecossistema</a>
+      <a href="/#fluxo">Como funciona</a>
+      <a href="/blog/">Blog</a>
+      <a href="/comunidade.html" aria-current="page" class="navcta">Faça parte da comunidade</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="crumbs"><a href="/">Início</a> &nbsp;›&nbsp; Faça parte da comunidade</div>
+    <span class="pill">Comunidade ABREV</span>
+    <h1>Faça parte da comunidade ABREV</h1>
+    <p class="lede">Associe-se à Associação Brasileira de Reversa do Varejo e conecte-se a quem está estruturando a logística reversa no Brasil com conhecimento, evidência e cooperação. A associação é feita por candidatura e passa por avaliação da diretoria.</p>
+    <a class="btn" href="#formulario">Quero me associar</a>
+  </div>
+</div>
+
+<!-- COMO FUNCIONA A ASSOCIAÇÃO -->
+<section class="section">
+  <div class="wrap">
+    <p class="kicker">Como funciona</p>
+    <h2>Da candidatura à associação</h2>
+    <p class="sub">Tornar-se associado da ABREV é um processo simples, porém curado: cada candidatura é analisada pela diretoria para preservar a qualidade e a cooperação dentro da comunidade.</p>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n">1</div>
+        <h3>Preencha o formulário</h3>
+        <p>Envie seus dados e o contexto da sua atuação na logística reversa. Quanto mais completo, melhor a avaliação.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">2</div>
+        <h3>Avaliação da diretoria</h3>
+        <p>A diretoria analisa a candidatura considerando o perfil, a atuação e o alinhamento com os objetivos da associação.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">3</div>
+        <h3>Retorno e boas-vindas</h3>
+        <p>Você recebe o retorno por e-mail. Aprovada a candidatura, damos as boas-vindas e orientamos os próximos passos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULÁRIO -->
+<section class="formsec section" id="formulario">
+  <div class="wrap">
+    <div class="formcard">
+      <p class="kicker">Candidatura de associação</p>
+      <h2>Preencha o formulário de associação</h2>
+      <p>Leva poucos minutos. Ao enviar, sua candidatura segue para avaliação da diretoria da ABREV.</p>
+
+      <!-- ÁREA DO GOOGLE FORM -->
+      <div class="formwrap reveal" id="formwrap">
+        <div class="formfallback" id="formfallback">
+          <p><strong>Formulário de associação</strong></p>
+          <p>Clique no botão abaixo para abrir o formulário de candidatura.</p>
+          <a class="btn" id="openFormBtn" href="#" target="_blank" rel="noopener">Abrir formulário de associação</a>
+        </div>
+      </div>
+
+      <a class="openbtn" id="openFormBtn2" href="#" target="_blank" rel="noopener" hidden>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+        Abrir formulário em nova aba
+      </a>
+
+      <p class="note">Seus dados são usados exclusivamente para a avaliação da candidatura de associação pela diretoria da ABREV. Dúvidas: <a href="mailto:contato@abrev.com.br">contato@abrev.com.br</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img src="blog/assets/abrev-logo.png" alt="ABREV">
+        <p>Conhecimento · conexão · transformação</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <p><a href="/#sobre">Quem somos</a><br><a href="/#ecossistema">Ecossistema</a><br><a href="/#fluxo">Como funciona</a><br><a href="/blog/">Blog</a><br><a href="/comunidade.html">Faça parte da comunidade</a></p>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <p><a href="mailto:contato@abrev.com.br">contato@abrev.com.br</a></p>
+      </div>
+    </div>
+    <div class="fine">© 2026 Associação Brasileira de Reversa do Varejo — ABREV.</div>
+  </div>
+</footer>
+
+<script>
+// ==========================================================================
+// CONFIGURAÇÃO DO GOOGLE FORM
+// Substitua os dois valores abaixo pelos links do SEU Google Form:
+//  - FORM_EMBED_URL: link "Incorporar" (Enviar → <> ) no formato
+//    https://docs.google.com/forms/d/e/SEU_ID/viewform?embedded=true
+//  - FORM_OPEN_URL : link normal de compartilhamento (ex.: https://forms.gle/xxxx)
+// Deixe FORM_EMBED_URL como "" para mostrar apenas o botão de abrir em nova aba.
+// ==========================================================================
+var FORM_EMBED_URL = "";
+var FORM_OPEN_URL  = "";
+
+(function(){
+  var wrap=document.getElementById('formwrap');
+  var fallback=document.getElementById('formfallback');
+  var openBtn=document.getElementById('openFormBtn');
+  var openBtn2=document.getElementById('openFormBtn2');
+
+  if(FORM_OPEN_URL){ if(openBtn) openBtn.href=FORM_OPEN_URL; }
+
+  if(FORM_EMBED_URL){
+    // Embutir o formulário
+    var iframe=document.createElement('iframe');
+    iframe.src=FORM_EMBED_URL;
+    iframe.title='Formulário de associação ABREV';
+    iframe.loading='lazy';
+    iframe.setAttribute('marginheight','0');
+    iframe.setAttribute('marginwidth','0');
+    wrap.innerHTML='';
+    wrap.appendChild(iframe);
+    // botão auxiliar para abrir em nova aba (se houver link de compartilhamento)
+    if(FORM_OPEN_URL && openBtn2){ openBtn2.href=FORM_OPEN_URL; openBtn2.hidden=false; }
+  }
+})();
+
+// scroll reveal
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>
