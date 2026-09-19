@@ -181,6 +181,16 @@ a{color:inherit}
 .mnote a{color:var(--teal);font-weight:700}
 .mclose{position:absolute;right:16px;top:16px;z-index:3;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.92);font-size:1.3rem;line-height:1;cursor:pointer}
 @media(max-width:640px){.modalCard{grid-template-columns:1fr}.modalVis{min-height:140px}.modalBody{padding:34px 24px}.modalBody h3{font-size:1.6rem}}
+
+/* Gate: bloqueio parcial do estudo */
+.gatecard{display:none;text-align:center;border:1px solid var(--line);border-radius:24px;padding:40px 34px;margin:40px 0;background:linear-gradient(180deg,#fff,rgba(12,162,166,.07));box-shadow:0 16px 44px rgba(21,50,68,.08)}
+.gatecard .lockico{font-size:2rem;line-height:1;margin-bottom:10px}
+.gatecard h3{font:800 clamp(1.3rem,2.6vw,1.75rem)/1.15 var(--d);color:var(--navy);margin:0 0 10px}
+.gatecard p{color:var(--muted);max-width:52ch;margin:0 auto 22px;font-size:1.02rem}
+.gatebtn{display:inline-block;background:var(--navy);color:#fff;border:0;cursor:pointer;padding:15px 30px;border-radius:999px;font:800 .95rem var(--d);transition:.2s}
+.gatebtn:hover{background:var(--teal);transform:translateY(-2px)}
+body:not(.unlocked) .gatecard{display:block}
+body:not(.unlocked) #estudoGate{display:none}
 </style>
 </head>
 <body>
@@ -387,6 +397,15 @@ a{color:inherit}
     <cite>— Genius Returns</cite>
   </div>
 
+  <!-- GATE: bloqueio parcial — o restante fica atrás do cadastro -->
+  <div class="gatecard" id="gateCard" aria-live="polite">
+    <div class="lockico" aria-hidden="true">🔒</div>
+    <h3>O restante do estudo é exclusivo da comunidade ABREV</h3>
+    <p>Cadastre-se para desbloquear as <strong>5 práticas de baixo esforço e alto impacto</strong> e receber o estudo completo — em HTML e PDF — direto no seu e-mail.</p>
+    <button type="button" class="gatebtn" id="gateUnlock">Cadastrar e desbloquear o estudo →</button>
+  </div>
+
+  <div id="estudoGate">
   <h2>Do diagnóstico à prática</h2>
   <p>Traduzindo a evidência em decisão, cinco movimentos concentram o maior retorno sobre a experiência reversa:</p>
 
@@ -404,6 +423,7 @@ a{color:inherit}
   <p>A conclusão que atravessa todos os dados é uma só: <strong>a logística reversa deixou de ser um centro de custo para se tornar um centro de relacionamento</strong>. Quem a trata como parte da estratégia de experiência, e não como um mal necessário, converte devoluções em recompra, atrito em confiança e, no limite, clientes irritados em defensores da marca.</p>
 
   <p>É exatamente essa transformação, estruturar a reversa do varejo brasileiro com método, evidência e cooperação, que move a ABREV.</p>
+  </div>
 
   <!-- CTA -->
   <div class="cta reveal">
@@ -485,6 +505,12 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   modal.addEventListener('click',function(e){ if(e.target===modal) closeM(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && modal.classList.contains('show')) closeM(); });
 
+  // Gate (bloqueio parcial): desbloqueia se já cadastrado; o botão do gate abre o pop-up
+  function unlockStudy(){ document.body.classList.add('unlocked'); }
+  try{ if(localStorage.getItem(DONE)==='1') unlockStudy(); }catch(e){}
+  var gateBtn=document.getElementById('gateUnlock');
+  if(gateBtn) gateBtn.addEventListener('click',openM);
+
   // abre automaticamente após alguns segundos de leitura (uma vez por sessão; nunca após cadastro)
   var done=false, shown=false;
   try{ done=localStorage.getItem(DONE)==='1'; }catch(e){}
@@ -517,7 +543,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     try{
       await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});
       try{ localStorage.setItem(DONE,'1'); }catch(e){}
-      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Cadastro realizado. Bem-vindo(a) à comunidade ABREV!</p>';
+      unlockStudy();
+      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Cadastro realizado. Estudo desbloqueado — enviamos também o PDF para o seu e-mail. Bem-vindo(a) à comunidade ABREV!</p>';
     }catch(err){
       status.textContent='Não foi possível concluir agora. Tente novamente.';
       btn.disabled=false; btn.textContent=label;
