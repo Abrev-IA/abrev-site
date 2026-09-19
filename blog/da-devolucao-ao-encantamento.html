@@ -167,6 +167,39 @@ a{color:inherit}
   .scale{flex-direction:column}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+
+/* Pop-up: Faça parte da comunidade */
+.modal{position:fixed;inset:0;z-index:500;background:rgba(4,17,24,.72);backdrop-filter:blur(8px);display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:.25s}
+.modal.show{opacity:1;pointer-events:auto}
+.modalCard{position:relative;width:min(880px,100%);display:grid;grid-template-columns:.85fr 1.15fr;background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 35px 100px rgba(0,0,0,.35);transform:translateY(18px);transition:.3s}
+.modal.show .modalCard{transform:none}
+.modalVis{position:relative;background:linear-gradient(150deg,var(--teal),var(--navy));color:#fff;padding:40px 34px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;overflow:hidden}
+.modalVis:after{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:rgba(247,200,66,.18)}
+.modalVis .mpill{position:relative;z-index:1;align-self:flex-start;background:var(--green);color:var(--navy2);font:800 .68rem var(--d);letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.modalVis strong{position:relative;z-index:1;font:900 1.9rem/1.05 var(--d);max-width:14ch}
+.modalBody{padding:44px 40px;position:relative}
+.modalBody .mkicker{font:800 .69rem var(--d);letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin:0 0 8px}
+.modalBody h3{font:900 1.9rem/1.05 var(--d);color:var(--navy);margin:0 0 12px}
+.modalBody>p{color:var(--muted);margin:0;font-size:1rem}
+.mform{display:grid;gap:10px;margin-top:22px}
+.mform input{height:50px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font:500 .9rem var(--b)}
+.mform button{height:50px;border:0;border-radius:8px;background:var(--green);color:var(--navy2);font:800 .85rem var(--d);cursor:pointer;transition:.2s}
+.mform button:hover{background:var(--teal);color:#fff}
+.mform button:disabled{opacity:.6;cursor:default}
+.mnote{font-size:.73rem;color:var(--muted);margin-top:12px}
+.mnote a{color:var(--teal);font-weight:700}
+.mclose{position:absolute;right:16px;top:16px;z-index:3;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.92);font-size:1.3rem;line-height:1;cursor:pointer}
+@media(max-width:640px){.modalCard{grid-template-columns:1fr}.modalVis{min-height:140px}.modalBody{padding:34px 24px}.modalBody h3{font-size:1.6rem}}
+
+/* Gate: bloqueio parcial do estudo */
+.gatecard{display:none;text-align:center;border:1px solid var(--line);border-radius:24px;padding:40px 34px;margin:40px 0;background:linear-gradient(180deg,#fff,rgba(12,162,166,.07));box-shadow:0 16px 44px rgba(21,50,68,.08)}
+.gatecard .lockico{font-size:2rem;line-height:1;margin-bottom:10px}
+.gatecard h3{font:800 clamp(1.3rem,2.6vw,1.75rem)/1.15 var(--d);color:var(--navy);margin:0 0 10px}
+.gatecard p{color:var(--muted);max-width:52ch;margin:0 auto 22px;font-size:1.02rem}
+.gatebtn{display:inline-block;background:var(--navy);color:#fff;border:0;cursor:pointer;padding:15px 30px;border-radius:999px;font:800 .95rem var(--d);transition:.2s}
+.gatebtn:hover{background:var(--teal);transform:translateY(-2px)}
+body:not(.unlocked) .gatecard{display:block}
+body:not(.unlocked) #estudoGate{display:none}
 </style>
 </head>
 <body>
@@ -182,7 +215,7 @@ a{color:inherit}
       <a href="/#ecossistema">Ecossistema</a>
       <a href="/#fluxo">Como funciona</a>
       <a href="/blog/" aria-current="page" style="position:relative;font-weight:800;background:linear-gradient(transparent 58%,rgba(247,200,66,.75) 58%);padding:1px 4px;border-radius:3px">Blog</a>
-      <a href="/#contato" class="navcta">Associe-se</a>
+      <a href="/comunidade.html" class="navcta">Faça parte da comunidade</a>
     </nav>
   </div>
 </header>
@@ -384,6 +417,15 @@ a{color:inherit}
     <cite>— Genius Returns</cite>
   </div>
 
+  <!-- GATE: bloqueio parcial — o restante fica atrás do cadastro -->
+  <div class="gatecard" id="gateCard" aria-live="polite">
+    <div class="lockico" aria-hidden="true">🔒</div>
+    <h3>O restante do estudo é exclusivo da comunidade ABREV</h3>
+    <p>Cadastre-se para desbloquear as <strong>5 práticas de baixo esforço e alto impacto</strong> e receber o estudo completo — em HTML e PDF — direto no seu e-mail.</p>
+    <button type="button" class="gatebtn" id="gateUnlock">Cadastrar e desbloquear o estudo →</button>
+  </div>
+
+  <div id="estudoGate">
   <h2>Do diagnóstico à prática</h2>
   <p>Traduzindo a evidência em decisão, cinco movimentos concentram o maior retorno sobre a experiência reversa:</p>
 
@@ -401,6 +443,7 @@ a{color:inherit}
   <p>A conclusão que atravessa todos os dados é uma só: <strong>a logística reversa deixou de ser um centro de custo para se tornar um centro de relacionamento</strong>. Quem a trata como parte da estratégia de experiência, e não como um mal necessário, converte devoluções em recompra, atrito em confiança e, no limite, clientes irritados em defensores da marca.</p>
 
   <p>É exatamente essa transformação, estruturar a reversa do varejo brasileiro com método, evidência e cooperação, que move a ABREV.</p>
+  </div>
 
   <!-- CTA -->
   <div class="cta reveal">
@@ -408,7 +451,7 @@ a{color:inherit}
       <h3>Faça parte da transformação da reversa no varejo</h3>
       <p>Conecte-se a quem está estruturando a logística reversa no Brasil com conhecimento e evidência.</p>
     </div>
-    <a class="btn" href="/#contato">Associe-se à ABREV</a>
+    <a class="btn" href="/comunidade.html">Faça parte da comunidade</a>
   </div>
 
   <p style="font-size:.86rem;color:var(--muted);border-top:1px solid var(--line);padding-top:22px">
@@ -438,6 +481,30 @@ a{color:inherit}
     <div class="fine">© 2026 Associação Brasileira de Reversa do Varejo — ABREV.</div>
   </div>
 </footer>
+
+<!-- POP-UP: FAÇA PARTE DA COMUNIDADE -->
+<div class="modal" id="communityModal" role="dialog" aria-modal="true" aria-labelledby="communityTitle">
+  <div class="modalCard">
+    <button class="mclose" type="button" aria-label="Fechar pop-up" id="communityClose">×</button>
+    <div class="modalVis" aria-hidden="true">
+      <span class="mpill">Comunidade ABREV</span>
+      <strong>Conhecimento que move a reversa.</strong>
+    </div>
+    <div class="modalBody">
+      <p class="mkicker">Faça parte</p>
+      <h3 id="communityTitle">Faça parte da comunidade ABREV</h3>
+      <p>Cadastre-se para receber conteúdos, novidades e se aproximar de quem está estruturando a logística reversa no varejo.</p>
+      <form class="mform" id="communityForm">
+        <input id="cName" name="nome" type="text" required placeholder="Seu nome" aria-label="Seu nome" autocomplete="name">
+        <input id="cPhone" name="telefone" type="tel" required placeholder="Telefone / WhatsApp" aria-label="Telefone ou WhatsApp" autocomplete="tel" inputmode="tel">
+        <input id="cEmail" name="email" type="email" required placeholder="E-mail" aria-label="E-mail" autocomplete="email">
+        <button type="submit">Quero fazer parte</button>
+        <p id="cStatus" class="mnote" role="status" aria-live="polite"></p>
+      </form>
+      <p class="mnote">Quer se associar de fato? <a href="/comunidade.html">Preencha o formulário completo de associação →</a></p>
+    </div>
+  </div>
+</div>
 
 <script>
 // scroll reveal
@@ -474,6 +541,67 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
              'Leia a versão completa, com gráficos e fontes, em:\n'+url+'\n\n— ABREV · Associação Brasileira de Reversa do Varejo';
     var mailto='mailto:?subject='+encodeURIComponent(title)+'&body='+encodeURIComponent(body);
     window.location.href=mailto;
+  });
+})();
+
+// Pop-up "Faça parte da comunidade" — grava na planilha do Drive via Apps Script
+(function(){
+  var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbxPlpdw_ajFvgMba0FTaTbMNT-GuWQJxoKQi1mb1VZ5phbAZRuNmWIun00CHl-Wu85w/exec';
+  var modal=document.getElementById('communityModal');
+  if(!modal) return;
+  var form=document.getElementById('communityForm');
+  var closeBtn=document.getElementById('communityClose');
+  var DONE='abrev_comunidade_done', SHOWN='abrev_comunidade_shown';
+  function openM(){ modal.classList.add('show'); document.body.style.overflow='hidden'; }
+  function closeM(){ modal.classList.remove('show'); document.body.style.overflow=''; }
+  closeBtn.addEventListener('click',closeM);
+  modal.addEventListener('click',function(e){ if(e.target===modal) closeM(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && modal.classList.contains('show')) closeM(); });
+
+  // Gate (bloqueio parcial): desbloqueia se já cadastrado; o botão do gate abre o pop-up
+  function unlockStudy(){ document.body.classList.add('unlocked'); }
+  try{ if(localStorage.getItem(DONE)==='1') unlockStudy(); }catch(e){}
+  var gateBtn=document.getElementById('gateUnlock');
+  if(gateBtn) gateBtn.addEventListener('click',openM);
+
+  // abre automaticamente após alguns segundos de leitura (uma vez por sessão; nunca após cadastro)
+  var done=false, shown=false;
+  try{ done=localStorage.getItem(DONE)==='1'; }catch(e){}
+  try{ shown=sessionStorage.getItem(SHOWN)==='1'; }catch(e){}
+  if(!done && !shown){
+    setTimeout(function(){
+      if(!modal.classList.contains('show')){
+        openM();
+        try{ sessionStorage.setItem(SHOWN,'1'); }catch(e){}
+      }
+    }, 12000);
+  }
+
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    var btn=form.querySelector('button[type="submit"]');
+    var status=document.getElementById('cStatus');
+    var label=btn.textContent;
+    btn.disabled=true; btn.textContent='Enviando…'; status.textContent='';
+    var canon=document.querySelector('link[rel=canonical]');
+    var payload={
+      nome:document.getElementById('cName').value.trim(),
+      telefone:'[BLOG] '+document.getElementById('cPhone').value.trim(),
+      email:document.getElementById('cEmail').value.trim(),
+      origem:'blog_comunidade',
+      artigo:(document.title.split('|')[0]||'').trim(),
+      artigo_url:(canon&&canon.href)||location.href,
+      enviar_estudo:true
+    };
+    try{
+      await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});
+      try{ localStorage.setItem(DONE,'1'); }catch(e){}
+      unlockStudy();
+      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Cadastro realizado. Estudo desbloqueado — enviamos também o PDF para o seu e-mail. Bem-vindo(a) à comunidade ABREV!</p>';
+    }catch(err){
+      status.textContent='Não foi possível concluir agora. Tente novamente.';
+      btn.disabled=false; btn.textContent=label;
+    }
   });
 })();
 </script>
