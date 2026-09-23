@@ -33,7 +33,8 @@ var CONFIG = {
   ESTUDOS_PATH: '/blog/estudos/',
   SENDER_NAME: 'ABREV — Associação Brasileira de Reversa do Varejo',
   REPLY_TO: 'contato@abrev.com.br',
-  EMAIL_SUBJECT_PREFIX: 'Estudo ABREV: '
+  EMAIL_SUBJECT_PREFIX: 'Estudo ABREV: ',
+  VERSION: 'assets-raw-2'        // marcador p/ confirmar que a implantação está atualizada
 };
 
 var HEADERS = ['data_hora','nome','telefone','email','origem','artigo','artigo_url','status','token','ultimo_envio'];
@@ -71,7 +72,33 @@ function doGet(e) {
     if (!chaveOk_(p.key)) return json_({ ok: false, error: 'unauthorized' });
     return json_({ ok: true, broadcast: broadcast_(String(p.broadcast || ''), String(p.artigo || '')) });
   }
-  return json_({ ok: true, service: 'ABREV newsletter', time: new Date().toISOString() });
+  // Diagnóstico/self-test: confirma que a implantação está atualizada e que o
+  // resumo HTML e o PDF são baixáveis; com ?selftest=1&email=... envia o e-mail
+  // de teste (resumo + PDF) para aquele endereço. Exige a chave (?key=).
+  if (p.diag || p.selftest) {
+    if (!chaveOk_(p.key)) return json_({ ok: false, error: 'unauthorized' });
+    var slug = String(p.slug || '').trim() || 'da-devolucao-ao-encantamento';
+    var htmlUrl = CONFIG.ASSETS_BASE + CONFIG.ESTUDOS_PATH + slug + '.html';
+    var pdfUrl  = CONFIG.ASSETS_BASE + CONFIG.ESTUDOS_PATH + slug + '.pdf';
+    var corpo = fetchText_(htmlUrl);
+    var pdf = fetchPdf_(pdfUrl, slug);
+    var out = {
+      ok: true, version: CONFIG.VERSION, slug: slug, assets_base: CONFIG.ASSETS_BASE,
+      htmlUrl: htmlUrl, htmlLen: (corpo || '').length,
+      pdfUrl: pdfUrl, pdfOk: !!pdf, pdfBytes: pdf ? pdf.getBytes().length : 0,
+      cota_restante: MailApp.getRemainingDailyQuota()
+    };
+    if (p.selftest && p.email) {
+      try {
+        var titulo = fetchTitulo_(CONFIG.ASSETS_BASE + CONFIG.BLOG_PATH + slug + '.html');
+        out.email_enviado = enviarArtigo_(String(p.email), 'selftest', slug, titulo,
+          CONFIG.SITE_BASE + CONFIG.BLOG_PATH + slug + '.html');
+        out.email_destino = String(p.email);
+      } catch (errT) { out.email_enviado = false; out.email_erro = String(errT); }
+    }
+    return json_(out);
+  }
+  return json_({ ok: true, service: 'ABREV newsletter', version: CONFIG.VERSION, time: new Date().toISOString() });
 }
 
 // ===================== PLANILHA =====================

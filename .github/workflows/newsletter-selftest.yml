@@ -1,0 +1,70 @@
+name: Newsletter — self-test (diagnóstico)
+
+# Verifica, a partir de um runner (que ALCANÇA o Google, ao contrário do
+# ambiente local), se a implantação do Apps Script está atualizada e se o
+# resumo HTML + PDF são baixáveis. Com um e-mail informado, envia o e-mail
+# de teste (resumo + PDF) para aquele endereço.
+#
+# Requer os mesmos segredos do broadcast:
+#   APPS_SCRIPT_EXEC_URL  → a URL /exec do Web App
+#   NEWSLETTER_KEY        → a mesma senha definida em BROADCAST_KEY no Apps Script
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Slug do artigo (sem .html)'
+        required: false
+        default: 'da-devolucao-ao-encantamento'
+      email:
+        description: 'E-mail para receber o teste (deixe vazio para só diagnosticar, sem enviar)'
+        required: false
+        default: ''
+
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Chamar o endpoint de diagnóstico
+        env:
+          EXEC_URL: ${{ secrets.APPS_SCRIPT_EXEC_URL }}
+          KEY: ${{ secrets.NEWSLETTER_KEY }}
+          SLUG: ${{ github.event.inputs.slug }}
+          EMAIL: ${{ github.event.inputs.email }}
+        run: |
+          set -euo pipefail
+          if [ -z "${EXEC_URL:-}" ] || [ -z "${KEY:-}" ]; then
+            echo "::error::Faltam os segredos APPS_SCRIPT_EXEC_URL e/ou NEWSLETTER_KEY."
+            exit 1
+          fi
+
+          if [ -n "${EMAIL:-}" ]; then
+            url="${EXEC_URL}?selftest=1&key=${KEY}&slug=${SLUG}&email=$(printf '%s' "$EMAIL" | sed 's/@/%40/')"
+            echo "→ selftest COM envio para: ${EMAIL}"
+          else
+            url="${EXEC_URL}?diag=1&key=${KEY}&slug=${SLUG}"
+            echo "→ diag (sem envio) para slug: ${SLUG}"
+          fi
+
+          code=$(curl -sS -o /tmp/diag.json -w '%{http_code}' -L "$url")
+          echo "HTTP $code"
+          echo "----- resposta -----"
+          cat /tmp/diag.json 2>/dev/null || true
+          echo
+          echo "--------------------"
+
+          # Interpretação rápida (sem jq, para não depender de instalação)
+          if grep -q '"version"' /tmp/diag.json 2>/dev/null; then
+            echo "OK: a implantação respondeu com 'version' (código atualizado)."
+          else
+            echo "::warning::Resposta sem 'version' — a implantação pode estar na versão ANTIGA. Refaça: Implantar → Gerenciar implantações → Nova versão."
+          fi
+          if grep -q '"pdfOk":true' /tmp/diag.json 2>/dev/null; then
+            echo "OK: PDF baixável (pdfOk=true)."
+          else
+            echo "::warning::pdfOk não é true — o PDF não foi baixado."
+          fi
+          if [ "$code" != "200" ]; then
+            echo "::error::HTTP $code."
+            exit 1
+          fi
