@@ -41,9 +41,23 @@ Novo artigo na main ─► GitHub Action ─► POST /exec {action:broadcast, ke
 ```
 
 O `<slug>` é derivado de `artigo_url`. O e-mail usa:
-- corpo → `https://abrev.org/blog/estudos/<slug>.html` (resumo HTML);
-- anexo → `https://abrev.org/blog/estudos/<slug>.pdf` (versão completa).
+- corpo → resumo HTML de `blog/estudos/<slug>.html`;
+- anexo → PDF completo de `blog/estudos/<slug>.pdf`.
 Se algum asset não existir, cai em um fallback com link para o artigo.
+
+### De onde o Apps Script busca os arquivos (`ASSETS_BASE`)
+
+O `UrlFetchApp` do Apps Script **não consegue** buscar de `https://abrev.org`
+(o GitHub Pages/Cloudflare bloqueia o bot do Google), o que fazia o e-mail cair
+no fallback "Ler no site →" **sem** o resumo nem o PDF. Por isso o `Codigo.gs`
+busca os arquivos direto do repositório via `CONFIG.ASSETS_BASE`
+(`https://raw.githubusercontent.com/Abrev-IA/abrev-site/main`) e usa `abrev.org`
+apenas nos **links exibidos ao leitor** (corpo "Ler no site" e descadastro).
+Como o `raw.githubusercontent.com` serve o PDF como `application/octet-stream`,
+o `fetchPdf_` valida pelos bytes `%PDF` e força `application/pdf` no anexo.
+
+> Os arquivos precisam estar na branch `main` do repositório para serem
+> buscados (é o caminho do `ASSETS_BASE`). Publique os 3 arquivos juntos.
 
 ## Planilha (aba "Cadastros")
 
