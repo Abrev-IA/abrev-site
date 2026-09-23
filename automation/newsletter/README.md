@@ -1,73 +1,84 @@
-# Newsletter / Comunidade ABREV — cadastro + envio do estudo
+# Newsletter / Comunidade ABREV — cadastro, envio e disparo em massa
 
-Backend do **pop-up "Faça parte da comunidade"** do blog e dos formulários de
-cadastro do site. Site estático (GitHub Pages) não envia e-mail nem grava dados,
-então isso roda em um **Google Apps Script** (Web App) na conta Google da ABREV.
+Backend do **opt-in "Receber por e-mail"** do blog. Site estático (GitHub Pages)
+não envia e-mail nem grava dados, então isso roda em um **Google Apps Script**
+(Web App) na conta Google da ABREV (`Codigo.gs`).
+
+## O que faz
+
+1. **Cadastro (opt-in):** o leitor pede "Receber por e-mail" no artigo → o site
+   faz `POST` para o Web App, que grava/atualiza o inscrito na planilha **e**
+   envia o e-mail daquele artigo (resumo em HTML no corpo + PDF completo anexo),
+   já com link de descadastramento.
+2. **Descadastramento:** cada e-mail tem, no rodapé, um link
+   `…/exec?unsub=<token>`; ao abrir, o inscrito é marcado como `descadastrado`.
+3. **Disparo em massa (novo artigo):** quando um novo `blog/estudos/<slug>.html`
+   entra na `main`, a **GitHub Action** (`.github/workflows/newsletter-broadcast.yml`)
+   chama o Web App com `{action:"broadcast", key, slug}` e ele envia o artigo a
+   todos os inscritos **ativos**.
 
 ## Fluxo
 
 ```
-Leitor no blog  ──(12s de leitura)──►  Pop-up "Faça parte da comunidade"
-        │  preenche nome / telefone / e-mail
-        ▼
-  fetch POST (no-cors) ─────────►  Apps Script /exec  (Codigo.gs)
-                                     ├─ grava linha na planilha (aba "Cadastros")
-                                     └─ se origem=blog_comunidade e enviar_estudo=true:
-                                          envia e-mail com
-                                          • HTML reduzido do estudo no corpo
-                                          • PDF branded em anexo
+Leitor no artigo ─ "Receber por e-mail" ─► POST /exec
+                                            ├─ grava/atualiza inscrito (token, status=ativo)
+                                            └─ envia e-mail do artigo (resumo HTML + PDF) + link de descadastro
+
+Novo artigo na main ─► GitHub Action ─► POST /exec {action:broadcast, key, slug}
+                                         └─ envia para todos os inscritos ativos
 ```
 
-## Payload enviado pelo site
+## Payload do opt-in (site → Web App)
 
 ```json
 {
-  "nome": "…",
-  "telefone": "[BLOG] …",
-  "email": "…",
-  "origem": "blog_comunidade",
+  "nome": "…", "telefone": "[BLOG] …", "email": "…",
+  "origem": "blog_receber_email",
   "artigo": "Título do artigo",
   "artigo_url": "https://abrev.org/blog/<slug>.html",
   "enviar_estudo": true
 }
 ```
 
-O Apps Script deriva o `<slug>` de `artigo_url` e busca os assets do estudo em:
+O `<slug>` é derivado de `artigo_url`. O e-mail usa:
+- corpo → `https://abrev.org/blog/estudos/<slug>.html` (resumo HTML);
+- anexo → `https://abrev.org/blog/estudos/<slug>.pdf` (versão completa).
+Se algum asset não existir, cai em um fallback com link para o artigo.
 
-- `https://abrev.org/blog/estudos/<slug>.html` → **corpo** do e-mail (HTML reduzido)
-- `https://abrev.org/blog/estudos/<slug>.pdf` → **anexo** (PDF com identidade ABREV)
+## Planilha (aba "Cadastros")
 
-Se algum asset ainda não existir, o e-mail é enviado com um fallback (link para
-o artigo no site) e o cadastro é gravado normalmente.
+`data_hora | nome | telefone | email | origem | artigo | artigo_url | status | token | ultimo_envio`
 
-## Colunas da planilha (aba "Cadastros")
+- `status`: `ativo` ou `descadastrado`.
+- `token`: identificador do descadastramento (gerado no 1º cadastro).
+- Reinscrição: um novo opt-in com um e-mail já existente volta o `status` para `ativo`.
 
-`data_hora | nome | telefone | email | origem | artigo | artigo_url | estudo_enviado`
+## Publicação do Apps Script
 
-> `origem` distingue a fonte do cadastro: `blog_comunidade` (pop-up do blog),
-> `pagina_inicial` (pop-up da home) etc. O telefone recebe um prefixo de origem
-> (`[BLOG]`, `[HOME]`) para leitura rápida na planilha.
+1. Planilha → **Extensões → Apps Script** → cole `Codigo.gs`.
+2. **Configurações do projeto → Propriedades do script**:
+   `BROADCAST_KEY = <senha forte>` (a mesma vai no segredo do GitHub).
+3. **Implantar → Gerenciar implantações → ✏️ editar → Versão: Nova versão → Implantar**
+   (mantém a mesma URL `/exec`).
+4. Autorize os escopos: planilha, `MailApp` (e-mail), `UrlFetchApp` (buscar URL).
 
-## Publicação (passo a passo)
+## Segredos do GitHub (Settings → Secrets and variables → Actions)
 
-1. Abra a planilha de cadastros → **Extensões → Apps Script**.
-2. Cole o conteúdo de [`Codigo.gs`](./Codigo.gs) (substituindo o script atual).
-3. Ajuste `CONFIG` se necessário (planilha, remetente, base do site).
-4. **Implantar → Nova implantação → App da Web**
-   - Executar como: **Eu mesmo**
-   - Quem pode acessar: **Qualquer pessoa**
-5. Mantenha a **mesma URL `/exec`** já usada no site. Se o Google gerar outra,
-   atualize `APPS_SCRIPT_URL` nos arquivos do blog (`blog/index.html` e
-   `blog/da-devolucao-ao-encantamento.html`) e no restante do site.
-6. Autorize os escopos: planilha, envio de e-mail (`MailApp`) e busca de URL
-   (`UrlFetchApp`).
+- `APPS_SCRIPT_EXEC_URL` → a URL `/exec` do Web App.
+- `NEWSLETTER_KEY` → **a mesma** senha do `BROADCAST_KEY`.
 
-## Convenção dos estudos (para o fluxo dos agentes)
+Disparo manual: aba **Actions → Newsletter — disparo de novo artigo → Run workflow**,
+informando o `slug`.
 
-Ao produzir um artigo do blog `blog/<slug>.html`, os agentes devem gerar também:
+## Limites (Gmail)
 
-- `blog/estudos/<slug>.html` — versão **reduzida** e amigável para e-mail
-  (cabeçalho branded, texto essencial, sem nav/pop-up/scripts).
-- `blog/estudos/<slug>.pdf` — **PDF** com a identidade visual da ABREV.
+`MailApp` tem cota diária (~100/dia em contas gratuitas, ~1.500/dia no Workspace).
+O `broadcast` respeita a cota (`getRemainingDailyQuota`) e informa quantos ficaram
+sem cota. Para listas grandes, migrar para um serviço de envio dedicado.
 
-Ver `blog/estudos/README.md` para o padrão dos arquivos.
+## Convenção dos estudos (fluxo dos agentes)
+
+Cada artigo gera 3 arquivos (ver `blog/estudos/README.md`):
+- `blog/<slug>.html` — **resumo** para o blog (público);
+- `blog/estudos/<slug>.html` — **resumo** em HTML adaptado para o e-mail;
+- `blog/estudos/<slug>.pdf` — **versão completa** em PDF (anexo do e-mail).
