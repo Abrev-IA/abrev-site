@@ -24,7 +24,11 @@
 var CONFIG = {
   SHEET_ID: '',                 // vazio = planilha vinculada; ou o ID entre /d/ e /edit
   SHEET_NAME: 'Cadastros',
-  SITE_BASE: 'https://abrev.org',
+  SITE_BASE: 'https://abrev.org',            // links exibidos ao leitor (e-mail/descadastro)
+  // Origem confiável para BUSCAR os arquivos (resumo HTML + PDF). O UrlFetchApp do
+  // Apps Script não alcança abrev.org (Cloudflare/GitHub Pages bloqueia o bot), então
+  // buscamos direto do repositório via raw.githubusercontent.com.
+  ASSETS_BASE: 'https://raw.githubusercontent.com/Abrev-IA/abrev-site/main',
   BLOG_PATH: '/blog/',
   ESTUDOS_PATH: '/blog/estudos/',
   SENDER_NAME: 'ABREV — Associação Brasileira de Reversa do Varejo',
@@ -138,9 +142,9 @@ function descadastrar_(token) {
 // ===================== DISPARO =====================
 function enviarArtigo_(email, token, slug, titulo, url) {
   if (!slug) return false;
-  url = url || (CONFIG.SITE_BASE + CONFIG.BLOG_PATH + slug + '.html');
-  var htmlUrl = CONFIG.SITE_BASE + CONFIG.ESTUDOS_PATH + slug + '.html';
-  var pdfUrl  = CONFIG.SITE_BASE + CONFIG.ESTUDOS_PATH + slug + '.pdf';
+  url = url || (CONFIG.SITE_BASE + CONFIG.BLOG_PATH + slug + '.html');  // link "Ler no site" (leitor)
+  var htmlUrl = CONFIG.ASSETS_BASE + CONFIG.ESTUDOS_PATH + slug + '.html';  // buscado do repositório
+  var pdfUrl  = CONFIG.ASSETS_BASE + CONFIG.ESTUDOS_PATH + slug + '.pdf';   // buscado do repositório
 
   var corpo = fetchText_(htmlUrl);
   if (!corpo) {
@@ -163,8 +167,8 @@ function enviarArtigo_(email, token, slug, titulo, url) {
 // Envia o artigo para todos os inscritos ativos. Respeita a cota diária do Gmail.
 function broadcast_(slug, tituloOpcional) {
   if (!slug) return { erro: 'slug vazio' };
-  var url = CONFIG.SITE_BASE + CONFIG.BLOG_PATH + slug + '.html';
-  var titulo = tituloOpcional || fetchTitulo_(url) || slug;
+  var url = CONFIG.SITE_BASE + CONFIG.BLOG_PATH + slug + '.html';  // link exibido ao leitor
+  var titulo = tituloOpcional || fetchTitulo_(CONFIG.ASSETS_BASE + CONFIG.BLOG_PATH + slug + '.html') || slug;
 
   var sheet = planilha_();
   var last = sheet.getLastRow();
@@ -242,10 +246,16 @@ function fetchTitulo_(url) {
 function fetchPdf_(url, slug) {
   try {
     var res = UrlFetchApp.fetch(url, { muteHttpExceptions: true, followRedirects: true });
-    if (res.getResponseCode() === 200) {
-      var blob = res.getBlob();
-      if (String(blob.getContentType() || '').indexOf('pdf') !== -1) return blob.setName('ABREV-' + slug + '.pdf');
-    }
+    if (res.getResponseCode() !== 200) return null;
+    var blob = res.getBlob();
+    var ct = String(blob.getContentType() || '').toLowerCase();
+    // raw.githubusercontent.com serve PDF como application/octet-stream, então validamos
+    // também pelos bytes mágicos "%PDF" e forçamos o content-type correto no anexo.
+    var bytes = blob.getBytes();
+    var ehPdf = ct.indexOf('pdf') !== -1 ||
+      (bytes.length > 4 && bytes[0] === 0x25 && bytes[1] === 0x50 && bytes[2] === 0x44 && bytes[3] === 0x46);
+    if (!ehPdf) return null;
+    return blob.setContentType('application/pdf').setName('ABREV-' + slug + '.pdf');
   } catch (e) {}
   return null;
 }
