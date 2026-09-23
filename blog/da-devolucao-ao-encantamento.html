@@ -191,15 +191,13 @@ a{color:inherit}
 .mclose{position:absolute;right:16px;top:16px;z-index:3;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.92);font-size:1.3rem;line-height:1;cursor:pointer}
 @media(max-width:640px){.modalCard{grid-template-columns:1fr}.modalVis{min-height:140px}.modalBody{padding:34px 24px}.modalBody h3{font-size:1.6rem}}
 
-/* Gate: bloqueio parcial do estudo */
-.gatecard{display:none;text-align:center;border:1px solid var(--line);border-radius:24px;padding:40px 34px;margin:40px 0;background:linear-gradient(180deg,#fff,rgba(12,162,166,.07));box-shadow:0 16px 44px rgba(21,50,68,.08)}
-.gatecard .lockico{font-size:2rem;line-height:1;margin-bottom:10px}
-.gatecard h3{font:800 clamp(1.3rem,2.6vw,1.75rem)/1.15 var(--d);color:var(--navy);margin:0 0 10px}
-.gatecard p{color:var(--muted);max-width:52ch;margin:0 auto 22px;font-size:1.02rem}
-.gatebtn{display:inline-block;background:var(--navy);color:#fff;border:0;cursor:pointer;padding:15px 30px;border-radius:999px;font:800 .95rem var(--d);transition:.2s}
-.gatebtn:hover{background:var(--teal);transform:translateY(-2px)}
-body:not(.unlocked) .gatecard{display:block}
-body:not(.unlocked) #estudoGate{display:none}
+/* Opt-in: receber por e-mail */
+.emailcta{text-align:center;border:1px solid var(--line);border-radius:24px;padding:40px 34px;margin:44px 0;background:linear-gradient(180deg,#fff,rgba(164,198,61,.10));box-shadow:0 16px 44px rgba(21,50,68,.08)}
+.emailcta-ico{font-size:2rem;line-height:1;margin-bottom:10px}
+.emailcta h3{font:800 clamp(1.3rem,2.6vw,1.75rem)/1.15 var(--d);color:var(--navy);margin:0 0 10px}
+.emailcta p{color:var(--muted);max-width:52ch;margin:0 auto 22px;font-size:1.02rem}
+.emailcta-btn{display:inline-block;background:var(--navy);color:#fff;border:0;cursor:pointer;padding:15px 30px;border-radius:999px;font:800 .95rem var(--d);transition:.2s}
+.emailcta-btn:hover{background:var(--teal);transform:translateY(-2px)}
 </style>
 </head>
 <body>
@@ -309,140 +307,15 @@ body:not(.unlocked) #estudoGate{display:none}
 
   <p>Dois gestos, isolados, explicam boa parte desse salto. <strong>Dispensar a etiqueta impressa</strong> sozinha adiciona 16 pontos percentuais de fidelidade, o maior ganho isolado registrado no estudo. <strong>Aceitar a devolução sem a caixa original</strong> acrescenta outros 8 pontos. São mudanças de política, não de tecnologia de ponta.</p>
 
-  <h2>O que o consumidor realmente pede</h2>
+  <h2>O estudo completo vai muito além deste resumo</h2>
+  <p>Acima está um resumo. O estudo completo traz as <strong>preferências do consumidor</strong>, o recorte por <strong>geração</strong>, a concentração no <strong>vestuário</strong>, o framework <strong>MUP</strong>, o <strong>relógio do reembolso</strong> e as <strong>5 práticas de baixo esforço e alto impacto</strong> — com todos os gráficos e fontes.</p>
 
-  <p>Perguntados diretamente, quase 1.400 consumidores desenharam com clareza o pódio das suas prioridades. Gratuidade lidera com folga, mas conveniência, comunicação e agilidade aparecem logo atrás, sinal de que devolução barata não basta se o processo for confuso ou silencioso.</p>
-
-  <figure class="fig reveal">
-    <p class="cap">O que os consumidores mais valorizam numa devolução</p>
-    <p class="sub">% de consumidores que declaram preferência pelo atributo.</p>
-    <svg viewBox="0 0 720 300" role="img" aria-label="Barras horizontais: devoluções gratuitas 68%, locais convenientes 45%, comunicação e visibilidade 41%, reembolso após envio 38%, sem etiqueta impressa 33%.">
-      <title>Preferências do consumidor</title>
-      <!-- rows, scale 6px per % -->
-      <g>
-        <text class="bar-label" x="0" y="34">Devoluções gratuitas</text>
-        <rect x="250" y="18" width="408" height="24" rx="6" fill="#0ca2a6"/><text class="bar-val" x="666" y="36">68%</text>
-        <text class="bar-label" x="0" y="86">Locais convenientes</text>
-        <rect x="250" y="70" width="270" height="24" rx="6" fill="#0ca2a6"/><text class="bar-val" x="528" y="88">45%</text>
-        <text class="bar-label" x="0" y="138">Comunicação e visibilidade</text>
-        <rect x="250" y="122" width="246" height="24" rx="6" fill="#0ca2a6"/><text class="bar-val" x="504" y="140">41%</text>
-        <text class="bar-label" x="0" y="190">Reembolso ao enviar o item</text>
-        <rect x="250" y="174" width="228" height="24" rx="6" fill="#0ca2a6"/><text class="bar-val" x="486" y="192">38%</text>
-        <text class="bar-label" x="0" y="242">Sem imprimir etiqueta</text>
-        <rect x="250" y="226" width="198" height="24" rx="6" fill="#0ca2a6"/><text class="bar-val" x="456" y="244">33%</text>
-      </g>
-    </svg>
-    <p class="src">Fonte: pesquisa Doodle com ~1.400 consumidores.</p>
-  </figure>
-
-  <h2>Um detalhe que quase ninguém vê: a geração muda tudo</h2>
-
-  <p>A leitura por faixa etária revela um contraponto útil ao senso comum. Não são os mais jovens que mais exigem gratuidade na devolução, e sim os mais velhos. A demanda por <strong>devoluções e trocas gratuitas cresce de forma constante da Geração Z aos Baby Boomers</strong>, chegando a mais de 94% entre eles. Um recado direto para quem atende públicos maduros.</p>
-
-  <figure class="fig reveal">
-    <p class="cap">Quem mais exige devolução gratuita, por geração</p>
-    <p class="sub">% que declara preferir devoluções e trocas gratuitas.</p>
-    <svg viewBox="0 0 720 320" role="img" aria-label="Barras: Geração Z 69,7%, Millennials 75,5%, Geração X 81,8%, Baby Boomers 94,2%.">
-      <title>Devolução gratuita por geração</title>
-      <line x1="60" y1="260" x2="700" y2="260" stroke="rgba(21,50,68,.18)"/>
-      <g class="axis"><text x="52" y="264" text-anchor="end">0%</text>
-        <line x1="60" y1="180" x2="700" y2="180" stroke="rgba(21,50,68,.06)"/><text x="52" y="184" text-anchor="end">50%</text>
-        <line x1="60" y1="100" x2="700" y2="100" stroke="rgba(21,50,68,.06)"/><text x="52" y="104" text-anchor="end">100%</text>
-      </g>
-      <!-- scale 1.6px per % ; baseline 260 -->
-      <rect x="110" y="148" width="110" height="112" rx="6" fill="#153244"/><text class="bar-val" x="165" y="138" text-anchor="middle">69,7%</text>
-      <rect x="270" y="139" width="110" height="121" rx="6" fill="#0ca2a6"/><text class="bar-val" x="325" y="129" text-anchor="middle">75,5%</text>
-      <rect x="430" y="129" width="110" height="131" rx="6" fill="#0ca2a6"/><text class="bar-val" x="485" y="119" text-anchor="middle">81,8%</text>
-      <rect x="590" y="109" width="110" height="151" rx="6" fill="#a4c63d"/><text class="bar-val" x="645" y="99" text-anchor="middle" style="fill:#4a6b00">94,2%</text>
-      <g class="axis" style="fill:var(--muted)">
-        <text x="165" y="282" text-anchor="middle">Geração Z</text>
-        <text x="325" y="282" text-anchor="middle">Millennials</text>
-        <text x="485" y="282" text-anchor="middle">Geração X</text>
-        <text x="645" y="282" text-anchor="middle">Baby Boomers</text>
-      </g>
-    </svg>
-    <p class="src">Fonte: <em>Consumer Loyalty Report 2023</em>, reproduzido no e-book <em>Da devolução ao encantamento</em> (Genius Returns), pp. 31–33.</p>
-  </figure>
-
-  <h2>Onde a receita realmente escapa: o vestuário</h2>
-
-  <p>Nenhuma categoria concentra tanto atrito reverso quanto a moda. Sozinho, o <strong>vestuário responde por mais da metade de todas as devoluções</strong>, reflexo direto de tamanho, caimento e expectativa versus realidade. É também onde as melhores políticas de troca têm maior efeito sobre a retenção.</p>
-
-  <figure class="fig reveal">
-    <p class="cap">Participação nas devoluções, por categoria</p>
-    <p class="sub">Distribuição das devoluções por vertical de produto.</p>
-    <svg viewBox="0 0 720 300" role="img" aria-label="Vestuário 55,72%, acessórios 8,96%, calçados 7,58%, outros 6,44%, artigos para casa 6,39%.">
-      <title>Devoluções por categoria</title>
-      <g>
-        <text class="bar-label" x="0" y="34">Vestuário</text>
-        <rect x="200" y="18" width="446" height="26" rx="6" fill="#153244"/><text class="bar-val" x="654" y="37">55,7%</text>
-        <text class="bar-label" x="0" y="86">Acessórios</text>
-        <rect x="200" y="70" width="72" height="26" rx="6" fill="#0ca2a6"/><text class="bar-val" x="280" y="89">9,0%</text>
-        <text class="bar-label" x="0" y="138">Calçados</text>
-        <rect x="200" y="122" width="61" height="26" rx="6" fill="#0ca2a6"/><text class="bar-val" x="269" y="141">7,6%</text>
-        <text class="bar-label" x="0" y="190">Outros</text>
-        <rect x="200" y="174" width="52" height="26" rx="6" fill="#0ca2a6"/><text class="bar-val" x="260" y="193">6,4%</text>
-        <text class="bar-label" x="0" y="242">Artigos para casa</text>
-        <rect x="200" y="226" width="51" height="26" rx="6" fill="#0ca2a6"/><text class="bar-val" x="259" y="245">6,4%</text>
-      </g>
-    </svg>
-    <p class="src">Fonte: The Ecommerce Returns Benchmark Report (Loop).</p>
-  </figure>
-
-  <h2>O framework MUP: transformar atrito em memória</h2>
-
-  <p>Para desenhar jornadas de devolução que fidelizam, o e-book propõe um princípio orientador simples de lembrar: cada interação reversa deveria ser <strong>Memorável, Única e Positiva</strong>.</p>
-
-  <div class="mup reveal">
-    <div class="c"><b>M</b><h3>Memorável</h3><p>A devolução deve deixar uma marca boa, rápida, clara e sem burocracia, que o cliente lembre na próxima compra.</p></div>
-    <div class="c"><b>U</b><h3>Única</h3><p>Personalizada ao contexto: crédito, troca ou reembolso oferecidos conforme o caso, não uma régua fria e única.</p></div>
-    <div class="c"><b>P</b><h3>Positiva</h3><p>Transformar um momento de frustração em prova de cuidado, a hora em que a marca mais pode surpreender.</p></div>
-  </div>
-
-  <h2>O relógio do reembolso</h2>
-
-  <p>Se existe um número que o cliente sente na pele, é o tempo até o dinheiro voltar. A percepção de qualidade cai vertiginosamente a cada dia a mais. Abaixo, a régua que separa uma experiência excelente de uma péssima.</p>
-
-  <div class="scale reveal" role="img" aria-label="Escala de reembolso: menos de 1 dia é ótimo, 1 a 2 dias bom, 3 a 4 regular, 5 a 8 ruim, mais que isso péssimo.">
-    <div style="background:#237a37"><b>&lt; 1 dia</b>Ótimo</div>
-    <div style="background:#6aa833;color:#12300a"><b>1–2 dias</b>Bom</div>
-    <div style="background:#f7c842;color:#5a4600"><b>3–4 dias</b>Regular</div>
-    <div style="background:#cf6f12"><b>5–8 dias</b>Ruim</div>
-    <div style="background:#b02a1c"><b>&gt; 8 dias</b>Péssimo</div>
-  </div>
-  <p class="scaleleg">Percepção do consumidor sobre o prazo de reembolso.</p>
-
-  <div class="pull reveal">
-    “Lembre-se de que cada devolução é uma oportunidade valiosa para impressionar o cliente e construir relacionamentos duradouros.”
-    <cite>— Genius Returns</cite>
-  </div>
-
-  <!-- GATE: bloqueio parcial — o restante fica atrás do cadastro -->
-  <div class="gatecard" id="gateCard" aria-live="polite">
-    <div class="lockico" aria-hidden="true">🔒</div>
-    <h3>O restante do estudo é exclusivo da comunidade ABREV</h3>
-    <p>Cadastre-se para desbloquear as <strong>5 práticas de baixo esforço e alto impacto</strong> e receber o estudo completo — em HTML e PDF — direto no seu e-mail.</p>
-    <button type="button" class="gatebtn" id="gateUnlock">Cadastrar e desbloquear o estudo →</button>
-  </div>
-
-  <div id="estudoGate">
-  <h2>Do diagnóstico à prática</h2>
-  <p>Traduzindo a evidência em decisão, cinco movimentos concentram o maior retorno sobre a experiência reversa:</p>
-
-  <div class="take reveal">
-    <h3>5 práticas de baixo esforço, alto impacto</h3>
-    <ol>
-      <li><b>Elimine a etiqueta impressa.</b> É o maior ganho isolado de fidelidade (+16 p.p.). Ofereça QR code ou código no ponto de coleta.</li>
-      <li><b>Aceite devolução sem a caixa original.</b> Some outros +8 p.p. removendo uma exigência que só gera atrito.</li>
-      <li><b>Acelere o reembolso.</b> Mire em menos de 48h e comunique cada etapa, porque a demora acima de 3 dias derruba a recompra.</li>
-      <li><b>Dê visibilidade total.</b> Rastreamento e confirmação de recebimento estão entre os atributos mais valorizados.</li>
-      <li><b>Preserve receita antes de reembolsar.</b> Ofereça crédito em loja e troca por outro item; reembolso sem devolução só quando o custo reverso superar o valor do produto.</li>
-    </ol>
-  </div>
-
-  <p>A conclusão que atravessa todos os dados é uma só: <strong>a logística reversa deixou de ser um centro de custo para se tornar um centro de relacionamento</strong>. Quem a trata como parte da estratégia de experiência, e não como um mal necessário, converte devoluções em recompra, atrito em confiança e, no limite, clientes irritados em defensores da marca.</p>
-
-  <p>É exatamente essa transformação, estruturar a reversa do varejo brasileiro com método, evidência e cooperação, que move a ABREV.</p>
+  <!-- OPT-IN: receber o estudo completo por e-mail -->
+  <div class="emailcta reveal">
+    <div class="emailcta-ico" aria-hidden="true">✉️</div>
+    <h3>Receba o estudo completo por e-mail</h3>
+    <p>Enviamos o resumo em HTML e o <strong>PDF completo</strong> direto no seu e-mail — e você passa a receber os próximos estudos da ABREV.</p>
+    <button type="button" class="emailcta-btn" id="receberEmailBtn">Receber por e-mail →</button>
   </div>
 
   <!-- CTA -->
@@ -491,14 +364,14 @@ body:not(.unlocked) #estudoGate{display:none}
       <strong>Conhecimento que move a reversa.</strong>
     </div>
     <div class="modalBody">
-      <p class="mkicker">Faça parte</p>
-      <h3 id="communityTitle">Faça parte da comunidade ABREV</h3>
-      <p>Cadastre-se para receber conteúdos, novidades e se aproximar de quem está estruturando a logística reversa no varejo.</p>
+      <p class="mkicker">Newsletter ABREV</p>
+      <h3 id="communityTitle">Receba os estudos da ABREV por e-mail</h3>
+      <p>Cadastre-se para receber este estudo (resumo + PDF completo) e os próximos conteúdos da ABREV sobre logística reversa no varejo.</p>
       <form class="mform" id="communityForm">
         <input id="cName" name="nome" type="text" required placeholder="Seu nome" aria-label="Seu nome" autocomplete="name">
         <input id="cPhone" name="telefone" type="tel" required placeholder="Telefone / WhatsApp" aria-label="Telefone ou WhatsApp" autocomplete="tel" inputmode="tel">
         <input id="cEmail" name="email" type="email" required placeholder="E-mail" aria-label="E-mail" autocomplete="email">
-        <button type="submit">Quero fazer parte</button>
+        <button type="submit">Quero receber por e-mail</button>
         <p id="cStatus" class="mnote" role="status" aria-live="polite"></p>
       </form>
       <p class="mnote">Quer se associar de fato? <a href="/comunidade.html">Preencha o formulário completo de associação →</a></p>
@@ -558,11 +431,9 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   modal.addEventListener('click',function(e){ if(e.target===modal) closeM(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && modal.classList.contains('show')) closeM(); });
 
-  // Gate (bloqueio parcial): desbloqueia se já cadastrado; o botão do gate abre o pop-up
-  function unlockStudy(){ document.body.classList.add('unlocked'); }
-  try{ if(localStorage.getItem(DONE)==='1') unlockStudy(); }catch(e){}
-  var gateBtn=document.getElementById('gateUnlock');
-  if(gateBtn) gateBtn.addEventListener('click',openM);
+  // Opt-in "Receber por e-mail": o botão do artigo abre o pop-up
+  var receberBtn=document.getElementById('receberEmailBtn');
+  if(receberBtn) receberBtn.addEventListener('click',openM);
 
   // abre automaticamente após alguns segundos de leitura (uma vez por sessão; nunca após cadastro)
   var done=false, shown=false;
@@ -588,7 +459,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       nome:document.getElementById('cName').value.trim(),
       telefone:'[BLOG] '+document.getElementById('cPhone').value.trim(),
       email:document.getElementById('cEmail').value.trim(),
-      origem:'blog_comunidade',
+      origem:'blog_receber_email',
       artigo:(document.title.split('|')[0]||'').trim(),
       artigo_url:(canon&&canon.href)||location.href,
       enviar_estudo:true
@@ -596,8 +467,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     try{
       await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});
       try{ localStorage.setItem(DONE,'1'); }catch(e){}
-      unlockStudy();
-      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Cadastro realizado. Estudo desbloqueado — enviamos também o PDF para o seu e-mail. Bem-vindo(a) à comunidade ABREV!</p>';
+      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Pronto! Enviamos o estudo (resumo + PDF) para o seu e-mail. Você também receberá os próximos estudos da ABREV.</p>';
     }catch(err){
       status.textContent='Não foi possível concluir agora. Tente novamente.';
       btn.disabled=false; btn.textContent=label;

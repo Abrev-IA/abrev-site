@@ -1,43 +1,35 @@
-# Estudos (versão e-mail + PDF)
+# Estudos (e-mail + PDF)
 
-Para cada artigo do blog `blog/<slug>.html`, este diretório guarda a versão do
-**estudo** entregue no cadastro da comunidade. A estratégia é de **bloqueio
-parcial**: o artigo público mostra boa parte do conteúdo e trava a seção final
-(mais valiosa) atrás do cadastro — quem se cadastra recebe o **estudo completo**
-por e-mail (HTML + PDF).
+Cada artigo do blog gera **3 arquivos**. O blog mostra um **resumo** (bom para SEO
+e para atrair o cadastro); o **conteúdo completo** vai no **PDF por e-mail**:
 
-- `<slug>.html` — **estudo completo em HTML adaptado para e-mail**:
-  - **mesmo conteúdo do artigo do blog** (inclui a parte travada), com o
-    **layout adaptado** para clientes de e-mail;
-  - estilos **inline**, largura ~600px, sem nav/pop-up/animações/`<script>`;
-  - gráficos representados como **barras/tabelas simples** (SVG não é confiável
-    em e-mail); cabeçalho branded ABREV e rodapé com links.
-  - É o **corpo** do e-mail.
-- `<slug>.pdf` — **PDF gerado a partir do artigo do blog** (`blog/<slug>.html`),
-  com a identidade visual completa (hero, gráficos SVG, seções). Renderizado com
-  Chromium headless, desbloqueando o gate e ocultando nav/rodapé/pop-up:
-  `page.evaluate(add 'unlocked' + esconde .nav/.footer/#communityModal/#gateCard)`
-  → `page.pdf({format:'A4', printBackground:true})`. É o **anexo** do e-mail.
+1. `blog/<slug>.html` — **resumo para o blog** (público). Traz introdução, dados
+   principais e um bloco de opt-in "Receber por e-mail". Não é o estudo completo.
+2. `blog/estudos/<slug>.html` — **resumo em HTML adaptado para e-mail** (corpo do
+   e-mail): estilos **inline**, ~600px, gráficos como barras/tabelas simples, sem
+   nav/pop-up/`<script>`. Aponta para o PDF em anexo. O rodapé de descadastramento
+   é adicionado automaticamente pelo Apps Script (não incluir aqui).
+3. `blog/estudos/<slug>.pdf` — **versão completa em PDF**, com a identidade visual
+   da ABREV (hero, gráficos, todas as seções). É o **anexo** do e-mail.
 
-O Google Apps Script (`automation/newsletter/Codigo.gs`) busca estes arquivos
-por URL (`https://abrev.org/blog/estudos/<slug>.html` e `.pdf`) e os usa como
-corpo e anexo. Se não existirem, envia um fallback com link para o artigo.
+## Como o e-mail é montado
 
-## Bloqueio parcial no artigo
+O opt-in do artigo (pop-up "Receber por e-mail") faz `POST` para o Apps Script
+(`automation/newsletter/Codigo.gs`), que:
+- grava/atualiza o inscrito na planilha;
+- envia o e-mail: **corpo** = `estudos/<slug>.html`, **anexo** = `estudos/<slug>.pdf`,
+  buscados por URL (`https://abrev.org/blog/estudos/<slug>.…`);
+- inclui o link de **descadastramento**.
 
-O artigo `blog/<slug>.html` marca a fronteira do bloqueio com:
+Quando um **novo** `blog/estudos/<slug>.html` entra na `main`, a GitHub Action
+`newsletter-broadcast.yml` dispara esse mesmo e-mail para **todos os inscritos**.
 
-- um `<div class="gatecard" id="gateCard">` (card de cadastro exibido quando
-  bloqueado), e
-- um `<div id="estudoGate">…</div>` envolvendo a seção final travada.
+## Gerando o PDF completo
 
-O CSS esconde `#estudoGate` e mostra `#gateCard` enquanto `body` **não** tem a
-classe `unlocked`. O JS adiciona `unlocked` quando o visitante já se cadastrou
-(`localStorage abrev_comunidade_done`) ou logo após concluir o cadastro pelo
-pop-up. É um **soft-gate** (o conteúdo continua no HTML, preservando SEO e
-mantendo uma única fonte para gerar o PDF); para bloqueio "duro" seria preciso
-remover o conteúdo da página pública (pior para SEO).
+Renderizar a versão completa com Chromium headless
+(`page.pdf({format:'A4', printBackground:true})`). Como o blog agora é um resumo,
+o PDF deve ser gerado a partir da **versão completa** do artigo (o rascunho
+completo dos agentes), e não do resumo publicado.
 
-> Estes arquivos são **entregáveis do fluxo dos agentes**: ao concluir um
-> artigo, gerar também o `<slug>.html` (estudo completo adaptado para e-mail) e
-> o `<slug>.pdf` (PDF do artigo).
+> Entregáveis obrigatórios do fluxo dos agentes. Sem o `<slug>.html` (resumo de
+> e-mail) e o `<slug>.pdf` (completo), o e-mail cai no fallback (só um link).
