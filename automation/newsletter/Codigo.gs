@@ -37,9 +37,15 @@ var CONFIG = {
   BLOG_PATH: '/blog/',
   ESTUDOS_PATH: '/blog/estudos/',
   SENDER_NAME: 'ABREV — Associação Brasileira de Reversa do Varejo',
-  REPLY_TO: 'contato@abrev.com.br',
+  // Remetente dos e-mails. Para enviar DESTE endereço (em vez do Gmail que roda
+  // o script), ele PRECISA estar cadastrado e VERIFICADO como "Enviar e-mail
+  // como" na conta que executa o script (Gmail → Ver todas as configurações →
+  // Contas e importação → Enviar e-mail como). Sem isso, o Google ignora o
+  // remetente e usa o endereço da conta. Deixe '' para usar o endereço da conta.
+  FROM_EMAIL: 'adm@abrev.org',
+  REPLY_TO: 'adm@abrev.org',
   EMAIL_SUBJECT_PREFIX: 'Estudo ABREV: ',
-  VERSION: 'assets-raw-3'        // marcador p/ confirmar que a implantação está atualizada
+  VERSION: 'assets-raw-4'        // marcador p/ confirmar que a implantação está atualizada
 };
 
 var HEADERS = ['data_hora','nome','telefone','email','origem','artigo','artigo_url','status','token','ultimo_envio'];
@@ -92,6 +98,7 @@ function doGet(e) {
       htmlUrl: htmlUrl, htmlLen: (corpo || '').length,
       pdfUrl: pdfUrl, pdfOk: !!pdf, pdfBytes: pdf ? pdf.getBytes().length : 0,
       sheet_id: CONFIG.SHEET_ID, sheet_name: CONFIG.SHEET_NAME,
+      from_email: CONFIG.FROM_EMAIL, reply_to: CONFIG.REPLY_TO,
       cota_restante: MailApp.getRemainingDailyQuota()
     };
     try { out.inscritos = Math.max(0, planilha_().getLastRow() - 1); }
@@ -191,6 +198,7 @@ function enviarArtigo_(email, token, slug, titulo, url) {
   corpo += rodapeDescadastro_(token);
 
   var options = { name: CONFIG.SENDER_NAME, replyTo: CONFIG.REPLY_TO, htmlBody: corpo };
+  if (CONFIG.FROM_EMAIL) options.from = CONFIG.FROM_EMAIL;  // exige alias "Enviar como" verificado
   var pdf = fetchPdf_(pdfUrl, slug);
   if (pdf) options.attachments = [pdf];
 

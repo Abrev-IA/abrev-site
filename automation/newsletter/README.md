@@ -94,6 +94,24 @@ Colunas da aba `Inscritos`:
 Disparo manual: aba **Actions → Newsletter — disparo de novo artigo → Run workflow**,
 informando o `slug`.
 
+## Remetente (De:) — `adm@abrev.org`
+
+Os e-mails devem sair de **`adm@abrev.org`** (`CONFIG.FROM_EMAIL`). O Apps Script,
+por padrão, envia pelo endereço da conta que **executa** o script. Para enviar de
+outro endereço, ele precisa ser um **alias verificado** naquela conta:
+
+1. Faça login na conta que roda o script (a dona do Apps Script).
+2. Gmail → **Ver todas as configurações → Contas e importação → "Enviar e-mail
+   como" → Adicionar outro endereço** → `adm@abrev.org`.
+3. Conclua a **verificação** (o Google envia um código para `adm@abrev.org`).
+
+Enquanto o alias não estiver verificado, o Google **ignora** o `from` e envia pelo
+endereço da conta (ou o envio falha). Confirme abrindo o **e-mail de teste**
+(`?selftest=`) e olhando o campo **De:** — deve mostrar `adm@abrev.org`.
+
+> Alternativa: se `abrev.org` usa Google Workspace, o mais limpo é que o dono do
+> Apps Script seja a própria conta `adm@abrev.org` (aí nem precisa de alias).
+
 ## Limites (Gmail)
 
 `MailApp` tem cota diária (~100/dia em contas gratuitas, ~1.500/dia no Workspace).
