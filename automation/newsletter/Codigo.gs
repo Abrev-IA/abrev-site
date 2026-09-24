@@ -22,8 +22,13 @@
 
 // ===================== CONFIG =====================
 var CONFIG = {
-  SHEET_ID: '',                 // vazio = planilha vinculada; ou o ID entre /d/ e /edit
-  SHEET_NAME: 'Cadastros',
+  // ID fixo da planilha "ABREV — Cadastros Site". Fixar o ID evita depender de
+  // getActiveSpreadsheet() (que é null se o projeto do Apps Script NÃO estiver
+  // vinculado à planilha) — isso fazia o cadastro falhar em silêncio.
+  SHEET_ID: '1tkXddI8fxj_z4L1DHZBTuJj-ci-xVhYCZIAM2FSF_lI',
+  // Aba dos cadastros do SITE (newsletter/blog/home). A aba "Cadastros" é do
+  // evento já ocorrido — não misturar; esta é criada automaticamente se faltar.
+  SHEET_NAME: 'Inscritos',
   SITE_BASE: 'https://abrev.org',            // links exibidos ao leitor (e-mail/descadastro)
   // Origem confiável para BUSCAR os arquivos (resumo HTML + PDF). O UrlFetchApp do
   // Apps Script não alcança abrev.org (Cloudflare/GitHub Pages bloqueia o bot), então
@@ -34,7 +39,7 @@ var CONFIG = {
   SENDER_NAME: 'ABREV — Associação Brasileira de Reversa do Varejo',
   REPLY_TO: 'contato@abrev.com.br',
   EMAIL_SUBJECT_PREFIX: 'Estudo ABREV: ',
-  VERSION: 'assets-raw-2'        // marcador p/ confirmar que a implantação está atualizada
+  VERSION: 'assets-raw-3'        // marcador p/ confirmar que a implantação está atualizada
 };
 
 var HEADERS = ['data_hora','nome','telefone','email','origem','artigo','artigo_url','status','token','ultimo_envio'];
@@ -86,8 +91,11 @@ function doGet(e) {
       ok: true, version: CONFIG.VERSION, slug: slug, assets_base: CONFIG.ASSETS_BASE,
       htmlUrl: htmlUrl, htmlLen: (corpo || '').length,
       pdfUrl: pdfUrl, pdfOk: !!pdf, pdfBytes: pdf ? pdf.getBytes().length : 0,
+      sheet_id: CONFIG.SHEET_ID, sheet_name: CONFIG.SHEET_NAME,
       cota_restante: MailApp.getRemainingDailyQuota()
     };
+    try { out.inscritos = Math.max(0, planilha_().getLastRow() - 1); }
+    catch (errS) { out.inscritos = -1; out.sheet_erro = String(errS); }
     if (p.selftest && p.email) {
       try {
         var titulo = fetchTitulo_(CONFIG.ASSETS_BASE + CONFIG.BLOG_PATH + slug + '.html');

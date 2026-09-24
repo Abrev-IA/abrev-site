@@ -59,7 +59,17 @@ o `fetchPdf_` valida pelos bytes `%PDF` e força `application/pdf` no anexo.
 > Os arquivos precisam estar na branch `main` do repositório para serem
 > buscados (é o caminho do `ASSETS_BASE`). Publique os 3 arquivos juntos.
 
-## Planilha (aba "Cadastros")
+## Planilha (aba "Inscritos")
+
+Os cadastros do site vão para a planilha **"ABREV — Cadastros Site"**, aba
+**`Inscritos`** (criada automaticamente). O `CONFIG.SHEET_ID` está **fixo** no
+`Codigo.gs` — não depende de a planilha estar "ativa"/vinculada; isso evita que
+um projeto standalone grave em lugar nenhum (falha silenciosa por causa do
+`mode:'no-cors'` no site).
+
+> A aba **`Cadastros`** é do **evento já ocorrido** e não é usada pela newsletter.
+
+Colunas da aba `Inscritos`:
 
 `data_hora | nome | telefone | email | origem | artigo | artigo_url | status | token | ultimo_envio`
 
