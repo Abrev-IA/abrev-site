@@ -7,7 +7,8 @@ ao próprio formulário** (`NotificarDiretoria.gs`), com um gatilho *ao enviar*.
 
 ## Destinatário
 
-`CONFIG.DESTINO = 'mauricio.baum@confi.com.vc'` — troque aqui se mudar o avaliador.
+`CONFIG.DESTINO = 'administradorabrev@gmail.com'` (por enquanto) — troque aqui se
+mudar o avaliador (ex.: `mauricio.baum@confi.com.vc`).
 
 O e-mail vai com **responder-para (reply-to)** no e-mail do candidato (quando o
 formulário coleta e-mail), então a diretoria responde direto para a pessoa.

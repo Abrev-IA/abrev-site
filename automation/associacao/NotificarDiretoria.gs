@@ -16,7 +16,7 @@
  */
 
 var CONFIG = {
-  DESTINO: 'mauricio.baum@confi.com.vc',      // quem recebe/avalia as solicitações
+  DESTINO: 'administradorabrev@gmail.com',    // quem recebe/avalia as solicitações (por enquanto)
   ASSUNTO: 'Nova solicitação de associação — ABREV',
   REMETENTE_NOME: 'ABREV — Site'
 };
