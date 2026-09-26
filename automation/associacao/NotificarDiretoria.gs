@@ -16,9 +16,12 @@
  */
 
 var CONFIG = {
-  DESTINO: 'mauricio.baum@confi.com.vc',      // quem recebe/avalia as solicitações
+  DESTINO: 'administradorabrev@gmail.com',     // quem recebe/avalia as solicitações (por enquanto)
   ASSUNTO: 'Nova solicitação de associação — ABREV',
-  REMETENTE_NOME: 'ABREV — Site'
+  REMETENTE_NOME: 'ABREV — Associação Brasileira de Reversa do Varejo',
+  FROM_EMAIL: 'adm@abrev.org',                 // alias "Enviar como" VERIFICADO (senão o Google ignora)
+  REPLY_TO: 'adm@abrev.org',
+  E3_ASSUNTO: 'Recebemos sua candidatura para associar-se à ABREV'
 };
 
 // Disparada automaticamente a cada envio do formulário (gatilho instalável).
@@ -51,11 +54,37 @@ function onFormSubmit(e) {
     '</div>';
 
   var options = { htmlBody: corpo, name: CONFIG.REMETENTE_NOME };
+  if (CONFIG.FROM_EMAIL) options.from = CONFIG.FROM_EMAIL;
   if (emailCandidato) options.replyTo = emailCandidato;  // "responder" vai ao candidato
 
   MailApp.sendEmail(CONFIG.DESTINO, CONFIG.ASSUNTO + (nome ? (' — ' + nome) : ''),
     'Nova solicitação de associação. Abra em um leitor com HTML para visualizar.', options);
+
+  // E3 — confirmação de candidatura para o próprio candidato
+  if (emailCandidato) { try { enviarE3_(emailCandidato, nome); } catch (e3) {} }
 }
+
+// E3 — Candidatura recebida (texto PROVISÓRIO, revisão pendente)
+function enviarE3_(email, nome) {
+  var inner =
+    '<p>Olá, ' + escapeHtml_(primeiroNome_(nome)) + '!</p>' +
+    '<p>Obrigada pelo interesse em fazer parte da ABREV — Associação Brasileira de Reversa do Varejo.</p>' +
+    '<p>Recebemos sua candidatura. A diretoria da ABREV vai analisar seu perfil e entrará em contato após a análise.</p>' +
+    '<p>Se quiser complementar alguma informação, basta responder a este e-mail.</p>' +
+    '<p>Atenciosamente,<br>Diretoria ABREV</p>';
+  var html =
+    '<div style="margin:0;background:#fbf8f0;padding:24px 12px;font-family:Arial,Helvetica,sans-serif;color:#153244">' +
+      '<div style="max-width:600px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 12px 34px rgba(21,50,68,.08)">' +
+        '<div style="background:#153244;padding:20px 28px;color:#fff;font-weight:bold;letter-spacing:1px">ABREV</div>' +
+        '<div style="padding:28px;line-height:1.6;font-size:15px">' + inner + '</div>' +
+      '</div>' +
+    '</div>';
+  var options = { htmlBody: html, name: CONFIG.REMETENTE_NOME, replyTo: CONFIG.REPLY_TO };
+  if (CONFIG.FROM_EMAIL) options.from = CONFIG.FROM_EMAIL;
+  MailApp.sendEmail(email, CONFIG.E3_ASSUNTO, 'Recebemos sua candidatura. Abra em um leitor com HTML para visualizar.', options);
+}
+
+function primeiroNome_(nome) { return String(nome || '').trim().split(/\s+/)[0] || ''; }
 
 // Rode uma vez para criar o gatilho "ao enviar formulário".
 function instalarAcionador() {
