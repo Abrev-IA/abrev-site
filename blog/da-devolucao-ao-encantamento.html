@@ -190,6 +190,12 @@ a{color:inherit}
 .emailcta p{color:var(--muted);max-width:52ch;margin:0 auto 22px;font-size:1.02rem}
 .emailcta-btn{display:inline-block;background:var(--navy);color:#fff;border:0;cursor:pointer;padding:15px 30px;border-radius:999px;font:800 .95rem var(--d);transition:.2s}
 .emailcta-btn:hover{background:var(--teal);transform:translateY(-2px)}
+.estudoForm{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:12px;text-align:left}
+.estudoForm input[type=text],.estudoForm input[type=email]{padding:13px 16px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff}
+.estudoForm .optin{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--muted);line-height:1.45;cursor:pointer}
+.estudoForm .optin input{margin-top:3px;flex-shrink:0}
+.estudoForm .consent{font-size:.78rem;color:var(--muted);text-align:center;margin:4px 0 0}
+.estudoForm button{margin-top:2px}
 </style>
 </head>
 <body>
@@ -291,12 +297,19 @@ a{color:inherit}
   <h2>O estudo completo vai muito além deste resumo</h2>
   <p>Acima está um resumo. O estudo completo traz as <strong>preferências do consumidor</strong>, o recorte por <strong>geração</strong>, a concentração no <strong>vestuário</strong>, o framework <strong>MUP</strong>, o <strong>relógio do reembolso</strong> e as <strong>5 práticas de baixo esforço e alto impacto</strong> — com todos os gráficos e fontes.</p>
 
-  <!-- OPT-IN: receber o estudo completo por e-mail -->
+  <!-- RECEBER O ESTUDO COMPLETO (blog → E2) -->
   <div class="emailcta reveal">
-    <div class="emailcta-ico" aria-hidden="true">✉️</div>
-    <h3>Receba o estudo completo por e-mail</h3>
-    <p>Enviamos o resumo em HTML e o <strong>PDF completo</strong> direto no seu e-mail — e você passa a receber os próximos estudos da ABREV.</p>
-    <button type="button" class="emailcta-btn" id="receberEmailBtn">Receber por e-mail →</button>
+    <div class="emailcta-ico" aria-hidden="true">📄</div>
+    <h3>Receba o estudo completo em PDF</h3>
+    <p>Enviamos o <strong>estudo completo em PDF</strong> no seu e-mail, com todos os dados, gráficos e fontes.</p>
+    <form class="estudoForm" id="estudoForm" novalidate>
+      <input id="eName" name="nome" type="text" required placeholder="Seu nome" aria-label="Seu nome" autocomplete="name">
+      <input id="eEmail" name="email" type="email" required placeholder="Seu e-mail" aria-label="Seu e-mail" autocomplete="email">
+      <label class="optin"><input id="eOptin" type="checkbox"> Quero fazer parte da comunidade ABREV e receber artigos quinzenais, pesquisas, estudos e convites para eventos.</label>
+      <button type="submit" class="emailcta-btn">Receber o estudo completo →</button>
+      <p id="eStatus" class="mnote" role="status" aria-live="polite"></p>
+      <p class="consent">Ao enviar, você concorda com nossa <a href="/politica-privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
+    </form>
   </div>
 
   <!-- CTA -->
@@ -345,17 +358,17 @@ a{color:inherit}
       <strong>Conhecimento que move a reversa.</strong>
     </div>
     <div class="modalBody">
-      <p class="mkicker">Newsletter ABREV</p>
-      <h3 id="communityTitle">Receba os estudos da ABREV por e-mail</h3>
-      <p>Cadastre-se para receber este estudo (resumo + PDF completo) e os próximos conteúdos da ABREV sobre logística reversa no varejo.</p>
-      <form class="mform" id="communityForm">
+      <p class="mkicker">Comunidade ABREV</p>
+      <h3 id="communityTitle">Faça parte da comunidade</h3>
+      <p>Receba, a cada 15 dias, os artigos da ABREV — além de pesquisas, estudos e convites para eventos sobre logística reversa no varejo.</p>
+      <form class="mform" id="communityForm" novalidate>
         <input id="cName" name="nome" type="text" required placeholder="Seu nome" aria-label="Seu nome" autocomplete="name">
-        <input id="cPhone" name="telefone" type="tel" required placeholder="Telefone / WhatsApp" aria-label="Telefone ou WhatsApp" autocomplete="tel" inputmode="tel">
         <input id="cEmail" name="email" type="email" required placeholder="E-mail" aria-label="E-mail" autocomplete="email">
-        <button type="submit">Quero receber por e-mail</button>
+        <input id="cPhone" name="telefone" type="tel" placeholder="Telefone / WhatsApp (opcional)" aria-label="Telefone ou WhatsApp (opcional)" autocomplete="tel" inputmode="tel">
+        <button type="submit">Quero fazer parte</button>
         <p id="cStatus" class="mnote" role="status" aria-live="polite"></p>
       </form>
-      <p class="mnote">Quer se associar de fato? <a href="https://docs.google.com/forms/d/e/1FAIpQLSdZ5Y8wrXJ5MAdm2k3H5aAuLIxSiZLFo-mY046BQttft3wraQ/viewform" target="_blank" rel="noopener">Preencha o formulário completo de associação →</a></p>
+      <p class="mnote">Ao se cadastrar, você concorda com nossa <a href="/politica-privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a>. Quer atuar de fato na ABREV? <a href="https://docs.google.com/forms/d/e/1FAIpQLSdZ5Y8wrXJ5MAdm2k3H5aAuLIxSiZLFo-mY046BQttft3wraQ/viewform" target="_blank" rel="noopener">Associe-se →</a></p>
     </div>
   </div>
 </div>
@@ -365,9 +378,15 @@ a{color:inherit}
 const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// Pop-up "Faça parte da comunidade" — grava na planilha do Drive via Apps Script
+// Back-end ABREV (Apps Script)
+var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyJPKHIzLvghLIkJpORZd7vYTGiDzSY_ybiAdnub3CX4bLLzPx5O-eTDc0hxpRc9DjIDw/exec';
+function postAS(payload){ return fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)}); }
+function canonUrl(){ var c=document.querySelector('link[rel=canonical]'); return (c&&c.href)||location.href; }
+function artigoTitulo(){ return (document.title.split('|')[0]||'').trim(); }
+function slugAtual(){ var p=canonUrl().split('?')[0].split('#')[0]; return p.substring(p.lastIndexOf('/')+1).replace(/\.html?$/,''); }
+
+// Pop-up "Faça parte da comunidade" (lista Comunidade → E1)
 (function(){
-  var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyJPKHIzLvghLIkJpORZd7vYTGiDzSY_ybiAdnub3CX4bLLzPx5O-eTDc0hxpRc9DjIDw/exec';
   var modal=document.getElementById('communityModal');
   if(!modal) return;
   var form=document.getElementById('communityForm');
@@ -379,43 +398,53 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   modal.addEventListener('click',function(e){ if(e.target===modal) closeM(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && modal.classList.contains('show')) closeM(); });
 
-  // Opt-in "Receber por e-mail": o botão do artigo abre o pop-up
-  var receberBtn=document.getElementById('receberEmailBtn');
-  if(receberBtn) receberBtn.addEventListener('click',openM);
-
-  // abre automaticamente após alguns segundos de leitura (uma vez por sessão; nunca após cadastro)
   var done=false, shown=false;
   try{ done=localStorage.getItem(DONE)==='1'; }catch(e){}
   try{ shown=sessionStorage.getItem(SHOWN)==='1'; }catch(e){}
-  if(!done && !shown){
+  // vindo dos e-mails (?comunidade=1) abre mesmo já cadastrado; senão, abre após 12s (1x/sessão)
+  if(/[?&]comunidade=1/.test(location.search)){ openM(); }
+  else if(!done && !shown){
     setTimeout(function(){
-      if(!modal.classList.contains('show')){
-        openM();
-        try{ sessionStorage.setItem(SHOWN,'1'); }catch(e){}
-      }
+      if(!modal.classList.contains('show')){ openM(); try{ sessionStorage.setItem(SHOWN,'1'); }catch(e){} }
     }, 12000);
   }
 
   form.addEventListener('submit',async function(e){
     e.preventDefault();
-    var btn=form.querySelector('button[type="submit"]');
-    var status=document.getElementById('cStatus');
-    var label=btn.textContent;
+    var btn=form.querySelector('button[type="submit"]'), status=document.getElementById('cStatus'), label=btn.textContent;
+    var email=document.getElementById('cEmail').value.trim();
+    if(!email){ status.textContent='Informe um e-mail válido.'; return; }
     btn.disabled=true; btn.textContent='Enviando…'; status.textContent='';
-    var canon=document.querySelector('link[rel=canonical]');
-    var payload={
-      nome:document.getElementById('cName').value.trim(),
-      telefone:'[BLOG] '+document.getElementById('cPhone').value.trim(),
-      email:document.getElementById('cEmail').value.trim(),
-      origem:'blog_receber_email',
-      artigo:(document.title.split('|')[0]||'').trim(),
-      artigo_url:(canon&&canon.href)||location.href,
-      enviar_estudo:true
-    };
+    var tel=document.getElementById('cPhone').value.trim();
+    var payload={ action:'community', nome:document.getElementById('cName').value.trim(),
+      email:email, telefone: tel ? ('[BLOG] '+tel) : '', origem:'popup_blog' };
     try{
-      await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});
+      await postAS(payload);
       try{ localStorage.setItem(DONE,'1'); }catch(e){}
-      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Pronto! Enviamos o estudo (resumo + PDF) para o seu e-mail. Você também receberá os próximos estudos da ABREV.</p>';
+      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Cadastro feito! Confira seu e-mail. 💚</p>';
+    }catch(err){
+      status.textContent='Não foi possível concluir agora. Tente novamente.';
+      btn.disabled=false; btn.textContent=label;
+    }
+  });
+})();
+
+// Bloco "Receber o estudo completo" (Leads-Estudo → E2; opt-in entra na Comunidade)
+(function(){
+  var form=document.getElementById('estudoForm');
+  if(!form) return;
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    var btn=form.querySelector('button[type="submit"]'), status=document.getElementById('eStatus'), label=btn.textContent;
+    var email=document.getElementById('eEmail').value.trim();
+    if(!email){ status.textContent='Informe um e-mail válido.'; return; }
+    btn.disabled=true; btn.textContent='Enviando…'; status.textContent='';
+    var payload={ action:'estudo', nome:document.getElementById('eName').value.trim(), email:email,
+      artigo:artigoTitulo(), artigo_url:canonUrl(), slug:slugAtual(),
+      opt_in:document.getElementById('eOptin').checked, origem:'blog' };
+    try{
+      await postAS(payload);
+      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Pronto! Enviamos o estudo completo para o seu e-mail. 📄</p>';
     }catch(err){
       status.textContent='Não foi possível concluir agora. Tente novamente.';
       btn.disabled=false; btn.textContent=label;
