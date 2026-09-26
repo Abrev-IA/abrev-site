@@ -1,126 +1,80 @@
-# Newsletter / Comunidade ABREV — cadastro, envio e disparo em massa
+# Cadastro, réguas de e-mail e comunidade — ABREV
 
-Backend do **opt-in "Receber por e-mail"** do blog. Site estático (GitHub Pages)
-não envia e-mail nem grava dados, então isso roda em um **Google Apps Script**
-(Web App) na conta Google da ABREV (`Codigo.gs`).
+Back-end do fluxo descrito em *"ABREV — Fluxo de cadastro e réguas de e-mail"*.
+Site estático (GitHub Pages) não envia e-mail nem grava dados → tudo roda em um
+**Google Apps Script** (Web App), `Codigo.gs`, na conta Google da ABREV.
 
-## O que faz
+## Listas (planilha "ABREV — Cadastros Site", ID fixo no `CONFIG`)
 
-1. **Cadastro (opt-in):** o leitor pede "Receber por e-mail" no artigo → o site
-   faz `POST` para o Web App, que grava/atualiza o inscrito na planilha **e**
-   envia o e-mail daquele artigo (resumo em HTML no corpo + PDF completo anexo),
-   já com link de descadastramento.
-2. **Descadastramento:** cada e-mail tem, no rodapé, um link
-   `…/exec?unsub=<token>`; ao abrir, o inscrito é marcado como `descadastrado`.
-3. **Disparo em massa (novo artigo):** quando um novo `blog/estudos/<slug>.html`
-   entra na `main`, a **GitHub Action** (`.github/workflows/newsletter-broadcast.yml`)
-   chama o Web App com `{action:"broadcast", key, slug}` e ele envia o artigo a
-   todos os inscritos **ativos**.
+- **Comunidade** (`CONFIG.TAB_COMUNIDADE`): recebe a **régua quinzenal**. Entram
+  pelo pop-up e pelo opt-in do blog.
+- **Leads-Estudo** (`CONFIG.TAB_LEADS`): quem pediu um estudo no blog (histórico).
+  **Não** recebe a régua, a menos que tenha marcado o opt-in.
+- A aba **Cadastros** (evento já ocorrido) não é usada.
 
-## Fluxo
+## Entradas (POST `text/plain`, `mode:'no-cors'`, corpo JSON)
 
-```
-Leitor no artigo ─ "Receber por e-mail" ─► POST /exec
-                                            ├─ grava/atualiza inscrito (token, status=ativo)
-                                            └─ envia e-mail do artigo (resumo HTML + PDF) + link de descadastro
-
-Novo artigo na main ─► GitHub Action ─► POST /exec {action:broadcast, key, slug}
-                                         └─ envia para todos os inscritos ativos
-```
-
-## Payload do opt-in (site → Web App)
-
+**1) Pop-up "Faça parte da comunidade"** → lista Comunidade → **E1**
 ```json
-{
-  "nome": "…", "telefone": "[BLOG] …", "email": "…",
-  "origem": "blog_receber_email",
-  "artigo": "Título do artigo",
-  "artigo_url": "https://abrev.org/blog/<slug>.html",
-  "enviar_estudo": true
-}
+{ "action": "community", "nome": "…", "telefone": "…(opcional)", "email": "…" }
 ```
+Dedupe por e-mail: se já existe, atualiza os dados e **não** reenvia o E1.
 
-O `<slug>` é derivado de `artigo_url`. O e-mail usa:
-- corpo → resumo HTML de `blog/estudos/<slug>.html`;
-- anexo → PDF completo de `blog/estudos/<slug>.pdf`.
-Se algum asset não existir, cai em um fallback com link para o artigo.
+**2) Blog "Receber o estudo completo"** → Leads-Estudo → **E2** (com link do PDF)
+```json
+{ "action": "estudo", "nome": "…", "email": "…",
+  "artigo": "Título do artigo", "artigo_url": "https://abrev.org/blog/<slug>.html",
+  "slug": "<slug>", "opt_in": true, "origem": "blog" }
+```
+`opt_in` vem de uma **caixa desmarcada por padrão**. Se `true`, também entra na
+Comunidade (sem novo E1 — o E2 já dá as boas-vindas).
 
-### De onde o Apps Script busca os arquivos (`ASSETS_BASE`)
+**3) Régua quinzenal** (protegido por chave) → toda a Comunidade ativa
+```json
+{ "action": "broadcast", "key": "<BROADCAST_KEY>", "slug": "<slug>",
+  "titulo": "…(opcional)", "resumo": "…(opcional)" }
+```
+Sem `titulo`/`resumo`, o script lê o `<title>` e o `<meta description>` do artigo.
+É o que a GitHub Action `newsletter-broadcast.yml` chama ao entrar um novo estudo.
 
-O `UrlFetchApp` do Apps Script **não consegue** buscar de `https://abrev.org`
-(o GitHub Pages/Cloudflare bloqueia o bot do Google), o que fazia o e-mail cair
-no fallback "Ler no site →" **sem** o resumo nem o PDF. Por isso o `Codigo.gs`
-busca os arquivos direto do repositório via `CONFIG.ASSETS_BASE`
-(`https://raw.githubusercontent.com/Abrev-IA/abrev-site/main`) e usa `abrev.org`
-apenas nos **links exibidos ao leitor** (corpo "Ler no site" e descadastro).
-Como o `raw.githubusercontent.com` serve o PDF como `application/octet-stream`,
-o `fetchPdf_` valida pelos bytes `%PDF` e força `application/pdf` no anexo.
+## Descadastro
 
-> Os arquivos precisam estar na branch `main` do repositório para serem
-> buscados (é o caminho do `ASSETS_BASE`). Publique os 3 arquivos juntos.
+`GET /exec?unsub=<token>` → sai da Comunidade, mostra a página de confirmação e
+dispara o **E4**. O token vai no rodapé de todo e-mail ("Não quero mais receber
+conteúdos"). Um clique, sem login.
 
-## Planilha (aba "Inscritos")
+## E-mails
 
-Os cadastros do site vão para a planilha **"ABREV — Cadastros Site"**, aba
-**`Inscritos`** (criada automaticamente). O `CONFIG.SHEET_ID` está **fixo** no
-`Codigo.gs` — não depende de a planilha estar "ativa"/vinculada; isso evita que
-um projeto standalone grave em lugar nenhum (falha silenciosa por causa do
-`mode:'no-cors'` no site).
+| E-mail | Quando | Enviado por |
+|---|---|---|
+| **E1** Boas-vindas | 1º cadastro na Comunidade | `Codigo.gs` |
+| **E2** Estudo completo | pedido do estudo no blog | `Codigo.gs` (PDF por **link**) |
+| **E3** Candidatura recebida | envio do Google Forms de associado | `automation/associacao/NotificarDiretoria.gs` |
+| **E4** Descadastro | clique no link de saída | `Codigo.gs` |
+| Régua quinzenal | novo artigo | `Codigo.gs` (`broadcast`) |
 
-> A aba **`Cadastros`** é do **evento já ocorrido** e não é usada pela newsletter.
+> Os textos E1–E4/régua no `Codigo.gs` são **provisórios** (revisão pendente).
+> Ficam em funções `enviarE1_`/`enviarE2_`/`enviarE4_`/`enviarRegua_`.
 
-Colunas da aba `Inscritos`:
+## Remetente `adm@abrev.org`
 
-`data_hora | nome | telefone | email | origem | artigo | artigo_url | status | token | ultimo_envio`
+`CONFIG.FROM_EMAIL`. Precisa ser um alias **"Enviar e-mail como" verificado** na
+conta que roda o script (SMTP GoDaddy: `smtpout.secureserver.net`, 465/587).
 
-- `status`: `ativo` ou `descadastrado`.
-- `token`: identificador do descadastramento (gerado no 1º cadastro).
-- Reinscrição: um novo opt-in com um e-mail já existente volta o `status` para `ativo`.
-
-## Publicação do Apps Script
+## Publicação / diagnóstico
 
 1. Planilha → **Extensões → Apps Script** → cole `Codigo.gs`.
-2. **Configurações do projeto → Propriedades do script**:
-   `BROADCAST_KEY = <senha forte>` (a mesma vai no segredo do GitHub).
-3. **Implantar → Gerenciar implantações → ✏️ editar → Versão: Nova versão → Implantar**
-   (mantém a mesma URL `/exec`).
-4. Autorize os escopos: planilha, `MailApp` (e-mail), `UrlFetchApp` (buscar URL).
+2. Propriedades do script: `BROADCAST_KEY = <senha>` (a mesma no segredo do GitHub).
+3. **Implantar → Gerenciar implantações → Nova versão** (mantém a URL `/exec`).
+4. Verificar: abrir `/exec` deve mostrar `"version":"fluxo-e1e4-1"`.
+   Diagnóstico: `/exec?diag=1&key=<BROADCAST_KEY>` retorna contagem de Comunidade/Leads.
 
-## Segredos do GitHub (Settings → Secrets and variables → Actions)
+## Segredos do GitHub (Actions)
 
-- `APPS_SCRIPT_EXEC_URL` → a URL `/exec` do Web App.
-- `NEWSLETTER_KEY` → **a mesma** senha do `BROADCAST_KEY`.
-
-Disparo manual: aba **Actions → Newsletter — disparo de novo artigo → Run workflow**,
-informando o `slug`.
-
-## Remetente (De:) — `adm@abrev.org`
-
-Os e-mails devem sair de **`adm@abrev.org`** (`CONFIG.FROM_EMAIL`). O Apps Script,
-por padrão, envia pelo endereço da conta que **executa** o script. Para enviar de
-outro endereço, ele precisa ser um **alias verificado** naquela conta:
-
-1. Faça login na conta que roda o script (a dona do Apps Script).
-2. Gmail → **Ver todas as configurações → Contas e importação → "Enviar e-mail
-   como" → Adicionar outro endereço** → `adm@abrev.org`.
-3. Conclua a **verificação** (o Google envia um código para `adm@abrev.org`).
-
-Enquanto o alias não estiver verificado, o Google **ignora** o `from` e envia pelo
-endereço da conta (ou o envio falha). Confirme abrindo o **e-mail de teste**
-(`?selftest=`) e olhando o campo **De:** — deve mostrar `adm@abrev.org`.
-
-> Alternativa: se `abrev.org` usa Google Workspace, o mais limpo é que o dono do
-> Apps Script seja a própria conta `adm@abrev.org` (aí nem precisa de alias).
+- `APPS_SCRIPT_EXEC_URL` → URL `/exec`.
+- `NEWSLETTER_KEY` → mesma senha do `BROADCAST_KEY`.
 
 ## Limites (Gmail)
 
-`MailApp` tem cota diária (~100/dia em contas gratuitas, ~1.500/dia no Workspace).
-O `broadcast` respeita a cota (`getRemainingDailyQuota`) e informa quantos ficaram
-sem cota. Para listas grandes, migrar para um serviço de envio dedicado.
-
-## Convenção dos estudos (fluxo dos agentes)
-
-Cada artigo gera 3 arquivos (ver `blog/estudos/README.md`):
-- `blog/<slug>.html` — **resumo** para o blog (público);
-- `blog/estudos/<slug>.html` — **resumo** em HTML adaptado para o e-mail;
-- `blog/estudos/<slug>.pdf` — **versão completa** em PDF (anexo do e-mail).
+`MailApp` tem cota diária (~100/dia grátis, ~1.500/dia Workspace). O `broadcast`
+respeita a cota. Para listas grandes, migrar para um ESP dedicado.
