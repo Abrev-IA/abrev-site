@@ -12,11 +12,11 @@ on:
   push:
     branches: [main]
     paths:
-      - 'blog/estudos/*.html'
+      - 'blog/estudos/*.pdf'
   workflow_dispatch:
     inputs:
       slug:
-        description: 'Slug do artigo (nome do arquivo sem .html) para disparo manual'
+        description: 'Slug do artigo (nome do arquivo sem extensão) para disparo manual'
         required: true
 
 jobs:
@@ -68,7 +68,7 @@ jobs:
             exit 0
           fi
 
-          added=$(git diff --name-only --diff-filter=A "$BEFORE" "$AFTER" -- 'blog/estudos/*.html' || true)
+          added=$(git diff --name-only --diff-filter=A "$BEFORE" "$AFTER" -- 'blog/estudos/*.pdf' || true)
           if [ -z "$added" ]; then
             echo "Nenhum estudo novo em blog/estudos/. Nada a disparar."
             exit 0
@@ -79,6 +79,6 @@ jobs:
           echo "$added" | while IFS= read -r f; do
             [ -z "$f" ] && continue
             base=$(basename "$f")
-            slug="${base%.html}"
+            slug="${base%.pdf}"
             disparar "$slug"
           done
