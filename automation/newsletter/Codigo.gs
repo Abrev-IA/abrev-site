@@ -22,8 +22,13 @@
 
 // ===================== CONFIG =====================
 var CONFIG = {
-  SHEET_ID: '',                 // vazio = planilha vinculada; ou o ID entre /d/ e /edit
-  SHEET_NAME: 'Cadastros',
+  // ID fixo da planilha "ABREV — Cadastros Site". Fixar o ID evita depender de
+  // getActiveSpreadsheet() (que é null se o projeto do Apps Script NÃO estiver
+  // vinculado à planilha) — isso fazia o cadastro falhar em silêncio.
+  SHEET_ID: '1tkXddI8fxj_z4L1DHZBTuJj-ci-xVhYCZIAM2FSF_lI',
+  // Aba dos cadastros do SITE (newsletter/blog/home). A aba "Cadastros" é do
+  // evento já ocorrido — não misturar; esta é criada automaticamente se faltar.
+  SHEET_NAME: 'Inscritos',
   SITE_BASE: 'https://abrev.org',            // links exibidos ao leitor (e-mail/descadastro)
   // Origem confiável para BUSCAR os arquivos (resumo HTML + PDF). O UrlFetchApp do
   // Apps Script não alcança abrev.org (Cloudflare/GitHub Pages bloqueia o bot), então
@@ -32,8 +37,15 @@ var CONFIG = {
   BLOG_PATH: '/blog/',
   ESTUDOS_PATH: '/blog/estudos/',
   SENDER_NAME: 'ABREV — Associação Brasileira de Reversa do Varejo',
-  REPLY_TO: 'contato@abrev.com.br',
-  EMAIL_SUBJECT_PREFIX: 'Estudo ABREV: '
+  // Remetente dos e-mails. Para enviar DESTE endereço (em vez do Gmail que roda
+  // o script), ele PRECISA estar cadastrado e VERIFICADO como "Enviar e-mail
+  // como" na conta que executa o script (Gmail → Ver todas as configurações →
+  // Contas e importação → Enviar e-mail como). Sem isso, o Google ignora o
+  // remetente e usa o endereço da conta. Deixe '' para usar o endereço da conta.
+  FROM_EMAIL: 'adm@abrev.org',
+  REPLY_TO: 'adm@abrev.org',
+  EMAIL_SUBJECT_PREFIX: 'Estudo ABREV: ',
+  VERSION: 'assets-raw-4'        // marcador p/ confirmar que a implantação está atualizada
 };
 
 var HEADERS = ['data_hora','nome','telefone','email','origem','artigo','artigo_url','status','token','ultimo_envio'];
@@ -71,7 +83,37 @@ function doGet(e) {
     if (!chaveOk_(p.key)) return json_({ ok: false, error: 'unauthorized' });
     return json_({ ok: true, broadcast: broadcast_(String(p.broadcast || ''), String(p.artigo || '')) });
   }
-  return json_({ ok: true, service: 'ABREV newsletter', time: new Date().toISOString() });
+  // Diagnóstico/self-test: confirma que a implantação está atualizada e que o
+  // resumo HTML e o PDF são baixáveis; com ?selftest=1&email=... envia o e-mail
+  // de teste (resumo + PDF) para aquele endereço. Exige a chave (?key=).
+  if (p.diag || p.selftest) {
+    if (!chaveOk_(p.key)) return json_({ ok: false, error: 'unauthorized' });
+    var slug = String(p.slug || '').trim() || 'da-devolucao-ao-encantamento';
+    var htmlUrl = CONFIG.ASSETS_BASE + CONFIG.ESTUDOS_PATH + slug + '.html';
+    var pdfUrl  = CONFIG.ASSETS_BASE + CONFIG.ESTUDOS_PATH + slug + '.pdf';
+    var corpo = fetchText_(htmlUrl);
+    var pdf = fetchPdf_(pdfUrl, slug);
+    var out = {
+      ok: true, version: CONFIG.VERSION, slug: slug, assets_base: CONFIG.ASSETS_BASE,
+      htmlUrl: htmlUrl, htmlLen: (corpo || '').length,
+      pdfUrl: pdfUrl, pdfOk: !!pdf, pdfBytes: pdf ? pdf.getBytes().length : 0,
+      sheet_id: CONFIG.SHEET_ID, sheet_name: CONFIG.SHEET_NAME,
+      from_email: CONFIG.FROM_EMAIL, reply_to: CONFIG.REPLY_TO,
+      cota_restante: MailApp.getRemainingDailyQuota()
+    };
+    try { out.inscritos = Math.max(0, planilha_().getLastRow() - 1); }
+    catch (errS) { out.inscritos = -1; out.sheet_erro = String(errS); }
+    if (p.selftest && p.email) {
+      try {
+        var titulo = fetchTitulo_(CONFIG.ASSETS_BASE + CONFIG.BLOG_PATH + slug + '.html');
+        out.email_enviado = enviarArtigo_(String(p.email), 'selftest', slug, titulo,
+          CONFIG.SITE_BASE + CONFIG.BLOG_PATH + slug + '.html');
+        out.email_destino = String(p.email);
+      } catch (errT) { out.email_enviado = false; out.email_erro = String(errT); }
+    }
+    return json_(out);
+  }
+  return json_({ ok: true, service: 'ABREV newsletter', version: CONFIG.VERSION, time: new Date().toISOString() });
 }
 
 // ===================== PLANILHA =====================
@@ -156,6 +198,7 @@ function enviarArtigo_(email, token, slug, titulo, url) {
   corpo += rodapeDescadastro_(token);
 
   var options = { name: CONFIG.SENDER_NAME, replyTo: CONFIG.REPLY_TO, htmlBody: corpo };
+  if (CONFIG.FROM_EMAIL) options.from = CONFIG.FROM_EMAIL;  // exige alias "Enviar como" verificado
   var pdf = fetchPdf_(pdfUrl, slug);
   if (pdf) options.attachments = [pdf];
 
