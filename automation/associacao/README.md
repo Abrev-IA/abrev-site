@@ -7,10 +7,13 @@ ao próprio formulário** (`NotificarDiretoria.gs`), com um gatilho *ao enviar*.
 
 ## Destinatário
 
-`CONFIG.DESTINO = 'mauricio.baum@confi.com.vc'` — troque aqui se mudar o avaliador.
+`CONFIG.DESTINO = 'administradorabrev@gmail.com'` (por enquanto) — troque aqui se mudar o avaliador (ex.: `mauricio.baum@confi.com.vc`).
 
 O e-mail vai com **responder-para (reply-to)** no e-mail do candidato (quando o
 formulário coleta e-mail), então a diretoria responde direto para a pessoa.
+
+O script também envia o **E3** (confirmação de candidatura) para o próprio
+candidato, com a identidade da ABREV (remetente `adm@abrev.org`).
 
 ## Instalação (uma vez)
 
@@ -19,7 +22,8 @@ formulário coleta e-mail), então a diretoria responde direto para a pessoa.
 2. Cole `NotificarDiretoria.gs` e salve.
 3. Rode a função **`instalarAcionador`** (▶) e autorize os escopos. Ela cria o
    gatilho *"ao enviar formulário"* (idempotente — não duplica).
-4. Envie um teste e confira a caixa de `mauricio.baum@confi.com.vc`.
+4. Envie um teste e confira: o aviso chega em `administradorabrev@gmail.com` e o
+   candidato recebe o **E3** de confirmação.
 
 ## Observações
 
