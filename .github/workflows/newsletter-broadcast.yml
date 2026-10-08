@@ -21,6 +21,8 @@ on:
 
 jobs:
   broadcast:
+    # Publicação no cockpit não autoriza distribuição por e-mail.
+    if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[cockpit:no-broadcast]')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
