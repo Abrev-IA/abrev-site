@@ -27,3 +27,6 @@ A campanha anterior de Ângelo já foi enviada a 7 inscritos e aparece como conc
 ## Validação desta entrega
 
 Testes automatizados de criação/revisão com Auditor, preservação do texto anterior, renderização da prévia e comentários, publicação separada, assinatura das filas, proteção da base publicada, bloqueio de campanhas repetidas, timeout, envio parcial e comprovação. Typecheck e build de produção concluídos. A validação de envio da nova integração utiliza serviço de email simulado; a verificação operacional lê a fila sem criar campanha de teste para inscritos reais. Navegação autenticada no browser não foi realizada nesta entrega.
+
+
+Verificação operacional concluída em 08/10/2026: [execução 37853012981](https://github.com/Abrev-IA/abrev-site/actions/runs/37853012981) terminou com sucesso. Os oito testes do executor passaram e a consulta da fila retornou zero solicitações de envio, sem novo disparo. O frontend respondeu HTTP 200; endpoints de fila responderam HTTP 200 e a rota de newsletter do protocolo exigiu login (HTTP 401 sem sessão).
