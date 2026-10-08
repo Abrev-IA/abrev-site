@@ -1,0 +1,25 @@
+name: Blog — publicador do cockpit
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['automation/blog/verify-queue.json']
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: abrev-cockpit-blog-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publicar somente pacotes assinados após aprovação do Auditor
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PUBLISH_PUBLIC_KEY: "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAPqHdULHlfiw15NvYYll5GZMWzQzWi07umXP+i49XPuY=\n-----END PUBLIC KEY-----\n"
+        run: node automation/blog/publish-queue.mjs

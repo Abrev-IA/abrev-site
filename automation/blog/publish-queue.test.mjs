@@ -1,0 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {generateKeyPairSync,sign,createHash} from 'node:crypto';
+import {checkedEnvelope} from './publish-queue.mjs';
+const hash=x=>createHash('sha256').update(x).digest('hex');
+function fixture(){const keys=generateKeyPairSync('ed25519'),id='6ee38b68-940e-4ede-815c-64a1ec7b75c2';const content=JSON.stringify({title:'Estudo',description:'Resumo',author:'Autor',category:'Pesquisa',intro:'Texto',sourceNote:'Fonte',sections:[{heading:'Primeira',paragraphs:['Texto']},{heading:'Segunda',paragraphs:['Texto']}],takeaways:['Aprendizado']});const contentHash=hash(content),html=`<!-- ABREV_COCKPIT:${id}:${contentHash} -->`;
+const p={version:1,repository:'Abrev-IA/abrev-site',branch:'main',id,date:'2026-10-08',content,contentHash,html,htmlHash:hash(html),pdfHash:hash('%PDF-original'),url:'https://abrev.org/blog/estudo.html'};const envelope=p=>{const data=JSON.stringify(p);return {data,signature:sign(null,Buffer.from(data),keys.privateKey).toString('base64')}};return {keys,p,envelope};}
+test('Publicador aceita assinatura legítima e rejeita alteração, outra chave e destino diferente',()=>{const {keys,p,envelope}=fixture(),e=envelope(p);assert.equal(checkedEnvelope(e,keys.publicKey).slug,'estudo');assert.throws(()=>checkedEnvelope({...e,data:e.data+' '},keys.publicKey));assert.throws(()=>checkedEnvelope(e,generateKeyPairSync('ed25519').publicKey));assert.throws(()=>checkedEnvelope(envelope({...p,repository:'outro/repo'}),keys.publicKey));assert.throws(()=>checkedEnvelope(envelope({...p,html:'Texto adulterado'}),keys.publicKey));});
