@@ -3,5 +3,11 @@
   "contentHash": "ea8a054a625a890a2fd61cee8935455f23294c8a564499d9102ab8d566e95a42",
   "htmlHash": "17300d07ce8b3f5319a38906d47a4d94b4dd77d4d9cdad24abdf6f4aebe3392c",
   "pdfHash": "3bb805dcdb6d5a413cfe236aca2d321fa2d3367d0a094d5fa510b4fc6f317c26",
-  "url": "https://abrev.org/blog/logistica-reversa-na-era-do-comercio-agentico.html"
+  "url": "https://abrev.org/blog/logistica-reversa-na-era-do-comercio-agentico.html",
+  "live": true,
+  "liveHtmlHash": "17300d07ce8b3f5319a38906d47a4d94b4dd77d4d9cdad24abdf6f4aebe3392c",
+  "livePdfHash": "3bb805dcdb6d5a413cfe236aca2d321fa2d3367d0a094d5fa510b4fc6f317c26",
+  "indexConfirmed": true,
+  "runId": 37798982632,
+  "verifiedAt": "2026-10-08T15:13:57.125Z"
 }
