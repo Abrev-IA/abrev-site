@@ -1,0 +1,28 @@
+name: Newsletter — campanha autorizada de Ângelo
+on:
+  push:
+    branches: [main]
+    paths: ['automation/newsletter/requests/angelo-2026-10-08.json']
+permissions:
+  contents: read
+concurrency:
+  group: newsletter-angelo-2026-10-08
+  cancel-in-progress: false
+jobs:
+  campaign:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verificar endpoint e executar somente a solicitação autorizada
+        env:
+          EXEC_URL: ${{ secrets.APPS_SCRIPT_EXEC_URL }}
+          KEY: ${{ secrets.NEWSLETTER_KEY }}
+        run: node automation/newsletter/campaign.mjs
+      - name: Guardar comprovante sem dados pessoais
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: newsletter-angelo-2026-10-08
+          path: newsletter-report.json
+          if-no-files-found: ignore
