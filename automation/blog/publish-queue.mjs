@@ -32,6 +32,10 @@ async function main(){
    if((await api('/git/ref/heads/main')).object.sha!==parent)throw Error('Main mudou. Reprocessar a fila preservando o novo conteúdo.');
    await api('/git/refs/heads/main','PATCH',{sha:commit.sha,force:false});commitSha=commit.sha;console.log('Pacote publicado:',p.id,commitSha);
   }
+  const receiptPath='automation/blog/receipts/'+p.id+'.json',receipt=JSON.stringify({publicationId:p.id,contentHash:p.contentHash,htmlHash:p.htmlHash,pdfHash:p.pdfHash,url:p.url},null,2);
+  const savedReceipt=await api('/contents/'+receiptPath+'?ref=main');
+  if(savedReceipt){if(decodeFile(savedReceipt)!==receipt)throw Error('Comprovante divergente.');}
+  else {const saved=await api('/contents/'+receiptPath,'PUT',{message:`Registrar entrega verificada do cockpit [cockpit:no-broadcast]`,content:Buffer.from(receipt).toString('base64'),branch:'main'});commitSha=saved.commit.sha;console.log('Gravação do publicador confirmada:',p.id,commitSha);}
   const ack=await fetch(BASE+'/api/blog/queue/'+p.id,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(envelope),signal:AbortSignal.timeout(120000)});
   let live=false;if(ack.ok){const evidence=await ack.json();live=evidence.live===true;console.log('Confirmação:',p.id,evidence.state);}
   if(!live){const build=await api('/pages/builds/latest');if(!build||build.commit!==commitSha||build.status==='errored')await api('/pages/builds','POST',{});console.log('Aguardando confirmação do site:',p.id);}
