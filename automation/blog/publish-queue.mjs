@@ -7,9 +7,18 @@ export function checkedEnvelope(envelope,key){
  if(typeof envelope?.data!=='string'||typeof envelope.signature!=='string'||!verify(null,Buffer.from(envelope.data),key,Buffer.from(envelope.signature,'base64')))throw Error('Assinatura da entrega inválida.');
  const p=JSON.parse(envelope.data);
  if(p.version!==1||p.repository!==REPO||p.branch!=='main'||!/^[-a-f0-9]{36}$/.test(p.id)||!/^\d{4}-\d{2}-\d{2}$/.test(p.date)||!/^([a-f0-9]{64})$/.test(p.pdfHash)||hash(p.content)!==p.contentHash||hash(p.html)!==p.htmlHash)throw Error('Manifesto inválido.');
- const article=parseArticle(p.content),slug=articleSlug(article.title);
+ const article=parseArticle(p.content),slug=p.target?.slug||articleSlug(article.title);
  if(p.url!==`https://abrev.org/blog/${slug}.html`||!p.html.includes(`<!-- ABREV_COCKPIT:${p.id}:${p.contentHash} -->`))throw Error('Destino ou página divergente.');
+ if(p.target&&(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(p.target.slug)||!/^([a-f0-9]{64})$/.test(p.target.previousHtmlHash)||!/^([a-f0-9]{64})$/.test(p.target.previousContentHash)||!/^([a-f0-9]{40})$/.test(p.target.pdfBlobSha)))throw Error('Base de revisão inválida.');
  return {...p,article,slug};
+}
+export function validateExisting(p,pageHtml,studySha,index,pdfSha){
+ const marker=`<!-- ABREV_BLOG_CARD:${p.id} -->`;
+ if(pageHtml===p.html&&studySha===pdfSha&&index.includes(marker))return true;
+ if(pageHtml||studySha){
+  if(!p.target||!pageHtml||hash(pageHtml)!==p.target.previousHtmlHash||!pageHtml.includes(`<!-- ABREV_COCKPIT:${p.id}:${p.target.previousContentHash} -->`)||studySha!==pdfSha||studySha!==p.target.pdfBlobSha||!index.includes(marker))throw Error('Base publicada mudou. Revisão bloqueada para preservar o conteúdo atual.');
+ }else if(p.target)throw Error('Artigo original da revisão não encontrado.');
+ return false;
 }
 async function main(){
  const key=process.env.PUBLISH_PUBLIC_KEY,token=process.env.GITHUB_TOKEN;if(!key||!token)throw Error('Publicador não configurado.');
@@ -23,9 +32,9 @@ async function main(){
   const [page,study,indexFile,workflow]=await Promise.all([api('/contents/'+path+ref),api('/contents/'+pdfPath+ref),api('/contents/blog/index.html'+ref),api('/contents/.github/workflows/newsletter-broadcast.yml'+ref)]);
   const index=decodeFile(indexFile);if(!decodeFile(workflow).includes('[cockpit:no-broadcast]'))throw Error('Proteção da newsletter ausente.');
   let commitSha=parent;
-  if(page||study){if(!page||!study||decodeFile(page)!==p.html||study.sha!==pdfSha||!index.includes(`<!-- ABREV_BLOG_CARD:${p.id} -->`))throw Error('Destino já contém conteúdo diferente. Nenhum arquivo foi sobrescrito.');}
-  else {
-   const blob=await api('/git/blobs','POST',{encoding:'base64',content:pdf.toString('base64')});
+  const current=validateExisting(p,page?decodeFile(page):null,study?.sha,index,pdfSha);
+  if(!current){
+   const blob=study||await api('/git/blobs','POST',{encoding:'base64',content:pdf.toString('base64')});
    const parentCommit=await api('/git/commits/'+parent);
    const tree=await api('/git/trees','POST',{base_tree:parentCommit.tree.sha,tree:[{path,mode:'100644',type:'blob',content:p.html},{path:pdfPath,mode:'100644',type:'blob',sha:blob.sha},{path:'blog/index.html',mode:'100644',type:'blob',content:insertBlogCard(index,p.article,p.slug,p.id,p.date)}]});
    const commit=await api('/git/commits','POST',{message:`Publicar entrega aprovada do cockpit [cockpit:no-broadcast]\nProtocolo: ${p.id}`,tree:tree.sha,parents:[parent]});
@@ -37,7 +46,7 @@ async function main(){
   const liveHtmlHash=livePage?hash(await livePage.text()):null,livePdfHash=livePdf?hash(Buffer.from(await livePdf.arrayBuffer())):null;
   const cardMarker=`<!-- ABREV_BLOG_CARD:${p.id} -->`,indexConfirmed=liveIndex?(await liveIndex.text()).includes(cardMarker):false;
   const liveVerified=liveHtmlHash===p.htmlHash&&livePdfHash===p.pdfHash&&indexConfirmed;
-  const receiptPath='automation/blog/receipts/'+p.id+'.json',receipt=JSON.stringify({publicationId:p.id,contentHash:p.contentHash,htmlHash:p.htmlHash,pdfHash:p.pdfHash,url:p.url,live:liveVerified,liveHtmlHash,livePdfHash,indexConfirmed,runId:Number(process.env.GITHUB_RUN_ID),verifiedAt:new Date().toISOString()},null,2);
+  const receiptPath='automation/blog/receipts/'+p.id+'-'+p.contentHash+'.json',receipt=JSON.stringify({publicationId:p.id,contentHash:p.contentHash,htmlHash:p.htmlHash,pdfHash:p.pdfHash,url:p.url,live:liveVerified,liveHtmlHash,livePdfHash,indexConfirmed,runId:Number(process.env.GITHUB_RUN_ID),verifiedAt:new Date().toISOString()},null,2);
   const savedReceipt=await api('/contents/'+receiptPath+'?ref=main');
   const previousReceipt=savedReceipt?JSON.parse(decodeFile(savedReceipt)):null;
   if(previousReceipt&&(previousReceipt.contentHash!==p.contentHash||previousReceipt.htmlHash!==p.htmlHash||previousReceipt.pdfHash!==p.pdfHash))throw Error('Comprovante divergente.');
