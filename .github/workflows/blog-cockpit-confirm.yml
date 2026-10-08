@@ -1,0 +1,19 @@
+name: Blog — confirmar entrega no cockpit
+on:
+  workflow_run:
+    workflows: ['Blog — publicador do cockpit']
+    types: [completed]
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: abrev-cockpit-blog-confirmation
+  cancel-in-progress: false
+jobs:
+  confirm:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: node automation/blog/confirm-queue.mjs
