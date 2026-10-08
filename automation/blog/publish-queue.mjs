@@ -1,3 +1,4 @@
+import {pathToFileURL} from 'node:url';
 import {createHash,verify} from 'node:crypto';
 import {parseArticle,articleSlug,insertBlogCard,decodeFile} from './blog-publisher.mjs';
 export const BASE='https://abrev-agentes.tiny-book-1851.chatgpt.site';
@@ -57,4 +58,4 @@ async function main(){
   if(!live){const build=await api('/pages/builds/latest');if(!build||build.commit!==commitSha||build.status==='errored')await api('/pages/builds','POST',{});console.log('Aguardando confirmação do site:',p.id);}
  }
 }
-if(process.env.GITHUB_ACTIONS==='true')await main();
+if(process.env.GITHUB_ACTIONS==='true'&&process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)await main();
