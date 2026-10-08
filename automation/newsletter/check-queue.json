@@ -2,5 +2,6 @@
   "purpose": "Verificar conexão do executor com a fila do frontend, sem criar campanha nem repetir envio de Ângelo",
   "frontendVersion": 51,
   "sourceCommit": "ea7c22e7395aef7f421d51ea2dd9f81cb9005950",
-  "at": "2026-10-08T22:20:00Z"
+  "at": "2026-10-08T22:23:00Z",
+  "verificationAttempt": 2
 }
