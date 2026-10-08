@@ -1,3 +1,4 @@
+import {pathToFileURL} from 'node:url';
 import {createHash,verify} from 'node:crypto';
 const BASE='https://abrev-agentes.tiny-book-1851.chatgpt.site',REPO='Abrev-IA/abrev-site';
 const hash=x=>createHash('sha256').update(x).digest('hex');
@@ -42,4 +43,4 @@ async function main(){
   });console.log(JSON.stringify(result));
  }
 }
-if(process.env.GITHUB_ACTIONS==='true')await main();
+if(process.env.GITHUB_ACTIONS==='true'&&process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)await main();
