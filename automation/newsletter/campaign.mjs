@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 const request=JSON.parse(fs.readFileSync('automation/newsletter/requests/angelo-2026-10-08.json','utf8'));
-if(request.slug!=='logistica-reversa-na-era-do-comercio-agentico'||!['diagnostic','send'].includes(request.mode)||request.expectedRecipients!==6)throw Error('Solicitação inválida.');
+if(request.slug!=='logistica-reversa-na-era-do-comercio-agentico'||!['diagnostic','send'].includes(request.mode)||!Number.isInteger(request.expectedRecipients)||request.expectedRecipients<1||request.expectedRecipients>100)throw Error('Solicitação inválida.');
+if(process.env.GITHUB_RUN_ATTEMPT&&process.env.GITHUB_RUN_ATTEMPT!=='1')throw Error('Reexecução automática bloqueada para evitar envio duplicado.');
 const url=process.env.EXEC_URL,key=process.env.KEY;
 if(!url||!key)throw Error('Segredos da newsletter não configurados.');
 async function jsonCall(target,options){const res=await fetch(target,{...options,signal:AbortSignal.timeout(120000)});if(!res.ok)throw Error('Endpoint HTTP '+res.status);const data=await res.json();if(data.ok!==true)throw Error('Endpoint não confirmou operação.');return data;}
