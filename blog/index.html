@@ -194,82 +194,11 @@ a{color:inherit}
 </footer>
 
 <!-- POP-UP: FAÇA PARTE DA COMUNIDADE -->
-<div class="modal" id="communityModal" role="dialog" aria-modal="true" aria-labelledby="communityTitle">
-  <div class="modalCard">
-    <button class="mclose" type="button" aria-label="Fechar pop-up" id="communityClose">×</button>
-    <div class="modalVis" aria-hidden="true">
-      <span class="mpill">Comunidade ABREV</span>
-      <strong>Conhecimento que move a reversa.</strong>
-    </div>
-    <div class="modalBody">
-      <p class="mkicker">Faça parte</p>
-      <h3 id="communityTitle">Faça parte da comunidade ABREV</h3>
-      <p>Cadastre-se para receber conteúdos, novidades e se aproximar de quem está estruturando a logística reversa no varejo.</p>
-      <form class="mform" id="communityForm">
-        <input id="cName" name="nome" type="text" required placeholder="Seu nome" aria-label="Seu nome" autocomplete="name">
-        <input id="cPhone" name="telefone" type="tel" required placeholder="Telefone / WhatsApp" aria-label="Telefone ou WhatsApp" autocomplete="tel" inputmode="tel">
-        <input id="cEmail" name="email" type="email" required placeholder="E-mail" aria-label="E-mail" autocomplete="email">
-        <button type="submit">Quero fazer parte</button>
-        <p id="cStatus" class="mnote" role="status" aria-live="polite"></p>
-      </form>
-      <p class="mnote">Quer colaborar com a ABREV? <a href="/colabore.html" rel="noopener">Conheça as formas de colaborar →</a></p>
-    </div>
-  </div>
-</div>
-
 <script>
-// Pop-up "Faça parte da comunidade" — grava na planilha do Drive via Apps Script
-(function(){
-  var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyJPKHIzLvghLIkJpORZd7vYTGiDzSY_ybiAdnub3CX4bLLzPx5O-eTDc0hxpRc9DjIDw/exec';
-  var modal=document.getElementById('communityModal');
-  if(!modal) return;
-  var form=document.getElementById('communityForm');
-  var closeBtn=document.getElementById('communityClose');
-  var DONE='abrev_comunidade_done', SHOWN='abrev_comunidade_shown';
-  function openM(){ modal.classList.add('show'); document.body.style.overflow='hidden'; }
-  function closeM(){ modal.classList.remove('show'); document.body.style.overflow=''; }
-  closeBtn.addEventListener('click',closeM);
-  modal.addEventListener('click',function(e){ if(e.target===modal) closeM(); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && modal.classList.contains('show')) closeM(); });
 
-  // abre automaticamente após alguns segundos (uma vez por sessão; nunca após cadastro)
-  var done=false, shown=false;
-  try{ done=localStorage.getItem(DONE)==='1'; }catch(e){}
-  try{ shown=sessionStorage.getItem(SHOWN)==='1'; }catch(e){}
-  if(!done && !shown){
-    setTimeout(function(){
-      if(!modal.classList.contains('show')){
-        openM();
-        try{ sessionStorage.setItem(SHOWN,'1'); }catch(e){}
-      }
-    }, 12000);
-  }
-
-  form.addEventListener('submit',async function(e){
-    e.preventDefault();
-    var btn=form.querySelector('button[type="submit"]');
-    var status=document.getElementById('cStatus');
-    var label=btn.textContent;
-    btn.disabled=true; btn.textContent='Enviando…'; status.textContent='';
-    var payload={
-      nome:document.getElementById('cName').value.trim(),
-      telefone:'[BLOG] '+document.getElementById('cPhone').value.trim(),
-      email:document.getElementById('cEmail').value.trim(),
-      origem:'blog_comunidade'
-    };
-    try{
-      await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});
-      try{ localStorage.setItem(DONE,'1'); }catch(e){}
-      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Cadastro realizado. Bem-vindo(a) à comunidade ABREV!</p>';
-    }catch(err){
-      status.textContent='Não foi possível concluir agora. Tente novamente.';
-      btn.disabled=false; btn.textContent=label;
-    }
-  });
-})();
 </script>
-<script src="/assets/comunidade-popup.js" defer></script>
-<script src="https://code.tidio.co/uyvxz9s1ekcv8mgkxkjalotzsoxad59c.js" async></script>
+
+<script src="/assets/comunidade-popup.js?v=20261021" defer></script>
 </body>
 </html>
 
