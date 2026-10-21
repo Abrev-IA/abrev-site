@@ -28,15 +28,20 @@
       .hub-options{display:grid;gap:10px}.hub-options a{display:block;padding:14px 16px;border:1px solid #d5dfe0;border-radius:12px;background:white;text-decoration:none;color:#153244;font-weight:700}.hub-options small{display:block;font-weight:400;color:#526976}
       .hub-cookie-actions{display:flex;gap:10px;flex-wrap:wrap}.hub-cookie-actions button{flex:1;border:1px solid #153244;border-radius:9px;padding:11px;background:white;color:#153244;font-weight:700;min-width:160px}
       .hub-launcher{position:fixed;right:20px;bottom:20px;z-index:9998;background:#153244;color:white;border:0;border-radius:999px;padding:15px 22px;box-shadow:0 8px 30px #071a2533;font:700 14px Inter,Arial,sans-serif;cursor:pointer}
-      .abrev-hub :focus-visible,.hub-launcher:focus-visible{outline:3px solid #0ca2a6;outline-offset:3px}
+      .hub-central-link{margin:16px 20px;padding:10px 16px;background:#fbf8f0;color:#153244;border:1px solid #c8d4da;border-radius:8px;font:600 14px Inter,Arial,sans-serif;cursor:pointer}
+      .abrev-hub :focus-visible,.hub-launcher:focus-visible,.hub-central-link:focus-visible{outline:3px solid #0ca2a6;outline-offset:3px}
       body:not(.abrev-chat-active) #tidio-chat{display:none!important}
       @media(max-width:480px){.abrev-hub header{padding:22px}.hub-nav{padding:16px 18px 0}.hub-panel{padding:20px 22px}.hub-launcher{right:14px;bottom:14px}}
       @media(prefers-reduced-motion:reduce){.abrev-hub *{scroll-behavior:auto}}
     `;
     document.head.appendChild(style);
     var launcher = document.createElement('button');
-    launcher.type = 'button'; launcher.className = 'hub-launcher'; launcher.textContent = 'ABREV · Como participar';
-    launcher.setAttribute('aria-haspopup', 'dialog'); launcher.setAttribute('aria-controls', 'abrev-hub');
+    launcher.type = 'button'; launcher.className = 'hub-launcher'; launcher.textContent = '💬 Converse com a ABREV';
+    launcher.setAttribute('aria-haspopup', 'dialog');
+    var centralLink = document.createElement('button');
+    centralLink.type = 'button'; centralLink.className = 'hub-central-link'; centralLink.textContent = 'Central ABREV · Conteúdos, participação e privacidade';
+    centralLink.setAttribute('aria-haspopup', 'dialog'); centralLink.setAttribute('aria-controls', 'abrev-hub');
+    (document.querySelector('footer') || document.body).appendChild(centralLink);
     var dialog = document.createElement('dialog');
     dialog.id = 'abrev-hub'; dialog.className = 'abrev-hub'; dialog.setAttribute('aria-labelledby', 'hub-title');
     dialog.innerHTML = `
@@ -88,11 +93,14 @@
       dialog.querySelectorAll('[data-hub]').forEach(function (el) { el.setAttribute('aria-pressed', String(el.dataset.hub === panel)); });
     }
     function open(panel) {
+      if (document.body.classList.contains('abrev-chat-active')) {
+        window.tidioChatApi.hide(); document.body.classList.remove('abrev-chat-active'); chatRequested = false;
+      }
       select(panel || 'conteudos');
       if (!dialog.open) { previousFocus = document.activeElement; previousOverflow = document.body.style.overflow; dialog.showModal(); document.body.style.overflow = 'hidden'; }
       launcher.hidden = true;
     }
-    function close() { chatRequested = false; dialog.close(); }
+    function close() { chatRequested = false; launcher.textContent = '💬 Converse com a ABREV'; dialog.close(); }
     dialog.addEventListener('close', function () {
       if (dialog.open) return;
       document.body.style.overflow = previousOverflow || '';
@@ -101,7 +109,8 @@
     });
     dialog.querySelector('.hub-close').addEventListener('click', close);
     dialog.addEventListener('click', function (e) { if (e.target === dialog) { var rect = dialog.getBoundingClientRect(); if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) close(); } });
-    launcher.addEventListener('click', function () { open('conteudos'); });
+    launcher.addEventListener('click', requestChat);
+    centralLink.addEventListener('click', function () { open('conteudos'); });
     dialog.querySelectorAll('[data-hub]').forEach(function (button) { button.addEventListener('click', function () { select(button.dataset.hub); }); });
     document.querySelectorAll('.openReport,[data-open-abrev]').forEach(function (el) { el.addEventListener('click', function (e) { e.preventDefault(); open(el.dataset.openAbrev || 'conteudos'); }); });
     dialog.querySelectorAll('[data-consent]').forEach(function (button) { button.addEventListener('click', function () {
@@ -128,6 +137,7 @@
     // Tidio usa a própria janela de conversa, sem sobrepor outra janela ou botão.
     function startChat() {
       if (!chatReady || !chatRequested) return;
+      launcher.hidden = true; launcher.textContent = '💬 Converse com a ABREV';
       document.body.classList.add('abrev-chat-active'); dialog.close();
       window.tidioChatApi.show(); window.tidioChatApi.open();
     }
@@ -136,22 +146,28 @@
       chatReady = true; window.tidioChatApi.hide();
       window.tidioChatApi.on('close', function () {
         window.tidioChatApi.hide(); document.body.classList.remove('abrev-chat-active');
-        if (chatRequested) { chatRequested = false; open('atendimento'); }
+        chatRequested = false; launcher.hidden = false; launcher.focus();
       });
       startChat();
     }
     document.addEventListener('tidioChat-ready', ready);
-    dialog.querySelector('#hub-chat').addEventListener('click', function () {
+    function chatUnavailable(message) {
+      chatRequested = false; launcher.textContent = '💬 Converse com a ABREV';
+      open('atendimento'); dialog.querySelector('#hub-chat-status').textContent = message;
+    }
+    function requestChat() {
       chatRequested = true;
       if (chatReady) { startChat(); return; }
+      launcher.textContent = 'Carregando conversa…';
       dialog.querySelector('#hub-chat-status').textContent = 'Carregando atendimento…';
       if (!document.getElementById('hub-tidio-script')) {
         var script = document.createElement('script'); script.id = 'hub-tidio-script'; script.src = 'https://code.tidio.co/uyvxz9s1ekcv8mgkxkjalotzsoxad59c.js'; script.async = true;
-        script.onerror = function () { chatRequested = false; script.remove(); dialog.querySelector('#hub-chat-status').textContent = 'Atendimento indisponível agora. Tente novamente ou use o e-mail abaixo.'; };
+        script.onerror = function () { script.remove(); if (chatRequested) chatUnavailable('Atendimento indisponível agora. Tente novamente ou use o e-mail abaixo.'); };
         document.body.appendChild(script);
       }
-      setTimeout(function () { if (!chatReady) { chatRequested = false; dialog.querySelector('#hub-chat-status').textContent = 'O chat está demorando para carregar. Tente novamente ou use o e-mail abaixo.'; } }, 15000);
-    });
+      setTimeout(function () { if (!chatReady && chatRequested) chatUnavailable('O chat está demorando para carregar. Tente novamente ou use o e-mail abaixo.'); }, 15000);
+    }
+    dialog.querySelector('#hub-chat').addEventListener('click', requestChat);
     // Cancelar ou trocar de seção também cancela uma abertura de chat pendente.
     dialog.addEventListener('cancel', function () { chatRequested = false; });
     dialog.querySelectorAll('[data-hub]').forEach(function (el) { el.addEventListener('click', function () { if (!chatReady) chatRequested = false; }); });
