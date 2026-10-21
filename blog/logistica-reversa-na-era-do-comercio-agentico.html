@@ -245,29 +245,6 @@ a{color:inherit}
 </footer>
 
 <!-- POP-UP: FAÇA PARTE DA COMUNIDADE -->
-<div class="modal" id="communityModal" role="dialog" aria-modal="true" aria-labelledby="communityTitle">
-  <div class="modalCard">
-    <button class="mclose" type="button" aria-label="Fechar pop-up" id="communityClose">×</button>
-    <div class="modalVis" aria-hidden="true">
-      <span class="mpill">Comunidade ABREV</span>
-      <strong>Conhecimento que move a reversa.</strong>
-    </div>
-    <div class="modalBody">
-      <p class="mkicker">Comunidade ABREV</p>
-      <h3 id="communityTitle">Faça parte da comunidade</h3>
-      <p>Receba, a cada 15 dias, os artigos da ABREV — além de pesquisas, estudos e convites para eventos sobre logística reversa no varejo.</p>
-      <form class="mform" id="communityForm" novalidate>
-        <input id="cName" name="nome" type="text" required placeholder="Seu nome" aria-label="Seu nome" autocomplete="name">
-        <input id="cEmail" name="email" type="email" required placeholder="E-mail" aria-label="E-mail" autocomplete="email">
-        <input id="cPhone" name="telefone" type="tel" placeholder="Telefone / WhatsApp (opcional)" aria-label="Telefone ou WhatsApp (opcional)" autocomplete="tel" inputmode="tel">
-        <button type="submit">Quero fazer parte</button>
-        <p id="cStatus" class="mnote" role="status" aria-live="polite"></p>
-      </form>
-      <p class="mnote">Ao se cadastrar, você concorda com nossa <a href="/politica-privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a>. Quer atuar de fato na ABREV? <a href="/colabore.html" rel="noopener">Quero colaborar com a ABREV →</a></p>
-    </div>
-  </div>
-</div>
-
 <script>
 // scroll reveal
 const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
@@ -280,49 +257,7 @@ function canonUrl(){ var c=document.querySelector('link[rel=canonical]'); return
 function artigoTitulo(){ return (document.title.split('|')[0]||'').trim(); }
 function slugAtual(){ var p=canonUrl().split('?')[0].split('#')[0]; return p.substring(p.lastIndexOf('/')+1).replace(/\.html?$/,''); }
 
-// Pop-up "Faça parte da comunidade" (lista Comunidade → E1)
-(function(){
-  var modal=document.getElementById('communityModal');
-  if(!modal) return;
-  var form=document.getElementById('communityForm');
-  var closeBtn=document.getElementById('communityClose');
-  var DONE='abrev_comunidade_done', SHOWN='abrev_comunidade_shown';
-  function openM(){ modal.classList.add('show'); document.body.style.overflow='hidden'; }
-  function closeM(){ modal.classList.remove('show'); document.body.style.overflow=''; }
-  closeBtn.addEventListener('click',closeM);
-  modal.addEventListener('click',function(e){ if(e.target===modal) closeM(); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && modal.classList.contains('show')) closeM(); });
 
-  var done=false, shown=false;
-  try{ done=localStorage.getItem(DONE)==='1'; }catch(e){}
-  try{ shown=sessionStorage.getItem(SHOWN)==='1'; }catch(e){}
-  // vindo dos e-mails (?comunidade=1) abre mesmo já cadastrado; senão, abre após 12s (1x/sessão)
-  if(/[?&]comunidade=1/.test(location.search)){ openM(); }
-  else if(!done && !shown){
-    setTimeout(function(){
-      if(!modal.classList.contains('show')){ openM(); try{ sessionStorage.setItem(SHOWN,'1'); }catch(e){} }
-    }, 12000);
-  }
-
-  form.addEventListener('submit',async function(e){
-    e.preventDefault();
-    var btn=form.querySelector('button[type="submit"]'), status=document.getElementById('cStatus'), label=btn.textContent;
-    var email=document.getElementById('cEmail').value.trim();
-    if(!email){ status.textContent='Informe um e-mail válido.'; return; }
-    btn.disabled=true; btn.textContent='Enviando…'; status.textContent='';
-    var tel=document.getElementById('cPhone').value.trim();
-    var payload={ action:'community', nome:document.getElementById('cName').value.trim(),
-      email:email, telefone: tel ? ('[BLOG] '+tel) : '', origem:'popup_blog' };
-    try{
-      await postAS(payload);
-      try{ localStorage.setItem(DONE,'1'); }catch(e){}
-      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Cadastro feito! Confira seu e-mail. 💚</p>';
-    }catch(err){
-      status.textContent='Não foi possível concluir agora. Tente novamente.';
-      btn.disabled=false; btn.textContent=label;
-    }
-  });
-})();
 
 // Bloco "Receber o estudo completo" (Leads-Estudo → E2; opt-in entra na Comunidade)
 (function(){
@@ -347,6 +282,7 @@ function slugAtual(){ var p=canonUrl().split('?')[0].split('#')[0]; return p.sub
   });
 })();
 </script>
-<script src="https://code.tidio.co/uyvxz9s1ekcv8mgkxkjalotzsoxad59c.js" async></script>
+
+<script src="/assets/comunidade-popup.js?v=20261021" defer></script>
 </body>
 </html>
