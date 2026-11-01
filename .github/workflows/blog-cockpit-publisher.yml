@@ -3,6 +3,8 @@ on:
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
+  repository_dispatch:
+    types: [cockpit-queue]
   push:
     branches: [main]
     paths: ['automation/blog/verify-queue.json']
