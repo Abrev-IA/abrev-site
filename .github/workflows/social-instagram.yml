@@ -1,0 +1,34 @@
+name: Social — publicador do Instagram
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [social-queue]
+  push:
+    branches: [main]
+    paths: ['automation/social/queue.json']
+permissions:
+  contents: write
+concurrency:
+  group: abrev-social-instagram
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: instagram
+    steps:
+      - uses: actions/checkout@v4
+      - name: Testar os gates antes de publicar
+        env:
+          GITHUB_ACTIONS: 'false'
+        run: node --test automation/social/publish-instagram.test.mjs
+      - name: Publicar somente itens agendados e aprovados pelo Auditor
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          SOCIAL_LIVE: ${{ vars.SOCIAL_LIVE }}
+        run: node automation/social/publish-instagram.mjs
