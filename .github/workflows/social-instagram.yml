@@ -1,0 +1,46 @@
+name: Social — publicador do Instagram
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [social-queue]
+  # Roda os gates no PR, antes de qualquer coisa chegar na main.
+  pull_request:
+    paths: ['automation/social/**', '.github/workflows/social-instagram.yml']
+  push:
+    branches: [main]
+    paths: ['automation/social/queue.json']
+permissions:
+  contents: write
+concurrency:
+  group: abrev-social-instagram
+  cancel-in-progress: false
+jobs:
+  # Fora do environment de proposito: assim os gates sao testados em qualquer
+  # branch, nao so na main, que e a unica autorizada a tocar os segredos.
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Testar os gates
+        env:
+          GITHUB_ACTIONS: 'false'
+        run: node --test automation/social/publish-instagram.test.mjs
+  publish:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: instagram
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publicar somente itens agendados e aprovados pelo Auditor
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          SOCIAL_LIVE: ${{ vars.SOCIAL_LIVE }}
+        run: node automation/social/publish-instagram.mjs
