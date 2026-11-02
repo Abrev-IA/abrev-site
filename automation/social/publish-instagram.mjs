@@ -6,6 +6,8 @@ export const GRAPH='https://graph.facebook.com/v21.0';
 // Mídia só pode vir do próprio site: uma entrada da fila não aponta para fora.
 export const MEDIA_HOST='abrev.org';
 const KINDS={image:1,carousel:1,video:1,story:1};
+// O Instagram recusa PNG em post de feed, então a extensão é parte do contrato.
+const EXTENSIONS={image:/\.jpe?g$/i,carousel:/\.jpe?g$/i,video:/\.(mp4|mov)$/i,story:/\.(jpe?g|mp4|mov)$/i};
 
 export function checkedMedia(url){
  let parsed;
@@ -24,6 +26,7 @@ export function checkedItem(item){
  const media=(item.media||[]).map(checkedMedia);
  if(item.kind==='carousel'){if(media.length<2||media.length>10)throw Error('Carrossel exige de 2 a 10 imagens em '+item.id+'.');}
  else if(media.length!==1)throw Error('Formato '+item.kind+' exige exatamente uma mídia em '+item.id+'.');
+ if(media.some(url=>!EXTENSIONS[item.kind].test(new URL(url).pathname)))throw Error('Arquivo que o Instagram não aceita para '+item.kind+' em '+item.id+'.');
  if(item.kind==='story'&&item.caption)throw Error('Story não aceita legenda em '+item.id+'.');
  const verdict=parseAudit(JSON.stringify(item.audit??null));
  if(!verdict.approved)throw Error('Item '+item.id+' sem aprovação do Auditor. Publicação bloqueada.');
@@ -100,6 +103,9 @@ async function main(){
  const token=process.env.META_TOKEN,igUser=process.env.IG_USER_ID;
  if(live&&(!token||!igUser))throw Error('Publicador social sem META_TOKEN e IG_USER_ID no environment.');
  for(const item of pending){
+  // Item de exemplo serve para ensaiar a esteira e nunca publica, em modo nenhum:
+  // o veredito que ele carrega é ilustrativo, não veio do Auditor.
+  if(item.example){console.log('Exemplo na fila, nunca publicado:',item.kind,item.id);continue;}
   if(!live){console.log('Publicaria',item.kind,item.id,'com',item.media.length,'mídia(s)');continue;}
   const mediaId=await publishItem(item,igUser,token);
   const receipt=JSON.stringify({id:item.id,kind:item.kind,mediaId,scheduledFor:item.scheduledFor,score:item.verdict.score,runId:Number(process.env.GITHUB_RUN_ID),publishedAt:new Date().toISOString()},null,2);
