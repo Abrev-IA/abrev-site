@@ -85,8 +85,8 @@ export async function publishItem(item,igUser,token){
 }
 
 async function main(){
- const token=process.env.META_TOKEN,igUser=process.env.IG_USER_ID,ghToken=process.env.GITHUB_TOKEN;
- if(!token||!igUser||!ghToken)throw Error('Publicador social não configurado.');
+ const ghToken=process.env.GITHUB_TOKEN;
+ if(!ghToken)throw Error('Publicador social sem credencial do GitHub.');
  const live=process.env.SOCIAL_LIVE==='true';
  const gh=async(path,method='GET',body)=>{const r=await fetch('https://api.github.com/repos/'+REPO+path,{method,headers:{Authorization:'Bearer '+ghToken,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(30000)});if(method==='GET'&&r.status===404)return null;if(!r.ok)throw Error('GitHub '+method+' HTTP '+r.status);return r.json();};
  const queue=JSON.parse(await readFile(new URL('./queue.json',import.meta.url),'utf8'));
@@ -94,6 +94,11 @@ async function main(){
  const receipts=new Set((Array.isArray(saved)?saved:[]).map(file=>file.name.replace(/\.json$/,'')));
  const pending=duePending(queue,receipts,new Date().toISOString().slice(0,10));
  console.log(live?'Publicando:':'Ensaio (SOCIAL_LIVE diferente de true):',pending.length);
+ if(!pending.length)return;
+ // A credencial só é exigida quando há algo para publicar de verdade, senão o
+ // agendamento falharia a cada execução enquanto a fila está vazia.
+ const token=process.env.META_TOKEN,igUser=process.env.IG_USER_ID;
+ if(live&&(!token||!igUser))throw Error('Publicador social sem META_TOKEN e IG_USER_ID no environment.');
  for(const item of pending){
   if(!live){console.log('Publicaria',item.kind,item.id,'com',item.media.length,'mídia(s)');continue;}
   const mediaId=await publishItem(item,igUser,token);
