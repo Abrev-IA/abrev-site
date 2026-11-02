@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "example": true,
+    "id": "0e8a1c54-7b62-4d19-9f3a-2c5b7d104e6a",
+    "kind": "carousel",
+    "scheduledFor": "2026-11-02",
+    "caption": "Novembro concentra o maior volume de devoluções do varejo brasileiro. A logística reversa — o caminho que o produto percorre de volta, do consumidor até o destino correto — deixa de ser detalhe operacional e passa a ser decisão de planejamento. Nos próximos dias, a ABREV publica uma série sobre como preparar a reversa para o pico.",
+    "media": [
+      "https://abrev.org/blog/assets/exemplo-reversa-1.jpg",
+      "https://abrev.org/blog/assets/exemplo-reversa-2.jpg"
+    ],
+    "audit": {
+      "decision": "APROVADO",
+      "score": 93,
+      "corrections": [],
+      "reason": "Veredito ILUSTRATIVO, escrito a mao para o ensaio da esteira. NAO e uma auditoria real do Agente Auditor. O campo example impede a publicacao deste item em codigo, inclusive com SOCIAL_LIVE ligado."
+    }
+  }
+]
