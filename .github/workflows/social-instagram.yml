@@ -5,6 +5,9 @@ on:
   workflow_dispatch:
   repository_dispatch:
     types: [social-queue]
+  # Roda os gates no PR, antes de qualquer coisa chegar na main.
+  pull_request:
+    paths: ['automation/social/**', '.github/workflows/social-instagram.yml']
   push:
     branches: [main]
     paths: ['automation/social/queue.json']
