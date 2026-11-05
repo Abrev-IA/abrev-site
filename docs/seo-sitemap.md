@@ -35,3 +35,28 @@ Limites: páginas em outras pastas ou sem canonical correto precisam de ajuste
 antes de entrar na lista. A presença no sitemap não garante indexação. Conflito
 de push ou falha na API do GitHub faz o workflow falhar visivelmente; pode ser
 executado novamente por workflow_dispatch após corrigir a causa.
+
+## Feed do blog (B14)
+
+`node automation/seo/feed.mjs` gera `blog/feed.xml` em Atom 1.0, compatível com
+leitores que aceitam RSS/Atom. Formato: https://www.rfc-editor.org/rfc/rfc4287.
+O índice do blog oferece link visível no rodapé e autodetecção por `rel=alternate`.
+Não há cadastro, envio de e-mails ou mudança no visual dos artigos.
+
+O feed lista somente HTML público diretamente em blog/, com canonical próprio;
+não inclui índice, redirecionamentos, noindex nem cópias de estudos. Título vem
+do H1 e resumo da meta description. IDs permanentes usam a URL canônica.
+`updated` vem do último commit do HTML (mesmo critério e limites do lastmod),
+não da hora da geração. A data de publicação não é inventada. Arquivo elegível
+sem commit ou editado sem commit interrompe a geração e preserva o feed anterior.
+Histórico completo é obrigatório. Não gere o feed com artigos em edição.
+
+O workflow SEO existente valida e gera sitemap e feed após alterações de HTML
+na main e após o publicador do cockpit. Commita ambos somente se mudarem e mantém
+a solicitação de build do Pages. Novos artigos entram e arquivos excluídos saem
+na próxima execução; títulos e descrições devem estar preenchidos.
+
+Validação conjunta: `node --test automation/seo/sitemap.test.mjs automation/seo/feed.test.mjs`.
+Para publicação manual de artigo: faça commit do HTML, execute os dois geradores
+e inclua os arquivos gerados no PR. O feed não é adicionado ao sitemap de páginas
+HTML. Oferecer o feed não comprova assinatura, uso por agregadores ou indexação.
