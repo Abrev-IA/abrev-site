@@ -1,0 +1,47 @@
+name: SEO — atualizar sitemap
+on:
+  push:
+    branches: [main]
+    paths: ['*.html', 'blog/*.html', 'imprensa/*.html', 'automation/seo/**', '.github/workflows/seo-sitemap.yml']
+  workflow_run:
+    workflows: ['Blog — publicador do cockpit']
+    types: [completed]
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: abrev-seo-sitemap
+  cancel-in-progress: false
+jobs:
+  sitemap:
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validar regras e gerar sitemap público
+        run: |
+          node --test automation/seo/sitemap.test.mjs
+          node automation/seo/sitemap.mjs
+      - name: Salvar somente se houver alteração e publicar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- sitemap.xml; then
+            echo "Sitemap já atualizado."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sitemap.xml
+          git commit -m 'SEO: atualizar sitemap das páginas públicas'
+          git push origin HEAD:main
+          # Commits com GITHUB_TOKEN não iniciam o Pages automaticamente.
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" --silent
