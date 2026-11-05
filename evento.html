@@ -7,20 +7,7 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>ABREV · Conselho Consultivo</title>
-<!-- Google tag (gtag.js) com Consent Mode v2 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D2D314Q1CQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('consent', 'default', {
-    'analytics_storage':'denied','ad_storage':'denied',
-    'ad_user_data':'denied','ad_personalization':'denied'
-  });
-  try{ if(localStorage.getItem('abrev_cookie_consent')==='accepted'){
-    gtag('consent','update',{'analytics_storage':'granted'}); } }catch(e){}
-  gtag('config', 'G-D2D314Q1CQ');
-</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -491,6 +478,8 @@
   #cookie-accept{background:var(--lime); color:var(--navy);}
   @media(min-width:520px){ .cookie-banner{flex-direction:row; align-items:center; justify-content:space-between;} .cookie-actions{flex-shrink:0;} }
 </style>
+<script src="/assets/analytics.js" defer></script>
+<link rel="canonical" href="https://abrev.org/evento.html">
 </head>
 <body>
 
