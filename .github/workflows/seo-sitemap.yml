@@ -28,21 +28,22 @@ jobs:
           node-version: '22'
       - name: Validar regras e gerar sitemap público
         run: |
-          node --test automation/seo/sitemap.test.mjs
+          node --test automation/seo/sitemap.test.mjs automation/seo/feed.test.mjs
           node automation/seo/sitemap.mjs
+          node automation/seo/feed.mjs
       - name: Salvar somente se houver alteração e publicar
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          if git diff --quiet -- sitemap.xml; then
+          if git diff --quiet -- sitemap.xml blog/feed.xml; then
             echo "Sitemap já atualizado."
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add sitemap.xml
-          git commit -m 'SEO: atualizar sitemap das páginas públicas'
+          git add sitemap.xml blog/feed.xml
+          git commit -m 'SEO: atualizar sitemap e feed do blog'
           git push origin HEAD:main
           # Commits com GITHUB_TOKEN não iniciam o Pages automaticamente.
           gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" --silent

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="pt-BR">
+  <id>https://abrev.org/blog/feed.xml</id>
+  <title>Blog ABREV</title>
+  <subtitle>Logística reversa, devoluções e experiência do cliente no varejo.</subtitle>
+  <link rel="self" type="application/atom+xml" href="https://abrev.org/blog/feed.xml"/>
+  <link rel="alternate" type="text/html" href="https://abrev.org/blog/"/>
+  <author><name>ABREV — Associação Brasileira de Reversa do Varejo</name><uri>https://abrev.org/</uri></author>
+  <updated>2026-11-05T04:59:20-03:00</updated>
+  <entry>
+    <id>https://abrev.org/blog/da-devolucao-ao-encantamento.html</id>
+    <title type="text">Da devolução ao encantamento</title>
+    <link rel="alternate" type="text/html" href="https://abrev.org/blog/da-devolucao-ao-encantamento.html"/>
+    <updated>2026-11-05T04:59:20-03:00</updated>
+    <summary type="text">A logística reversa deixou de ser custo operacional para virar alavanca de fidelização. Dados mostram como devoluções de baixo esforço elevam a recompra de 9% para 42%.</summary>
+  </entry>
+  <entry>
+    <id>https://abrev.org/blog/declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html</id>
+    <title type="text">Declaração de conteúdo eletrônica: o que muda na reversa do varejo</title>
+    <link rel="alternate" type="text/html" href="https://abrev.org/blog/declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html"/>
+    <updated>2026-11-05T04:59:20-03:00</updated>
+    <summary type="text">A declaração de conteúdo tornou-se eletrônica e muda a documentação das devoluções. A ABREV reúne o que muda, o que permanece obrigatório e o que revisar.</summary>
+  </entry>
+  <entry>
+    <id>https://abrev.org/blog/logistica-reversa-na-era-do-comercio-agentico.html</id>
+    <title type="text">Logística reversa na era do comércio agêntico</title>
+    <link rel="alternate" type="text/html" href="https://abrev.org/blog/logistica-reversa-na-era-do-comercio-agentico.html"/>
+    <updated>2026-11-05T04:59:20-03:00</updated>
+    <summary type="text">Como as políticas de devolução do varejo se tornam sinais de confiança para agentes de inteligência artificial. Resumo do white paper de Ângelo Vicente.</summary>
+  </entry>
+  <entry>
+    <id>https://abrev.org/blog/logistica-reversa-no-ecommerce.html</id>
+    <title type="text">Logística reversa no e-commerce: devoluções, trocas e custos</title>
+    <link rel="alternate" type="text/html" href="https://abrev.org/blog/logistica-reversa-no-ecommerce.html"/>
+    <updated>2026-11-05T04:59:20-03:00</updated>
+    <summary type="text">Como funciona a logística reversa no e-commerce: direito de arrependimento, fluxo da devolução, onde o custo se forma e indicadores para o varejo digital.</summary>
+  </entry>
+  <entry>
+    <id>https://abrev.org/blog/logistica-reversa-no-varejo.html</id>
+    <title type="text">Logística reversa no varejo: o que é e como funciona</title>
+    <link rel="alternate" type="text/html" href="https://abrev.org/blog/logistica-reversa-no-varejo.html"/>
+    <updated>2026-11-05T04:59:20-03:00</updated>
+    <summary type="text">Entenda a logística reversa no varejo e no e-commerce: trocas, devoluções, pós-consumo, etapas da operação e indicadores de recuperação de valor.</summary>
+  </entry>
+</feed>
