@@ -478,7 +478,7 @@
   #cookie-accept{background:var(--lime); color:var(--navy);}
   @media(min-width:520px){ .cookie-banner{flex-direction:row; align-items:center; justify-content:space-between;} .cookie-actions{flex-shrink:0;} }
 </style>
-<script src="/assets/analytics.js" defer></script>
+<script src="/assets/analytics.js?v=20261104-2" defer></script>
 <link rel="canonical" href="https://abrev.org/evento.html">
 </head>
 <body>
@@ -692,10 +692,11 @@
         <p class="cta-footnote">Vagas limitadas ao grupo fundador. Data e local do jantar de lançamento serão definidos assim que o grupo estiver formado. Você será avisado em primeira mão.</p>
       </div>
 
+      <p id="registration-status" role="status" aria-live="polite"></p>
       <div id="success-state" style="display:none;">
         <div class="success-icon">✓</div>
-        <h3 class="success-title">Sua vaga está reservada.</h3>
-        <p class="success-msg">Você se comprometeu com algo importante. Executivos que lideram a mudança da reversa no Brasil já confirmaram presença. Nos vemos no jantar.</p>
+        <h3 class="success-title">Solicitação enviada.</h3>
+        <p class="success-msg">Confira seu e-mail para acompanhar os próximos passos da participação na ABREV.</p>
       </div>
     </div>
   </section>
@@ -745,6 +746,7 @@
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyJPKHIzLvghLIkJpORZd7vYTGiDzSY_ybiAdnub3CX4bLLzPx5O-eTDc0hxpRc9DjIDw/exec';
 
     function confirmarPresenca(){
+      if(document.getElementById('ctaButton').disabled) return;
       const nome = document.getElementById('nameInput').value.trim();
       const telefone = document.getElementById('phoneInput').value.trim();
       const email = document.getElementById('emailInput').value.trim();
@@ -778,20 +780,23 @@
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({ nome, telefone, email })
       })
-      .catch(function(){})
-      .finally(function(){
-        if(typeof gtag==='function'){ gtag('event','confirmar_presenca',{event_category:'engagement'}); }
+      .then(function(){
+        if(window.abrevAnalytics) window.abrevAnalytics.track('abrev_registration_request', {form_id:'event'});
         document.getElementById('reg-form').style.display = 'none';
         const s = document.getElementById('success-state');
         s.style.display = 'block';
         s.style.opacity = '0';
         setTimeout(() => { s.style.transition = 'opacity 600ms ease'; s.style.opacity = '1'; }, 50);
+      }).catch(function(){
+        if(window.abrevAnalytics) window.abrevAnalytics.track('abrev_registration_error', {form_id:'event'});
+        btn.disabled=false; btn.textContent='Tentar novamente';
+        document.getElementById('registration-status').textContent='Não foi possível enviar. Tente novamente ou escreva para adm@abrev.org.';
       });
     }
   </script>
 
   
 
-<script src="/assets/comunidade-popup.js?v=20261021" defer></script>
+<script src="/assets/comunidade-popup.js?v=20261104-2" defer></script>
 </body>
 </html>

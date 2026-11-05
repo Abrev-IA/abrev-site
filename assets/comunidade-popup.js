@@ -122,7 +122,7 @@
     consentStatus();
     dialog.querySelector('.hub-form').addEventListener('submit', async function (e) {
       e.preventDefault(); var form = e.currentTarget;
-      if (!form.reportValidity()) return;
+      if (form.querySelector('button').disabled || !form.reportValidity()) return;
       var status = form.querySelector('.hub-status'), button = form.querySelector('button');
       var name = form.elements.nome.value.trim(), email = form.elements.email.value.trim();
       if (!name) { status.textContent = 'Informe seu nome.'; form.elements.nome.focus(); return; }
@@ -131,8 +131,9 @@
       var tel = form.elements.telefone.value.trim();
       try {
         await fetch(EXEC, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify({action:'community', nome:name, email:email, telefone:tel ? '[' + origem + '] ' + tel : '', origem:'popup_' + origem.toLowerCase()})});
+        if (window.abrevAnalytics) window.abrevAnalytics.track('abrev_registration_request', {form_id:'community'});
         save('abrev_comunidade_done', '1'); status.textContent = 'Solicitação enviada. Confira seu e-mail para acompanhar os conteúdos da ABREV.'; button.textContent = 'Solicitação enviada';
-      } catch (_) { status.textContent = 'Não foi possível enviar. Tente novamente ou escreva para adm@abrev.org.'; button.disabled = false; button.textContent = 'Tentar novamente'; }
+      } catch (_) { if (window.abrevAnalytics) window.abrevAnalytics.track('abrev_registration_error', {form_id:'community'}); status.textContent = 'Não foi possível enviar. Tente novamente ou escreva para adm@abrev.org.'; button.disabled = false; button.textContent = 'Tentar novamente'; }
     });
     // Tidio usa a própria janela de conversa, sem sobrepor outra janela ou botão.
     function startChat() {
@@ -140,6 +141,7 @@
       launcher.hidden = true; launcher.textContent = '💬 Converse com a ABREV';
       document.body.classList.add('abrev-chat-active'); dialog.close();
       window.tidioChatApi.show(); window.tidioChatApi.open();
+      if (window.abrevAnalytics) window.abrevAnalytics.track('abrev_chat_open', {contact_method:'chat'});
     }
     function ready() {
       if (chatReady) return;
