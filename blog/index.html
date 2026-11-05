@@ -6,6 +6,42 @@
 <meta name="description" content="Blog da ABREV — conteúdo técnico e estratégico sobre logística reversa, devoluções e experiência do cliente no varejo brasileiro.">
 <meta name="theme-color" content="#102b3b">
 <title>Blog | ABREV — Associação Brasileira de Reversa do Varejo</title>
+<link rel="preload" href="/assets/fonts/montserrat-latin-v1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin-v1.woff2" as="font" type="font/woff2" crossorigin>
+<style id="abrev-fonts">
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url(/assets/fonts/inter-latin-ext-v1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url(/assets/fonts/inter-latin-v1.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url(/assets/fonts/montserrat-latin-ext-v1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url(/assets/fonts/montserrat-latin-v1.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ABREV">
 <meta property="og:title" content="Blog ABREV — logística reversa no varejo">
@@ -52,9 +88,6 @@
     }
   ]
 }</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#153244;--navy2:#091d29;--green:#a4c63d;--teal:#0ca2a6;--yellow:#f7c842;--cream:#fbf8f0;--white:#fff;--ink:#183545;--muted:#607581;--line:rgba(21,50,68,.12);--d:'Montserrat',sans-serif;--b:'Inter',sans-serif}
 *{box-sizing:border-box}
@@ -150,7 +183,7 @@ a{color:inherit}
 
 <header class="nav">
   <div class="wrap navin">
-    <a class="brand" href="/"><img src="assets/abrev-logo.png" alt="ABREV — Associação Brasileira de Reversa do Varejo" width="1142" height="240" decoding="async"></a>
+    <a class="brand" href="/"><img src="/assets/images/abrev-logo-420.webp" alt="ABREV — Associação Brasileira de Reversa do Varejo" width="1142" height="240" decoding="async" srcset="/assets/images/abrev-logo-210.webp 210w, /assets/images/abrev-logo-420.webp 420w, /assets/images/abrev-logo-630.webp 630w" sizes="210px"></a>
     <button class="menu" aria-label="Abrir menu" aria-expanded="false" onclick="var l=document.querySelector('.links'),o=l.classList.toggle('open');this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Fechar menu':'Abrir menu')"><span></span><span></span><span></span></button>
     <nav class="links" aria-label="Navegação principal">
       <a href="/#sobre">Quem somos</a>
@@ -203,7 +236,7 @@ a{color:inherit}
   <div class="wrap">
     <div class="foot">
       <div>
-        <img src="assets/abrev-logo.png" alt="ABREV" width="1142" height="240" decoding="async">
+        <img src="/assets/images/abrev-logo-420.webp" alt="ABREV" width="1142" height="240" decoding="async" srcset="/assets/images/abrev-logo-210.webp 210w, /assets/images/abrev-logo-420.webp 420w, /assets/images/abrev-logo-630.webp 630w" sizes="210px">
         <p>Conhecimento · conexão · transformação</p>
       </div>
       <div>
