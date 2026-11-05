@@ -8,7 +8,18 @@ páginas com um canonical HTTPS em abrev.org que corresponda ao próprio arquivo
 Exclui redirecionamentos, noindex/none, URLs com query ou fragmento, templates,
 QA, cópias de estudos e arquivos de verificação. A ausência do canonical da home
 interrompe a geração para evitar substituir o sitemap por uma lista incompleta.
-Não inventa datas lastmod. A saída é ordenada e não duplica URLs.
+O lastmod usa o timestamp de commit (%cI) do último commit que alterou cada
+HTML, consultado em HEAD; não usa mtime, a data de geração nem a do commit do
+sitemap. Arquivos novos ou modificados sem commit ficam sem lastmod até serem
+commitados. O checkout do workflow busca o histórico completo (fetch-depth: 0);
+um clone raso interrompe a geração e preserva o sitemap anterior. A saída é
+ordenada e não duplica URLs; preserva as quebras de linha do sitemap existente.
+
+Limite: o histórico é uma aproximação da última atualização significativa, não
+uma análise semântica. Alterações só em CSS/JS/imagens compartilhados não mudam a
+data do HTML; uma edição cosmética no HTML pode mudá-la. Evite commits de mera
+troca de datas e reavalie o critério se o processo editorial passar a exigir isso.
+Referência: https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap#additional-notes-about-xml-sitemaps
 
 O workflow `SEO — atualizar sitemap` executa em alterações de HTML na main e
 depois da conclusão bem-sucedida do publicador do cockpit. Esse segundo gatilho
