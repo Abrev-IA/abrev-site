@@ -197,7 +197,7 @@ a{color:inherit}
 .estudoForm .consent{font-size:.78rem;color:var(--muted);text-align:center;margin:4px 0 0}
 .estudoForm button{margin-top:2px}
 </style>
-<script src="/assets/analytics.js" defer></script>
+<script src="/assets/analytics.js?v=20261104-2" defer></script>
 </head>
 <body>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -373,6 +373,7 @@ function slugAtual(){ var p=canonUrl().split('?')[0].split('#')[0]; return p.sub
     e.preventDefault();
     var btn=form.querySelector('button[type="submit"]'), status=document.getElementById('eStatus'), label=btn.textContent;
     var email=document.getElementById('eEmail').value.trim();
+    if(btn.disabled || !form.reportValidity()) return;
     if(!email){ status.textContent='Informe um e-mail válido.'; return; }
     btn.disabled=true; btn.textContent='Enviando…'; status.textContent='';
     var payload={ action:'estudo', nome:document.getElementById('eName').value.trim(), email:email,
@@ -380,8 +381,10 @@ function slugAtual(){ var p=canonUrl().split('?')[0].split('#')[0]; return p.sub
       opt_in:document.getElementById('eOptin').checked, origem:'blog' };
     try{
       await postAS(payload);
-      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Pronto! Enviamos o estudo completo para o seu e-mail. 📄</p>';
+      if(window.abrevAnalytics) window.abrevAnalytics.track('abrev_registration_request', {form_id:'study'});
+      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Solicitação enviada. Confira seu e-mail para receber o estudo completo. 📄</p>';
     }catch(err){
+      if(window.abrevAnalytics) window.abrevAnalytics.track('abrev_registration_error', {form_id:'study'});
       status.textContent='Não foi possível concluir agora. Tente novamente.';
       btn.disabled=false; btn.textContent=label;
     }
@@ -389,6 +392,6 @@ function slugAtual(){ var p=canonUrl().split('?')[0].split('#')[0]; return p.sub
 })();
 </script>
 
-<script src="/assets/comunidade-popup.js?v=20261021" defer></script>
+<script src="/assets/comunidade-popup.js?v=20261104-2" defer></script>
 </body>
 </html>
