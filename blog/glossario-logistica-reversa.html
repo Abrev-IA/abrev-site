@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta name="theme-color" content="#102b3b">
+<meta name="author" content="ABREV — Associação Brasileira de Reversa do Varejo">
+<title>Glossário da logística reversa e do varejo | ABREV</title>
+<link rel="preload" href="/assets/fonts/montserrat-latin-v1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin-v1.woff2" as="font" type="font/woff2" crossorigin>
+<style id="abrev-fonts">
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url(/assets/fonts/inter-latin-ext-v1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url(/assets/fonts/inter-latin-v1.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url(/assets/fonts/montserrat-latin-ext-v1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url(/assets/fonts/montserrat-latin-v1.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+
+<!-- Open Graph / SEO orgânico -->
+
+<meta property="og:site_name" content="ABREV">
+<meta property="og:locale" content="pt_BR">
+
+
+
+<meta property="og:image" content="https://abrev.org/blog/assets/abrev-logo.png">
+<meta name="twitter:card" content="summary_large_image">
+
+
+<!-- Schema.org: melhora indexação orgânica -->
+
+
+<style>
+:root{--navy:#153244;--navy2:#091d29;--green:#a4c63d;--teal:#0ca2a6;--yellow:#f7c842;--cream:#fbf8f0;--white:#fff;--ink:#183545;--muted:#607581;--line:rgba(21,50,68,.12);--d:'Montserrat',sans-serif;--b:'Inter',sans-serif;--shadow:0 24px 70px rgba(7,26,37,.16)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--b);line-height:1.7;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:min(1200px,calc(100% - 40px));margin:auto}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:16px;top:16px;z-index:9999;background:#fff;padding:10px 14px;border-radius:8px}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+
+/* ---- Header (idêntico ao site) ---- */
+.nav{position:sticky;top:0;z-index:100;background:rgba(251,248,240,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.navin{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand img{width:180px}
+.links{display:flex;gap:30px;align-items:center}
+.links a{font:600 .92rem var(--b);text-decoration:none;color:var(--ink);opacity:.82;transition:.2s}
+.links a:hover,.links a[aria-current]{opacity:1;color:var(--teal)}
+.navcta{background:var(--navy);color:#fff!important;padding:11px 20px;border-radius:999px;opacity:1!important}
+.navcta:hover{background:var(--teal)}
+.menu{display:none;border:0;background:none;padding:10px;cursor:pointer}
+.menu span{display:block;width:24px;height:2px;background:var(--navy);margin:5px 0}
+
+/* ---- Article ---- */
+.arthero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;padding:66px 0 88px;position:relative;overflow:hidden}
+.arthero:after{content:"";position:absolute;right:-140px;top:-140px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(12,162,166,.35),transparent 60%)}
+.crumbs{font:600 .78rem var(--b);letter-spacing:.02em;color:rgba(255,255,255,.78);margin-bottom:22px}
+.crumbs a{color:rgba(255,255,255,.8);text-decoration:none}
+.crumbs a:hover{color:var(--green)}
+.pill{display:inline-block;background:var(--green);color:var(--navy2);font:800 .7rem var(--d);letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px}
+.arthero h1{font:900 clamp(2.1rem,5vw,3.6rem)/1.05 var(--d);margin:20px 0 16px;max-width:20ch;position:relative;z-index:1}
+.arthero .lede{font-size:clamp(1.05rem,2vw,1.32rem);color:rgba(255,255,255,.82);max-width:60ch;margin:0}
+.artmeta{display:flex;flex-wrap:wrap;gap:26px;margin-top:34px;font:600 .84rem var(--b);color:rgba(255,255,255,.72)}
+.artmeta b{color:#fff;font-weight:700}
+
+.article{max-width:760px;margin:0 auto;padding:56px 0 20px}
+.article p{font-size:1.09rem;margin:0 0 24px}
+.article h2{font:800 clamp(1.5rem,3vw,2.05rem)/1.15 var(--d);color:var(--navy);margin:52px 0 18px;letter-spacing:-.01em}
+.article h3{font:800 1.18rem var(--d);color:var(--navy);margin:34px 0 12px}
+.article strong{color:var(--navy)}
+.lead{font-size:1.24rem!important;color:var(--navy);font-weight:500}
+.dropcap::first-letter{font:900 4.2rem/.8 var(--d);float:left;color:var(--teal);margin:6px 12px 0 0}
+
+/* Big stat callouts */
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:38px 0}
+.stat{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:26px 22px;box-shadow:0 12px 34px rgba(21,50,68,.06)}
+.stat .num{font:900 2.7rem/1 var(--d);color:#0a7d80}
+.stat .num.g{color:#587d0e}
+.stat .num.y{color:#9a6f00}
+.stat .lab{color:var(--muted);font-size:.92rem;margin-top:10px}
+
+/* Figure / charts */
+.fig{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:30px 30px 24px;margin:34px 0;box-shadow:0 16px 44px rgba(21,50,68,.07)}
+.fig .cap{font:800 1.05rem var(--d);color:var(--navy);margin:0 0 4px}
+.fig .sub{color:var(--muted);font-size:.9rem;margin:0 0 20px}
+.fig .src{color:var(--muted);font-size:.78rem;margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+.bar-label{font:700 .82rem var(--b);fill:var(--ink)}
+.bar-val{font:800 .9rem var(--d);fill:var(--navy)}
+.axis{font:600 .74rem var(--b);fill:var(--muted)}
+
+/* MUP framework */
+.mup{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:30px 0}
+.mup .c{border-radius:20px;padding:26px;color:#fff}
+.mup .c:nth-child(1){background:var(--teal)}
+.mup .c:nth-child(2){background:var(--navy)}
+.mup .c:nth-child(3){background:var(--green);color:var(--navy2)}
+.mup .c b{font:900 2.4rem var(--d);display:block;line-height:1}
+.mup .c h3{color:inherit;margin:12px 0 8px;font-size:1.08rem}
+.mup .c p{font-size:.92rem;margin:0;opacity:.92}
+
+/* Refund scale */
+.scale{display:flex;border-radius:14px;overflow:hidden;margin:22px 0 8px;box-shadow:0 10px 28px rgba(21,50,68,.08)}
+.scale div{flex:1;padding:16px 10px;text-align:center;color:#fff;font:700 .78rem var(--b)}
+.scale div b{display:block;font:800 .96rem var(--d);margin-bottom:3px}
+.scaleleg{color:var(--muted);font-size:.82rem;text-align:center}
+
+/* Quote */
+.pull{border-left:4px solid var(--green);background:rgba(164,198,61,.09);padding:24px 28px;border-radius:0 16px 16px 0;margin:34px 0;font:600 1.22rem/1.5 var(--d);color:var(--navy)}
+.pull cite{display:block;font:600 .82rem var(--b);color:var(--muted);margin-top:12px;font-style:normal}
+
+/* Takeaways */
+.take{background:var(--navy);color:#fff;border-radius:24px;padding:38px 34px;margin:44px 0}
+.take h3{color:#fff;font:800 1.4rem var(--d);margin:0 0 20px}
+.take ol{margin:0;padding:0;list-style:none;counter-reset:t}
+.take li{counter-increment:t;padding:14px 0 14px 52px;position:relative;border-top:1px solid rgba(255,255,255,.12)}
+.take li:first-child{border-top:0}
+.take li:before{content:counter(t);position:absolute;left:0;top:12px;width:34px;height:34px;border-radius:50%;background:var(--green);color:var(--navy2);font:900 1rem var(--d);display:flex;align-items:center;justify-content:center}
+.take li b{color:var(--yellow)}
+
+/* CTA */
+.cta{background:var(--yellow);border-radius:28px;padding:44px;margin:48px 0 10px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}
+.cta h3{font:900 clamp(1.6rem,3vw,2.3rem)/1.05 var(--d);color:var(--navy2);margin:0}
+.cta p{margin:10px 0 0;color:var(--navy);max-width:44ch}
+.cta .btn{justify-self:end;background:var(--navy);color:#fff;text-decoration:none;padding:16px 30px;border-radius:999px;font:800 .96rem var(--d);white-space:nowrap;transition:.2s}
+.cta .btn:hover{background:var(--navy2);transform:translateY(-2px)}
+
+
+/* Footer */
+.footer{background:#061720;color:#fff;padding:66px 0 26px;margin-top:40px}
+.foot{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:36px}
+.footer img{width:210px}
+.footer h4{font:800 .72rem var(--d);text-transform:uppercase;letter-spacing:.12em;color:var(--green);margin:0 0 13px}
+.footer p,.footer a{color:rgba(255,255,255,.62);text-decoration:none}
+.footer a:hover{color:#fff}
+.fine{margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:.78rem;color:rgba(255,255,255,.38)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:.7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:820px){
+  .links{display:none}
+  .links.open{display:flex;flex-direction:column;align-items:flex-start;gap:16px;position:absolute;top:64px;right:20px;left:20px;background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+  .menu{display:block}
+  .statrow,.mup,.foot{grid-template-columns:1fr}
+  .cta{grid-template-columns:1fr}
+  .cta .btn{justify-self:start}
+  .scale{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+
+/* Pop-up: Faça parte da comunidade */
+.modal{position:fixed;inset:0;z-index:500;background:rgba(4,17,24,.72);backdrop-filter:blur(8px);display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:.25s}
+.modal.show{opacity:1;pointer-events:auto}
+.modalCard{position:relative;width:min(880px,100%);display:grid;grid-template-columns:.85fr 1.15fr;background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 35px 100px rgba(0,0,0,.35);transform:translateY(18px);transition:.3s}
+.modal.show .modalCard{transform:none}
+.modalVis{position:relative;background:linear-gradient(150deg,var(--teal),var(--navy));color:#fff;padding:40px 34px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;overflow:hidden}
+.modalVis:after{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:rgba(247,200,66,.18)}
+.modalVis .mpill{position:relative;z-index:1;align-self:flex-start;background:var(--green);color:var(--navy2);font:800 .68rem var(--d);letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.modalVis strong{position:relative;z-index:1;font:900 1.9rem/1.05 var(--d);max-width:14ch}
+.modalBody{padding:44px 40px;position:relative}
+.modalBody .mkicker{font:800 .69rem var(--d);letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin:0 0 8px}
+.modalBody h3{font:900 1.9rem/1.05 var(--d);color:var(--navy);margin:0 0 12px}
+.modalBody>p{color:var(--muted);margin:0;font-size:1rem}
+.mform{display:grid;gap:10px;margin-top:22px}
+.mform input{height:50px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font:500 .9rem var(--b)}
+.mform button{height:50px;border:0;border-radius:8px;background:var(--green);color:var(--navy2);font:800 .85rem var(--d);cursor:pointer;transition:.2s}
+.mform button:hover{background:var(--teal);color:#fff}
+.mform button:disabled{opacity:.6;cursor:default}
+.mnote{font-size:.73rem;color:var(--muted);margin-top:12px}
+.mnote a{color:var(--teal);font-weight:700}
+.mclose{position:absolute;right:16px;top:16px;z-index:3;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.92);font-size:1.3rem;line-height:1;cursor:pointer}
+@media(max-width:640px){.modalCard{grid-template-columns:1fr}.modalVis{min-height:140px}.modalBody{padding:34px 24px}.modalBody h3{font-size:1.6rem}}
+
+/* Opt-in: receber por e-mail */
+.emailcta{text-align:center;border:1px solid var(--line);border-radius:24px;padding:40px 34px;margin:44px 0;background:linear-gradient(180deg,#fff,rgba(164,198,61,.10));box-shadow:0 16px 44px rgba(21,50,68,.08)}
+.emailcta-ico{font-size:2rem;line-height:1;margin-bottom:10px}
+.emailcta h3{font:800 clamp(1.3rem,2.6vw,1.75rem)/1.15 var(--d);color:var(--navy);margin:0 0 10px}
+.emailcta p{color:var(--muted);max-width:52ch;margin:0 auto 22px;font-size:1.02rem}
+.emailcta-btn{display:inline-block;background:var(--navy);color:#fff;border:0;cursor:pointer;padding:15px 30px;border-radius:999px;font:800 .95rem var(--d);transition:.2s}
+.emailcta-btn:hover{background:var(--teal);transform:translateY(-2px)}
+.estudoForm{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:12px;text-align:left}
+.estudoForm input[type=text],.estudoForm input[type=email]{padding:13px 16px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff}
+.estudoForm .optin{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--muted);line-height:1.45;cursor:pointer}
+.estudoForm .optin input{margin-top:3px;flex-shrink:0}
+.estudoForm .consent{font-size:.78rem;color:var(--muted);text-align:center;margin:4px 0 0}
+.estudoForm button{margin-top:2px}
+</style>
+
+<meta name="description" content="Dicionário de 59 termos da logística reversa: pós-venda, pós-consumo, operação, indicadores e base legal, cada um com definição curta e âncora própria.">
+<link rel="canonical" href="https://abrev.org/blog/glossario-logistica-reversa.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Glossário da logística reversa">
+<meta property="og:description" content="Dicionário de 59 termos da logística reversa: pós-venda, pós-consumo, operação, indicadores e base legal, cada um com definição curta e âncora própria.">
+<meta property="og:url" content="https://abrev.org/blog/glossario-logistica-reversa.html">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Glossário da logística reversa", "description": "Dicionário de 59 termos da logística reversa: pós-venda, pós-consumo, operação, indicadores e base legal, cada um com definição curta e âncora própria.", "inLanguage": "pt-BR", "datePublished": "2026-11-07", "dateModified": "2026-11-07", "author": {"@type": "Organization", "name": "ABREV", "url": "https://abrev.org/"}, "publisher": {"@type": "Organization", "name": "ABREV", "logo": {"@type": "ImageObject", "url": "https://abrev.org/blog/assets/abrev-logo.png"}}, "mainEntityOfPage": "https://abrev.org/blog/glossario-logistica-reversa.html"}, {"@type": "DefinedTermSet", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario", "name": "Glossário da logística reversa", "description": "Dicionário de 59 termos da logística reversa: pós-venda, pós-consumo, operação, indicadores e base legal, cada um com definição curta e âncora própria.", "inLanguage": "pt-BR", "url": "https://abrev.org/blog/glossario-logistica-reversa.html", "hasDefinedTerm": [{"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#acordo-setorial", "name": "Acordo setorial", "description": "Ato de natureza contratual firmado entre o poder público e fabricantes, importadores, distribuidores ou comerciantes, para implantar a responsabilidade compartilhada pelo ciclo de vida do produto. É um dos caminhos previstos na PNRS para estruturar um sistema de logística reversa.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#acordo-setorial", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#arrependimento-direito-de", "name": "Arrependimento (direito de)", "description": "Direito do consumidor de desistir da compra feita fora do estabelecimento comercial em até sete dias, sem justificar e sem multa, com devolução imediata e corrigida dos valores pagos. Base: artigo 49 do Código de Defesa do Consumidor. Veja o guia completo.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#arrependimento-direito-de", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#autorizacao-de-retorno-rma", "name": "Autorização de retorno (RMA)", "description": "Registro que autoriza e identifica uma devolução específica, ligando pedido, item, motivo e cliente. É a chave que permite conferir no recebimento se voltou o que foi autorizado.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#autorizacao-de-retorno-rma", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#avaria", "name": "Avaria", "description": "Dano físico ao produto ou à embalagem, ocorrido no transporte, na armazenagem ou no manuseio. Motivo de devolução que aponta para embalagem ou malha, não para catálogo.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#avaria", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#canal-reverso", "name": "Canal reverso", "description": "Caminho pelo qual um produto, embalagem ou material retorna do consumidor para a cadeia. Pode ser postagem, coleta agendada, ponto de coleta ou devolução em loja.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#canal-reverso", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#centro-de-triagem", "name": "Centro de triagem", "description": "Instalação onde os itens que retornam são recebidos, conferidos, classificados por condição e encaminhados ao destino decidido.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#centro-de-triagem", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#certificado-de-credito-de-reciclagem", "name": "Certificado de crédito de reciclagem", "description": "Instrumento usado para comprovar o cumprimento de metas de logística reversa por meio de créditos lastreados em reciclagem efetivamente realizada. Atenção: o regime mudou. O Decreto 11.044/2022, que instituiu o Recicla+, foi revogado e substituído pelo Decreto 11.413/2023. Confira o texto vigente antes de usar o termo em documento formal.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#certificado-de-credito-de-reciclagem", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#ciclo-reverso", "name": "Ciclo reverso", "description": "Sequência completa que vai da solicitação de devolução até a solução ao cliente e o registro do resultado, passando por coleta, recebimento, conferência, triagem e decisão de destino. As oito etapas estão detalhadas aqui.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#ciclo-reverso", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#coleta-reversa", "name": "Coleta reversa", "description": "Recolhimento físico do item junto ao consumidor ou em um ponto de coleta. É uma etapa do ciclo reverso, não o ciclo inteiro.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#coleta-reversa", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#comercio-agentico", "name": "Comércio agêntico", "description": "Compra intermediada por assistentes automatizados, em que a política de devolução passa a funcionar como sinal de confiança legível por máquina. Tema desenvolvido neste artigo.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#comercio-agentico", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#consumidor", "name": "Consumidor", "description": "Pessoa física ou jurídica que adquire ou utiliza produto ou serviço como destinatário final, na definição do artigo 2º do Código de Defesa do Consumidor.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#consumidor", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#custo-por-devolucao", "name": "Custo por devolução", "description": "Custo total do fluxo reverso dividido pelo número de casos no período. Soma transporte, mão de obra, reembalagem, perda de valor, capital parado e destinação. Sem ele não há base para decidir investimento em processo.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#custo-por-devolucao", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#declaracao-de-conteudo-eletronica-dc-e", "name": "Declaração de conteúdo eletrônica (DC-e)", "description": "Documento fiscal eletrônico que substituiu a declaração de conteúdo em papel no transporte de bens, inclusive em devoluções de pessoa física. Veja o que muda na reversa do varejo.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#declaracao-de-conteudo-eletronica-dc-e", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#descarte", "name": "Descarte", "description": "Ato de dispensar um produto, embalagem ou material após o uso. Só vira destinação adequada quando há rota definida e registrada.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#descarte", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#destinacao-final-ambientalmente-adequada", "name": "Destinação final ambientalmente adequada", "description": "Destinação de resíduos que inclui reutilização, reciclagem, compostagem, recuperação e aproveitamento energético, entre outras admitidas pelos órgãos competentes, observadas as normas que evitam danos à saúde e ao meio ambiente. Definição do artigo 3º da PNRS.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#destinacao-final-ambientalmente-adequada", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#devolucao", "name": "Devolução", "description": "Retorno de um item que encerra a compra e devolve o valor ao cliente. Não se confunde com troca, que mantém a venda e substitui o produto.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#devolucao", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#disposicao-final-ambientalmente-adequada", "name": "Disposição final ambientalmente adequada", "description": "Distribuição ordenada de rejeitos em aterros, observando normas específicas para evitar danos à saúde e ao meio ambiente. É o último recurso, aplicável ao que não tem mais aproveitamento.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#disposicao-final-ambientalmente-adequada", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#economia-circular", "name": "Economia circular", "description": "Modelo que busca manter produtos e materiais em uso pelo maior tempo possível, por reuso, reparo, recondicionamento e reciclagem. A reversa viabiliza os caminhos de retorno; o resultado depende do destino efetivamente dado.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#economia-circular", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#embalagem-pos-consumo", "name": "Embalagem pós-consumo", "description": "Embalagem que retorna depois do uso do produto e precisa de destinação adequada. Frente distinta da devolução comercial, ainda que as duas se encontrem na decisão de destino.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#embalagem-pos-consumo", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#estoque-de-retorno", "name": "Estoque de retorno", "description": "Itens que já voltaram fisicamente, mas ainda não foram conferidos, classificados ou destinados. É onde o capital fica parado e onde o cliente costuma esperar sem informação.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#estoque-de-retorno", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#fluxo-direto", "name": "Fluxo direto", "description": "Caminho normal da cadeia: do fornecedor ao centro de distribuição, do centro ao cliente. Serve de contraste para o fluxo reverso.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#fluxo-direto", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#fluxo-reverso", "name": "Fluxo reverso", "description": "Caminho de volta: do cliente ou do ponto de coleta de volta à cadeia, com decisão de destino ao fim.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#fluxo-reverso", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#frete-reverso", "name": "Frete reverso", "description": "Custo de transporte do retorno. No exercício do direito de arrependimento, o entendimento predominante dos órgãos de defesa do consumidor é que corre por conta do fornecedor.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#frete-reverso", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#garantia-contratual", "name": "Garantia contratual", "description": "Garantia oferecida pelo fornecedor por liberalidade, somada à legal. Inclui a garantia estendida, que é contrato acessório e cai junto quando o consumidor exerce o arrependimento.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#garantia-contratual", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#garantia-legal", "name": "Garantia legal", "description": "Prazo que o consumidor tem para reclamar de vício aparente: 30 dias para produtos não duráveis e serviços, 90 dias para duráveis, contados da entrega efetiva. Artigo 26 do Código de Defesa do Consumidor. Independe de garantia contratual.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#garantia-legal", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#gerador-de-residuos", "name": "Gerador de resíduos", "description": "Pessoa física ou jurídica cuja atividade produz resíduos sólidos. No varejo, a operação costuma ser geradora e, ao mesmo tempo, elo de sistemas de logística reversa.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#gerador-de-residuos", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#logistica-reversa", "name": "Logística reversa", "description": "Conjunto de ações, procedimentos e meios destinados a viabilizar a coleta e a restituição dos resíduos ao setor empresarial, para reaproveitamento ou outra destinação ambientalmente adequada. Definição do artigo 3º da PNRS. No varejo, o termo abrange também o retorno comercial. Veja o guia do varejo.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#logistica-reversa", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#logistica-reversa-obrigatoria", "name": "Logística reversa obrigatória", "description": "Sistemas que fabricantes, importadores, distribuidores e comerciantes são obrigados a estruturar, listados no artigo 33 da PNRS: agrotóxicos, seus resíduos e embalagens; pilhas e baterias; pneus; óleos lubrificantes, seus resíduos e embalagens; lâmpadas fluorescentes, de vapor de sódio e mercúrio e de luz mista; e produtos eletroeletrônicos e seus componentes. O parágrafo 1º permite estender a embalagens e a outros produtos por regulamento ou acordo setorial.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#logistica-reversa-obrigatoria", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#logistica-reversa-pos-consumo", "name": "Logística reversa pós-consumo", "description": "Frente que trata do retorno de produtos e embalagens depois do uso, com foco em destinação adequada e cumprimento das obrigações ambientais.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#logistica-reversa-pos-consumo", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#logistica-reversa-pos-venda", "name": "Logística reversa pós-venda", "description": "Frente que trata do item que volta porque a compra não se confirmou: arrependimento, troca, defeito, avaria, recusa na entrega ou erro de separação.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#logistica-reversa-pos-venda", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#manifesto-de-transporte-de-residuos-mtr", "name": "Manifesto de Transporte de Resíduos (MTR)", "description": "Documento que acompanha o transporte de resíduos e registra gerador, transportador e destinador. Instrumento de controle e de rastreabilidade da destinação.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#manifesto-de-transporte-de-residuos-mtr", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#marketplace", "name": "Marketplace", "description": "Plataforma que reúne ofertas de vários vendedores. Nas devoluções, levanta a questão de como se divide a responsabilidade entre a plataforma e o lojista.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#marketplace", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#motivo-de-devolucao", "name": "Motivo de devolução", "description": "Causa classificada do retorno, registrada na abertura do caso. Sem motivo classificado a devolução é apenas custo; com ele, vira informação para corrigir catálogo, embalagem, processo ou fornecedor.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#motivo-de-devolucao", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#nota-fiscal-de-devolucao", "name": "Nota fiscal de devolução", "description": "Documento fiscal que ampara a entrada do item devolvido. Quando o remetente é pessoa física, entra em cena a declaração de conteúdo eletrônica.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#nota-fiscal-de-devolucao", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#operador-logistico", "name": "Operador logístico", "description": "Empresa contratada para executar etapas da cadeia, como transporte, armazenagem, triagem ou processamento. Na reversa, costuma concentrar coleta e triagem.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#operador-logistico", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#politica-nacional-de-residuos-solidos-pnrs", "name": "Política Nacional de Resíduos Sólidos (PNRS)", "description": "Lei 12.305/2010, que estabelece princípios, objetivos e instrumentos da gestão de resíduos no Brasil, incluindo a logística reversa e a responsabilidade compartilhada. Regulamentada pelo Decreto 10.936/2022.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#politica-nacional-de-residuos-solidos-pnrs", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#ponto-de-entrega-voluntaria-pev", "name": "Ponto de entrega voluntária (PEV)", "description": "Local onde o consumidor deposita, por iniciativa própria, produtos ou embalagens para destinação. No varejo, costuma ficar na própria loja.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#ponto-de-entrega-voluntaria-pev", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#pos-consumo", "name": "Pós-consumo", "description": "Etapa posterior ao uso do produto, em que o item ou a embalagem retorna para destinação adequada.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#pos-consumo", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#pos-venda", "name": "Pós-venda", "description": "Etapa posterior à venda em que o item retorna porque a compra não se confirmou. No e-commerce, concentra a maior parte do volume reverso.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#pos-venda", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#prazo-decadencial", "name": "Prazo decadencial", "description": "Prazo para reclamar de vício do produto antes que o direito se extinga: 30 dias para não duráveis e serviços, 90 dias para duráveis, contados da entrega efetiva.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#prazo-decadencial", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#prazo-do-ciclo-reverso", "name": "Prazo do ciclo reverso", "description": "Tempo entre a solicitação de devolução e a conclusão da solução ao cliente. Indicador que mede espera do cliente e capital parado ao mesmo tempo.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#prazo-do-ciclo-reverso", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#rastreabilidade", "name": "Rastreabilidade", "description": "Capacidade de reconstituir onde o item esteve, quem o manuseou e qual destino recebeu, com registro verificável. É o que transforma a reversa de improviso em processo.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#rastreabilidade", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#reciclagem", "name": "Reciclagem", "description": "Transformação do material em insumo para novo produto. Preserva o material, não o produto.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#reciclagem", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#recondicionamento", "name": "Recondicionamento", "description": "Recuperação do produto a uma condição de uso aceitável, geralmente com substituição de peças e nova verificação, para revenda identificada como tal.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#recondicionamento", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#recuperacao-de-valor", "name": "Recuperação de valor", "description": "Parcela do valor do item que volta ao negócio depois do retorno, por revenda, reuso, reparo, outro canal ou reciclagem. Depende da condição em que o item chega e da rapidez da decisão.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#recuperacao-de-valor", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#rejeito", "name": "Rejeito", "description": "Resíduo que, esgotadas as possibilidades de tratamento e recuperação por tecnologias disponíveis e economicamente viáveis, não tem outra possibilidade que não a disposição final ambientalmente adequada. Definição do artigo 3º da PNRS.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#rejeito", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#remanufatura", "name": "Remanufatura", "description": "Processo industrial que devolve o produto a condição equivalente à de novo, com desmontagem, substituição de componentes e testes.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#remanufatura", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#reparo", "name": "Reparo", "description": "Conserto pontual que devolve o produto ao funcionamento, sem o alcance da remanufatura.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#reparo", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#residuo-solido", "name": "Resíduo sólido", "description": "Material descartado resultante de atividades humanas, cuja destinação se procede nos estados sólido ou semissólido. Nem todo resíduo é rejeito: resíduo ainda admite aproveitamento.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#residuo-solido", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#responsabilidade-compartilhada-pelo-ciclo-de-vida-dos-produtos", "name": "Responsabilidade compartilhada pelo ciclo de vida dos produtos", "description": "Conjunto de atribuições individualizadas e encadeadas de fabricantes, importadores, distribuidores, comerciantes, consumidores e titulares dos serviços de limpeza urbana, para reduzir o volume de resíduos e rejeitos e seus impactos. Definição do artigo 3º da PNRS.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#responsabilidade-compartilhada-pelo-ciclo-de-vida-dos-produtos", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#reuso", "name": "Reuso", "description": "Novo uso do produto na mesma função, sem transformação industrial. É a rota que preserva mais valor.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#reuso", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#reversa-do-varejo", "name": "Reversa do varejo", "description": "Recorte da logística reversa aplicado à operação varejista, reunindo pós-venda e pós-consumo sob a mesma gestão. É a agenda da ABREV.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#reversa-do-varejo", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#sinir", "name": "SINIR", "description": "Sistema Nacional de Informações sobre a Gestão dos Resíduos Sólidos, referência oficial sobre sistemas de logística reversa e responsabilidade compartilhada. Disponível em sinir.gov.br.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#sinir", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#sucata", "name": "Sucata", "description": "Material sem valor de uso na forma atual, destinado à recuperação da matéria-prima.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#sucata", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#taxa-de-devolucao", "name": "Taxa de devolução", "description": "Pedidos ou itens devolvidos sobre o total vendido no período. Deve ser lida junto com motivo, prazo de solução e recompra: queda obtida por dificultar a devolução não é ganho.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#taxa-de-devolucao", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#taxa-de-recuperacao", "name": "Taxa de recuperação", "description": "Parcela dos itens devolvidos que volta ao estoque disponível para venda. Mede valor efetivamente recuperado, não volume processado.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#taxa-de-recuperacao", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#triagem", "name": "Triagem", "description": "Avaliação da condição do item que retornou e aplicação de critérios documentados para decidir o destino. Etapa que define quanto valor se recupera.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#triagem", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#troca", "name": "Troca", "description": "Substituição do item, mantendo a venda. Gera dois fluxos ao mesmo tempo: um reverso, do item que volta, e um direto, do item que sai.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#troca", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}, {"@type": "DefinedTerm", "@id": "https://abrev.org/blog/glossario-logistica-reversa.html#vicio-do-produto", "name": "Vício do produto", "description": "Defeito de qualidade ou quantidade que torna o produto impróprio ou inadequado ao uso, ou lhe diminui o valor. O fornecedor tem até 30 dias para sanar; persistindo, o consumidor escolhe entre substituição, restituição corrigida ou abatimento proporcional. Artigo 18 do Código de Defesa do Consumidor.", "url": "https://abrev.org/blog/glossario-logistica-reversa.html#vicio-do-produto", "inDefinedTermSet": "https://abrev.org/blog/glossario-logistica-reversa.html#glossario"}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://abrev.org/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://abrev.org/blog/"}, {"@type": "ListItem", "position": 3, "name": "Glossário da logística reversa", "item": "https://abrev.org/blog/glossario-logistica-reversa.html"}]}]}</script>
+<style>.guide-toc{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;margin:0 0 36px}.guide-toc h2{margin:0 0 14px;font-size:1.2rem}.guide-toc a,.article a{color:#076f73;text-underline-offset:3px}.guide-toc ol{margin:0;padding-left:22px}.guide-toc li{margin:8px 0}.article h2{scroll-margin-top:110px}.table-scroll{overflow-x:auto;margin:28px 0}.guide-table{border-collapse:collapse;width:100%;font-size:.94rem}.guide-table caption{text-align:left;font-weight:700;margin-bottom:12px}.guide-table th,.guide-table td{border:1px solid #cad5d9;padding:14px;text-align:left;vertical-align:top}.guide-table th{background:#153244;color:white}.guide-table tr:nth-child(even){background:white}.article li{margin-bottom:12px}.guide-note{border-left:4px solid var(--green);padding:18px 22px;background:#fff;border-radius:0 14px 14px 0}</style>
+<script src="/assets/analytics.js?v=20261104-2" defer></script>
+<style>img{height:auto}footer a{display:inline-block;min-height:24px}</style>
+<style>.gloss-index{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 34px;padding:0;list-style:none}.gloss-index a{display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:40px;border:1px solid var(--line);border-radius:10px;background:#fff;font:800 .92rem var(--d);text-decoration:none;color:var(--navy)}.gloss-index a:hover{background:var(--navy);color:#fff}.article h2.letra{font:900 1.6rem var(--d);color:var(--teal);margin:44px 0 6px;border-bottom:2px solid var(--line);padding-bottom:6px;scroll-margin-top:110px}.article h3.termo{margin:26px 0 6px;scroll-margin-top:110px}.article h3.termo a.anchor{text-decoration:none;color:var(--muted);font-weight:400;margin-left:8px;font-size:.8em}.termo-def{margin:0 0 4px}</style>
+</head><body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- HEADER -->
+<header class="nav">
+  <div class="wrap navin">
+    <a class="brand" href="/"><img src="/assets/images/abrev-logo-420.webp" alt="ABREV — Associação Brasileira de Reversa do Varejo" width="1142" height="240" decoding="async" srcset="/assets/images/abrev-logo-210.webp 210w, /assets/images/abrev-logo-420.webp 420w, /assets/images/abrev-logo-630.webp 630w" sizes="210px"></a>
+    <button class="menu" aria-label="Abrir menu" aria-expanded="false" onclick="var l=document.querySelector('.links'),o=l.classList.toggle('open');this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Fechar menu':'Abrir menu')"><span></span><span></span><span></span></button>
+    <nav class="links" aria-label="Navegação principal">
+      <a href="/#sobre">Quem somos</a>
+      <a href="/#ecossistema">Ecossistema</a>
+      <a href="/#fluxo">Como funciona</a>
+      <a href="/blog/" aria-current="page" style="position:relative;font-weight:800;background:linear-gradient(transparent 58%,rgba(247,200,66,.75) 58%);padding:1px 4px;border-radius:3px">Blog</a><a href="/imprensa/">Na imprensa</a>
+      <a href="/colabore.html" rel="noopener" class="navcta">Quero colaborar com a ABREV</a>
+    </nav>
+  </div>
+</header>
+
+
+<div class="arthero"><div class="wrap"><nav class="crumbs" aria-label="Caminho de navegação"><a href="/">Início</a> › <a href="/blog/">Blog</a> › Glossário</nav><span class="pill">Referência</span><h1>Glossário da logística reversa</h1><p class="lede">59 termos do pós-venda, do pós-consumo, da operação e da base legal, em definições curtas. Cada verbete tem endereço próprio, para citar e compartilhar.</p><div class="artmeta"><span>ABREV — Associação Brasileira de Reversa do Varejo</span><time datetime="2026-11-07">7 de novembro de 2026</time></div></div></div>
+<main id="conteudo" class="wrap"><article class="article">
+<p class="lead">Um vocabulário comum é condição para que varejo, operadores e reguladores discutam a mesma coisa. Este glossário reúne 59 termos que aparecem no dia a dia da reversa do varejo, com definição curta e, quando há, a base legal. Cada verbete tem âncora própria: clique no símbolo ao lado do termo para copiar o link direto.</p>
+
+<nav aria-label="Índice alfabético"><ul class="gloss-index">
+<li><a href="#letra-a">A</a></li>
+<li><a href="#letra-c">C</a></li>
+<li><a href="#letra-d">D</a></li>
+<li><a href="#letra-e">E</a></li>
+<li><a href="#letra-f">F</a></li>
+<li><a href="#letra-g">G</a></li>
+<li><a href="#letra-l">L</a></li>
+<li><a href="#letra-m">M</a></li>
+<li><a href="#letra-n">N</a></li>
+<li><a href="#letra-o">O</a></li>
+<li><a href="#letra-p">P</a></li>
+<li><a href="#letra-r">R</a></li>
+<li><a href="#letra-s">S</a></li>
+<li><a href="#letra-t">T</a></li>
+<li><a href="#letra-v">V</a></li>
+</ul></nav>
+
+<h2 class="letra" id="letra-a">A</h2>
+<h3 class="termo" id="acordo-setorial">Acordo setorial<a class="anchor" href="#acordo-setorial" aria-label="Link direto para Acordo setorial">#</a></h3>
+<p class="termo-def">Ato de natureza contratual firmado entre o poder público e fabricantes, importadores, distribuidores ou comerciantes, para implantar a responsabilidade compartilhada pelo ciclo de vida do produto. É um dos caminhos previstos na PNRS para estruturar um sistema de logística reversa.</p>
+<h3 class="termo" id="arrependimento-direito-de">Arrependimento (direito de)<a class="anchor" href="#arrependimento-direito-de" aria-label="Link direto para Arrependimento (direito de)">#</a></h3>
+<p class="termo-def">Direito do consumidor de desistir da compra feita fora do estabelecimento comercial em até sete dias, sem justificar e sem multa, com devolução imediata e corrigida dos valores pagos. Base: artigo 49 do Código de Defesa do Consumidor. Veja o <a href="/blog/direito-de-arrependimento-no-ecommerce.html">guia completo</a>.</p>
+<h3 class="termo" id="autorizacao-de-retorno-rma">Autorização de retorno (RMA)<a class="anchor" href="#autorizacao-de-retorno-rma" aria-label="Link direto para Autorização de retorno (RMA)">#</a></h3>
+<p class="termo-def">Registro que autoriza e identifica uma devolução específica, ligando pedido, item, motivo e cliente. É a chave que permite conferir no recebimento se voltou o que foi autorizado.</p>
+<h3 class="termo" id="avaria">Avaria<a class="anchor" href="#avaria" aria-label="Link direto para Avaria">#</a></h3>
+<p class="termo-def">Dano físico ao produto ou à embalagem, ocorrido no transporte, na armazenagem ou no manuseio. Motivo de devolução que aponta para embalagem ou malha, não para catálogo.</p>
+<h2 class="letra" id="letra-c">C</h2>
+<h3 class="termo" id="canal-reverso">Canal reverso<a class="anchor" href="#canal-reverso" aria-label="Link direto para Canal reverso">#</a></h3>
+<p class="termo-def">Caminho pelo qual um produto, embalagem ou material retorna do consumidor para a cadeia. Pode ser postagem, coleta agendada, ponto de coleta ou devolução em loja.</p>
+<h3 class="termo" id="centro-de-triagem">Centro de triagem<a class="anchor" href="#centro-de-triagem" aria-label="Link direto para Centro de triagem">#</a></h3>
+<p class="termo-def">Instalação onde os itens que retornam são recebidos, conferidos, classificados por condição e encaminhados ao destino decidido.</p>
+<h3 class="termo" id="certificado-de-credito-de-reciclagem">Certificado de crédito de reciclagem<a class="anchor" href="#certificado-de-credito-de-reciclagem" aria-label="Link direto para Certificado de crédito de reciclagem">#</a></h3>
+<p class="termo-def">Instrumento usado para comprovar o cumprimento de metas de logística reversa por meio de créditos lastreados em reciclagem efetivamente realizada. <strong>Atenção:</strong> o regime mudou. O Decreto 11.044/2022, que instituiu o Recicla+, foi revogado e substituído pelo Decreto 11.413/2023. Confira o texto vigente antes de usar o termo em documento formal.</p>
+<h3 class="termo" id="ciclo-reverso">Ciclo reverso<a class="anchor" href="#ciclo-reverso" aria-label="Link direto para Ciclo reverso">#</a></h3>
+<p class="termo-def">Sequência completa que vai da solicitação de devolução até a solução ao cliente e o registro do resultado, passando por coleta, recebimento, conferência, triagem e decisão de destino. As <a href="/blog/logistica-reversa-no-ecommerce.html#fluxo">oito etapas estão detalhadas aqui</a>.</p>
+<h3 class="termo" id="coleta-reversa">Coleta reversa<a class="anchor" href="#coleta-reversa" aria-label="Link direto para Coleta reversa">#</a></h3>
+<p class="termo-def">Recolhimento físico do item junto ao consumidor ou em um ponto de coleta. É uma etapa do ciclo reverso, não o ciclo inteiro.</p>
+<h3 class="termo" id="comercio-agentico">Comércio agêntico<a class="anchor" href="#comercio-agentico" aria-label="Link direto para Comércio agêntico">#</a></h3>
+<p class="termo-def">Compra intermediada por assistentes automatizados, em que a política de devolução passa a funcionar como sinal de confiança legível por máquina. Tema desenvolvido <a href="/blog/logistica-reversa-na-era-do-comercio-agentico.html">neste artigo</a>.</p>
+<h3 class="termo" id="consumidor">Consumidor<a class="anchor" href="#consumidor" aria-label="Link direto para Consumidor">#</a></h3>
+<p class="termo-def">Pessoa física ou jurídica que adquire ou utiliza produto ou serviço como destinatário final, na definição do artigo 2º do Código de Defesa do Consumidor.</p>
+<h3 class="termo" id="custo-por-devolucao">Custo por devolução<a class="anchor" href="#custo-por-devolucao" aria-label="Link direto para Custo por devolução">#</a></h3>
+<p class="termo-def">Custo total do fluxo reverso dividido pelo número de casos no período. Soma transporte, mão de obra, reembalagem, perda de valor, capital parado e destinação. Sem ele não há base para decidir investimento em processo.</p>
+<h2 class="letra" id="letra-d">D</h2>
+<h3 class="termo" id="declaracao-de-conteudo-eletronica-dc-e">Declaração de conteúdo eletrônica (DC-e)<a class="anchor" href="#declaracao-de-conteudo-eletronica-dc-e" aria-label="Link direto para Declaração de conteúdo eletrônica (DC-e)">#</a></h3>
+<p class="termo-def">Documento fiscal eletrônico que substituiu a declaração de conteúdo em papel no transporte de bens, inclusive em devoluções de pessoa física. Veja <a href="/blog/declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html">o que muda na reversa do varejo</a>.</p>
+<h3 class="termo" id="descarte">Descarte<a class="anchor" href="#descarte" aria-label="Link direto para Descarte">#</a></h3>
+<p class="termo-def">Ato de dispensar um produto, embalagem ou material após o uso. Só vira destinação adequada quando há rota definida e registrada.</p>
+<h3 class="termo" id="destinacao-final-ambientalmente-adequada">Destinação final ambientalmente adequada<a class="anchor" href="#destinacao-final-ambientalmente-adequada" aria-label="Link direto para Destinação final ambientalmente adequada">#</a></h3>
+<p class="termo-def">Destinação de resíduos que inclui reutilização, reciclagem, compostagem, recuperação e aproveitamento energético, entre outras admitidas pelos órgãos competentes, observadas as normas que evitam danos à saúde e ao meio ambiente. Definição do artigo 3º da PNRS.</p>
+<h3 class="termo" id="devolucao">Devolução<a class="anchor" href="#devolucao" aria-label="Link direto para Devolução">#</a></h3>
+<p class="termo-def">Retorno de um item que encerra a compra e devolve o valor ao cliente. Não se confunde com troca, que mantém a venda e substitui o produto.</p>
+<h3 class="termo" id="disposicao-final-ambientalmente-adequada">Disposição final ambientalmente adequada<a class="anchor" href="#disposicao-final-ambientalmente-adequada" aria-label="Link direto para Disposição final ambientalmente adequada">#</a></h3>
+<p class="termo-def">Distribuição ordenada de rejeitos em aterros, observando normas específicas para evitar danos à saúde e ao meio ambiente. É o último recurso, aplicável ao que não tem mais aproveitamento.</p>
+<h2 class="letra" id="letra-e">E</h2>
+<h3 class="termo" id="economia-circular">Economia circular<a class="anchor" href="#economia-circular" aria-label="Link direto para Economia circular">#</a></h3>
+<p class="termo-def">Modelo que busca manter produtos e materiais em uso pelo maior tempo possível, por reuso, reparo, recondicionamento e reciclagem. A reversa viabiliza os caminhos de retorno; o resultado depende do destino efetivamente dado.</p>
+<h3 class="termo" id="embalagem-pos-consumo">Embalagem pós-consumo<a class="anchor" href="#embalagem-pos-consumo" aria-label="Link direto para Embalagem pós-consumo">#</a></h3>
+<p class="termo-def">Embalagem que retorna depois do uso do produto e precisa de destinação adequada. Frente distinta da devolução comercial, ainda que as duas se encontrem na decisão de destino.</p>
+<h3 class="termo" id="estoque-de-retorno">Estoque de retorno<a class="anchor" href="#estoque-de-retorno" aria-label="Link direto para Estoque de retorno">#</a></h3>
+<p class="termo-def">Itens que já voltaram fisicamente, mas ainda não foram conferidos, classificados ou destinados. É onde o capital fica parado e onde o cliente costuma esperar sem informação.</p>
+<h2 class="letra" id="letra-f">F</h2>
+<h3 class="termo" id="fluxo-direto">Fluxo direto<a class="anchor" href="#fluxo-direto" aria-label="Link direto para Fluxo direto">#</a></h3>
+<p class="termo-def">Caminho normal da cadeia: do fornecedor ao centro de distribuição, do centro ao cliente. Serve de contraste para o fluxo reverso.</p>
+<h3 class="termo" id="fluxo-reverso">Fluxo reverso<a class="anchor" href="#fluxo-reverso" aria-label="Link direto para Fluxo reverso">#</a></h3>
+<p class="termo-def">Caminho de volta: do cliente ou do ponto de coleta de volta à cadeia, com decisão de destino ao fim.</p>
+<h3 class="termo" id="frete-reverso">Frete reverso<a class="anchor" href="#frete-reverso" aria-label="Link direto para Frete reverso">#</a></h3>
+<p class="termo-def">Custo de transporte do retorno. No exercício do direito de arrependimento, o entendimento predominante dos órgãos de defesa do consumidor é que corre por conta do fornecedor.</p>
+<h2 class="letra" id="letra-g">G</h2>
+<h3 class="termo" id="garantia-contratual">Garantia contratual<a class="anchor" href="#garantia-contratual" aria-label="Link direto para Garantia contratual">#</a></h3>
+<p class="termo-def">Garantia oferecida pelo fornecedor por liberalidade, somada à legal. Inclui a garantia estendida, que é contrato acessório e cai junto quando o consumidor exerce o arrependimento.</p>
+<h3 class="termo" id="garantia-legal">Garantia legal<a class="anchor" href="#garantia-legal" aria-label="Link direto para Garantia legal">#</a></h3>
+<p class="termo-def">Prazo que o consumidor tem para reclamar de vício aparente: 30 dias para produtos não duráveis e serviços, 90 dias para duráveis, contados da entrega efetiva. Artigo 26 do Código de Defesa do Consumidor. Independe de garantia contratual.</p>
+<h3 class="termo" id="gerador-de-residuos">Gerador de resíduos<a class="anchor" href="#gerador-de-residuos" aria-label="Link direto para Gerador de resíduos">#</a></h3>
+<p class="termo-def">Pessoa física ou jurídica cuja atividade produz resíduos sólidos. No varejo, a operação costuma ser geradora e, ao mesmo tempo, elo de sistemas de logística reversa.</p>
+<h2 class="letra" id="letra-l">L</h2>
+<h3 class="termo" id="logistica-reversa">Logística reversa<a class="anchor" href="#logistica-reversa" aria-label="Link direto para Logística reversa">#</a></h3>
+<p class="termo-def">Conjunto de ações, procedimentos e meios destinados a viabilizar a coleta e a restituição dos resíduos ao setor empresarial, para reaproveitamento ou outra destinação ambientalmente adequada. Definição do artigo 3º da PNRS. No varejo, o termo abrange também o retorno comercial. Veja o <a href="/blog/logistica-reversa-no-varejo.html">guia do varejo</a>.</p>
+<h3 class="termo" id="logistica-reversa-obrigatoria">Logística reversa obrigatória<a class="anchor" href="#logistica-reversa-obrigatoria" aria-label="Link direto para Logística reversa obrigatória">#</a></h3>
+<p class="termo-def">Sistemas que fabricantes, importadores, distribuidores e comerciantes são obrigados a estruturar, listados no artigo 33 da PNRS: agrotóxicos, seus resíduos e embalagens; pilhas e baterias; pneus; óleos lubrificantes, seus resíduos e embalagens; lâmpadas fluorescentes, de vapor de sódio e mercúrio e de luz mista; e produtos eletroeletrônicos e seus componentes. O parágrafo 1º permite estender a embalagens e a outros produtos por regulamento ou acordo setorial.</p>
+<h3 class="termo" id="logistica-reversa-pos-consumo">Logística reversa pós-consumo<a class="anchor" href="#logistica-reversa-pos-consumo" aria-label="Link direto para Logística reversa pós-consumo">#</a></h3>
+<p class="termo-def">Frente que trata do retorno de produtos e embalagens depois do uso, com foco em destinação adequada e cumprimento das obrigações ambientais.</p>
+<h3 class="termo" id="logistica-reversa-pos-venda">Logística reversa pós-venda<a class="anchor" href="#logistica-reversa-pos-venda" aria-label="Link direto para Logística reversa pós-venda">#</a></h3>
+<p class="termo-def">Frente que trata do item que volta porque a compra não se confirmou: arrependimento, troca, defeito, avaria, recusa na entrega ou erro de separação.</p>
+<h2 class="letra" id="letra-m">M</h2>
+<h3 class="termo" id="manifesto-de-transporte-de-residuos-mtr">Manifesto de Transporte de Resíduos (MTR)<a class="anchor" href="#manifesto-de-transporte-de-residuos-mtr" aria-label="Link direto para Manifesto de Transporte de Resíduos (MTR)">#</a></h3>
+<p class="termo-def">Documento que acompanha o transporte de resíduos e registra gerador, transportador e destinador. Instrumento de controle e de rastreabilidade da destinação.</p>
+<h3 class="termo" id="marketplace">Marketplace<a class="anchor" href="#marketplace" aria-label="Link direto para Marketplace">#</a></h3>
+<p class="termo-def">Plataforma que reúne ofertas de vários vendedores. Nas devoluções, levanta a questão de como se divide a responsabilidade entre a plataforma e o lojista.</p>
+<h3 class="termo" id="motivo-de-devolucao">Motivo de devolução<a class="anchor" href="#motivo-de-devolucao" aria-label="Link direto para Motivo de devolução">#</a></h3>
+<p class="termo-def">Causa classificada do retorno, registrada na abertura do caso. Sem motivo classificado a devolução é apenas custo; com ele, vira informação para corrigir catálogo, embalagem, processo ou fornecedor.</p>
+<h2 class="letra" id="letra-n">N</h2>
+<h3 class="termo" id="nota-fiscal-de-devolucao">Nota fiscal de devolução<a class="anchor" href="#nota-fiscal-de-devolucao" aria-label="Link direto para Nota fiscal de devolução">#</a></h3>
+<p class="termo-def">Documento fiscal que ampara a entrada do item devolvido. Quando o remetente é pessoa física, entra em cena a declaração de conteúdo eletrônica.</p>
+<h2 class="letra" id="letra-o">O</h2>
+<h3 class="termo" id="operador-logistico">Operador logístico<a class="anchor" href="#operador-logistico" aria-label="Link direto para Operador logístico">#</a></h3>
+<p class="termo-def">Empresa contratada para executar etapas da cadeia, como transporte, armazenagem, triagem ou processamento. Na reversa, costuma concentrar coleta e triagem.</p>
+<h2 class="letra" id="letra-p">P</h2>
+<h3 class="termo" id="politica-nacional-de-residuos-solidos-pnrs">Política Nacional de Resíduos Sólidos (PNRS)<a class="anchor" href="#politica-nacional-de-residuos-solidos-pnrs" aria-label="Link direto para Política Nacional de Resíduos Sólidos (PNRS)">#</a></h3>
+<p class="termo-def">Lei 12.305/2010, que estabelece princípios, objetivos e instrumentos da gestão de resíduos no Brasil, incluindo a logística reversa e a responsabilidade compartilhada. Regulamentada pelo Decreto 10.936/2022.</p>
+<h3 class="termo" id="ponto-de-entrega-voluntaria-pev">Ponto de entrega voluntária (PEV)<a class="anchor" href="#ponto-de-entrega-voluntaria-pev" aria-label="Link direto para Ponto de entrega voluntária (PEV)">#</a></h3>
+<p class="termo-def">Local onde o consumidor deposita, por iniciativa própria, produtos ou embalagens para destinação. No varejo, costuma ficar na própria loja.</p>
+<h3 class="termo" id="pos-consumo">Pós-consumo<a class="anchor" href="#pos-consumo" aria-label="Link direto para Pós-consumo">#</a></h3>
+<p class="termo-def">Etapa posterior ao uso do produto, em que o item ou a embalagem retorna para destinação adequada.</p>
+<h3 class="termo" id="pos-venda">Pós-venda<a class="anchor" href="#pos-venda" aria-label="Link direto para Pós-venda">#</a></h3>
+<p class="termo-def">Etapa posterior à venda em que o item retorna porque a compra não se confirmou. No e-commerce, concentra a maior parte do volume reverso.</p>
+<h3 class="termo" id="prazo-decadencial">Prazo decadencial<a class="anchor" href="#prazo-decadencial" aria-label="Link direto para Prazo decadencial">#</a></h3>
+<p class="termo-def">Prazo para reclamar de vício do produto antes que o direito se extinga: 30 dias para não duráveis e serviços, 90 dias para duráveis, contados da entrega efetiva.</p>
+<h3 class="termo" id="prazo-do-ciclo-reverso">Prazo do ciclo reverso<a class="anchor" href="#prazo-do-ciclo-reverso" aria-label="Link direto para Prazo do ciclo reverso">#</a></h3>
+<p class="termo-def">Tempo entre a solicitação de devolução e a conclusão da solução ao cliente. Indicador que mede espera do cliente e capital parado ao mesmo tempo.</p>
+<h2 class="letra" id="letra-r">R</h2>
+<h3 class="termo" id="rastreabilidade">Rastreabilidade<a class="anchor" href="#rastreabilidade" aria-label="Link direto para Rastreabilidade">#</a></h3>
+<p class="termo-def">Capacidade de reconstituir onde o item esteve, quem o manuseou e qual destino recebeu, com registro verificável. É o que transforma a reversa de improviso em processo.</p>
+<h3 class="termo" id="reciclagem">Reciclagem<a class="anchor" href="#reciclagem" aria-label="Link direto para Reciclagem">#</a></h3>
+<p class="termo-def">Transformação do material em insumo para novo produto. Preserva o material, não o produto.</p>
+<h3 class="termo" id="recondicionamento">Recondicionamento<a class="anchor" href="#recondicionamento" aria-label="Link direto para Recondicionamento">#</a></h3>
+<p class="termo-def">Recuperação do produto a uma condição de uso aceitável, geralmente com substituição de peças e nova verificação, para revenda identificada como tal.</p>
+<h3 class="termo" id="recuperacao-de-valor">Recuperação de valor<a class="anchor" href="#recuperacao-de-valor" aria-label="Link direto para Recuperação de valor">#</a></h3>
+<p class="termo-def">Parcela do valor do item que volta ao negócio depois do retorno, por revenda, reuso, reparo, outro canal ou reciclagem. Depende da condição em que o item chega e da rapidez da decisão.</p>
+<h3 class="termo" id="rejeito">Rejeito<a class="anchor" href="#rejeito" aria-label="Link direto para Rejeito">#</a></h3>
+<p class="termo-def">Resíduo que, esgotadas as possibilidades de tratamento e recuperação por tecnologias disponíveis e economicamente viáveis, não tem outra possibilidade que não a disposição final ambientalmente adequada. Definição do artigo 3º da PNRS.</p>
+<h3 class="termo" id="remanufatura">Remanufatura<a class="anchor" href="#remanufatura" aria-label="Link direto para Remanufatura">#</a></h3>
+<p class="termo-def">Processo industrial que devolve o produto a condição equivalente à de novo, com desmontagem, substituição de componentes e testes.</p>
+<h3 class="termo" id="reparo">Reparo<a class="anchor" href="#reparo" aria-label="Link direto para Reparo">#</a></h3>
+<p class="termo-def">Conserto pontual que devolve o produto ao funcionamento, sem o alcance da remanufatura.</p>
+<h3 class="termo" id="residuo-solido">Resíduo sólido<a class="anchor" href="#residuo-solido" aria-label="Link direto para Resíduo sólido">#</a></h3>
+<p class="termo-def">Material descartado resultante de atividades humanas, cuja destinação se procede nos estados sólido ou semissólido. Nem todo resíduo é rejeito: resíduo ainda admite aproveitamento.</p>
+<h3 class="termo" id="responsabilidade-compartilhada-pelo-ciclo-de-vida-dos-produtos">Responsabilidade compartilhada pelo ciclo de vida dos produtos<a class="anchor" href="#responsabilidade-compartilhada-pelo-ciclo-de-vida-dos-produtos" aria-label="Link direto para Responsabilidade compartilhada pelo ciclo de vida dos produtos">#</a></h3>
+<p class="termo-def">Conjunto de atribuições individualizadas e encadeadas de fabricantes, importadores, distribuidores, comerciantes, consumidores e titulares dos serviços de limpeza urbana, para reduzir o volume de resíduos e rejeitos e seus impactos. Definição do artigo 3º da PNRS.</p>
+<h3 class="termo" id="reuso">Reuso<a class="anchor" href="#reuso" aria-label="Link direto para Reuso">#</a></h3>
+<p class="termo-def">Novo uso do produto na mesma função, sem transformação industrial. É a rota que preserva mais valor.</p>
+<h3 class="termo" id="reversa-do-varejo">Reversa do varejo<a class="anchor" href="#reversa-do-varejo" aria-label="Link direto para Reversa do varejo">#</a></h3>
+<p class="termo-def">Recorte da logística reversa aplicado à operação varejista, reunindo pós-venda e pós-consumo sob a mesma gestão. É a agenda da ABREV.</p>
+<h2 class="letra" id="letra-s">S</h2>
+<h3 class="termo" id="sinir">SINIR<a class="anchor" href="#sinir" aria-label="Link direto para SINIR">#</a></h3>
+<p class="termo-def">Sistema Nacional de Informações sobre a Gestão dos Resíduos Sólidos, referência oficial sobre sistemas de logística reversa e responsabilidade compartilhada. Disponível em <a href="https://www.sinir.gov.br/perfis/logistica-reversa/" rel="noopener">sinir.gov.br</a>.</p>
+<h3 class="termo" id="sucata">Sucata<a class="anchor" href="#sucata" aria-label="Link direto para Sucata">#</a></h3>
+<p class="termo-def">Material sem valor de uso na forma atual, destinado à recuperação da matéria-prima.</p>
+<h2 class="letra" id="letra-t">T</h2>
+<h3 class="termo" id="taxa-de-devolucao">Taxa de devolução<a class="anchor" href="#taxa-de-devolucao" aria-label="Link direto para Taxa de devolução">#</a></h3>
+<p class="termo-def">Pedidos ou itens devolvidos sobre o total vendido no período. Deve ser lida junto com motivo, prazo de solução e recompra: queda obtida por dificultar a devolução não é ganho.</p>
+<h3 class="termo" id="taxa-de-recuperacao">Taxa de recuperação<a class="anchor" href="#taxa-de-recuperacao" aria-label="Link direto para Taxa de recuperação">#</a></h3>
+<p class="termo-def">Parcela dos itens devolvidos que volta ao estoque disponível para venda. Mede valor efetivamente recuperado, não volume processado.</p>
+<h3 class="termo" id="triagem">Triagem<a class="anchor" href="#triagem" aria-label="Link direto para Triagem">#</a></h3>
+<p class="termo-def">Avaliação da condição do item que retornou e aplicação de critérios documentados para decidir o destino. Etapa que define quanto valor se recupera.</p>
+<h3 class="termo" id="troca">Troca<a class="anchor" href="#troca" aria-label="Link direto para Troca">#</a></h3>
+<p class="termo-def">Substituição do item, mantendo a venda. Gera dois fluxos ao mesmo tempo: um reverso, do item que volta, e um direto, do item que sai.</p>
+<h2 class="letra" id="letra-v">V</h2>
+<h3 class="termo" id="vicio-do-produto">Vício do produto<a class="anchor" href="#vicio-do-produto" aria-label="Link direto para Vício do produto">#</a></h3>
+<p class="termo-def">Defeito de qualidade ou quantidade que torna o produto impróprio ou inadequado ao uso, ou lhe diminui o valor. O fornecedor tem até 30 dias para sanar; persistindo, o consumidor escolhe entre substituição, restituição corrigida ou abatimento proporcional. Artigo 18 do Código de Defesa do Consumidor.</p>
+
+<h2>Continue explorando a reversa</h2>
+<ul>
+<li><a href="/blog/logistica-reversa-no-varejo.html">Guia: logística reversa no varejo — o que é e como funciona</a></li>
+<li><a href="/blog/logistica-reversa-no-ecommerce.html">Logística reversa no e-commerce: devoluções, trocas e custos</a></li>
+<li><a href="/blog/direito-de-arrependimento-no-ecommerce.html">Direito de arrependimento no e-commerce: o que a lei exige do varejo</a></li>
+<li><a href="/blog/da-devolucao-ao-encantamento.html">Da devolução ao encantamento: reversa e fidelização</a></li>
+</ul>
+
+<h2>Referências</h2><p>As definições legais seguem a <a href="https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12305.htm" rel="noopener">Lei 12.305/2010</a> (Política Nacional de Resíduos Sólidos), o <a href="https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm" rel="noopener">Código de Defesa do Consumidor</a> e o <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm" rel="noopener">Decreto 7.962/2013</a>, consultados no Planalto em 7 de novembro de 2026. Os demais verbetes são definições de gestão da ABREV, de uso corrente no setor, e não constituem parecer jurídico. Para o pós-consumo, a referência oficial é o <a href="https://www.sinir.gov.br/perfis/logistica-reversa/" rel="noopener">SINIR</a>.</p>
+
+<section class="cta"><div><h3>Falta algum termo?</h3><p>Sugira verbetes e ajude a manter o vocabulário da reversa do varejo atualizado.</p></div><a class="btn" href="/colabore.html">Quero colaborar</a></section>
+</article></main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img src="/assets/images/abrev-logo-420.webp" alt="ABREV" width="1142" height="240" decoding="async" srcset="/assets/images/abrev-logo-210.webp 210w, /assets/images/abrev-logo-420.webp 420w, /assets/images/abrev-logo-630.webp 630w" sizes="210px">
+        <p>Conhecimento · conexão · transformação</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <p><a href="/#sobre">Quem somos</a><br><a href="/#ecossistema">Ecossistema</a><br><a href="/#fluxo">Como funciona</a><br><a href="/blog/">Blog</a><br><a href="/blog/logistica-reversa-no-varejo.html">Guia de logística reversa</a><br><a href="/imprensa/">Na imprensa</a></p>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <p><a href="mailto:adm@abrev.org">adm@abrev.org</a></p>
+      </div>
+    </div>
+    <div class="fine">© 2026 Associação Brasileira de Reversa do Varejo — ABREV.</div>
+  </div>
+</footer>
+
+<!-- POP-UP: FAÇA PARTE DA COMUNIDADE -->
+<script>
+// scroll reveal
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Back-end ABREV (Apps Script)
+var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyJPKHIzLvghLIkJpORZd7vYTGiDzSY_ybiAdnub3CX4bLLzPx5O-eTDc0hxpRc9DjIDw/exec';
+function postAS(payload){ return fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)}); }
+function canonUrl(){ var c=document.querySelector('link[rel=canonical]'); return (c&&c.href)||location.href; }
+function artigoTitulo(){ return (document.title.split('|')[0]||'').trim(); }
+function slugAtual(){ var p=canonUrl().split('?')[0].split('#')[0]; return p.substring(p.lastIndexOf('/')+1).replace(/\.html?$/,''); }
+
+
+
+// Bloco "Receber o estudo completo" (Leads-Estudo → E2; opt-in entra na Comunidade)
+(function(){
+  var form=document.getElementById('estudoForm');
+  if(!form) return;
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    var btn=form.querySelector('button[type="submit"]'), status=document.getElementById('eStatus'), label=btn.textContent;
+    var email=document.getElementById('eEmail').value.trim();
+    if(btn.disabled || !form.reportValidity()) return;
+    if(!email){ status.textContent='Informe um e-mail válido.'; return; }
+    btn.disabled=true; btn.textContent='Enviando…'; status.textContent='';
+    var payload={ action:'estudo', nome:document.getElementById('eName').value.trim(), email:email,
+      artigo:artigoTitulo(), artigo_url:canonUrl(), slug:slugAtual(),
+      opt_in:document.getElementById('eOptin').checked, origem:'blog' };
+    try{
+      await postAS(payload);
+      if(window.abrevAnalytics) window.abrevAnalytics.track('abrev_registration_request', {form_id:'study'});
+      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Solicitação enviada. Confira seu e-mail para receber o estudo completo. 📄</p>';
+    }catch(err){
+      if(window.abrevAnalytics) window.abrevAnalytics.track('abrev_registration_error', {form_id:'study'});
+      status.textContent='Não foi possível concluir agora. Tente novamente.';
+      btn.disabled=false; btn.textContent=label;
+    }
+  });
+})();
+</script>
+
+<script src="/assets/comunidade-popup.js?v=20261104-2" defer></script>
+</body>
+</html>
