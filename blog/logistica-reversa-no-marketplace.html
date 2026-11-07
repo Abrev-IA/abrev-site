@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta name="theme-color" content="#102b3b">
+<meta name="author" content="ABREV — Associação Brasileira de Reversa do Varejo">
+<title>Logística reversa no marketplace: quem responde | ABREV</title>
+<link rel="preload" href="/assets/fonts/montserrat-latin-v1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin-v1.woff2" as="font" type="font/woff2" crossorigin>
+<style id="abrev-fonts">
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url(/assets/fonts/inter-latin-ext-v1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url(/assets/fonts/inter-latin-v1.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url(/assets/fonts/montserrat-latin-ext-v1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url(/assets/fonts/montserrat-latin-v1.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+
+<!-- Open Graph / SEO orgânico -->
+
+<meta property="og:site_name" content="ABREV">
+<meta property="og:locale" content="pt_BR">
+
+
+
+<meta property="og:image" content="https://abrev.org/blog/assets/abrev-logo.png">
+<meta name="twitter:card" content="summary_large_image">
+
+
+<!-- Schema.org: melhora indexação orgânica -->
+
+
+<style>
+:root{--navy:#153244;--navy2:#091d29;--green:#a4c63d;--teal:#0ca2a6;--yellow:#f7c842;--cream:#fbf8f0;--white:#fff;--ink:#183545;--muted:#607581;--line:rgba(21,50,68,.12);--d:'Montserrat',sans-serif;--b:'Inter',sans-serif;--shadow:0 24px 70px rgba(7,26,37,.16)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--b);line-height:1.7;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:min(1200px,calc(100% - 40px));margin:auto}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:16px;top:16px;z-index:9999;background:#fff;padding:10px 14px;border-radius:8px}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+
+/* ---- Header (idêntico ao site) ---- */
+.nav{position:sticky;top:0;z-index:100;background:rgba(251,248,240,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.navin{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand img{width:180px}
+.links{display:flex;gap:30px;align-items:center}
+.links a{font:600 .92rem var(--b);text-decoration:none;color:var(--ink);opacity:.82;transition:.2s}
+.links a:hover,.links a[aria-current]{opacity:1;color:var(--teal)}
+.navcta{background:var(--navy);color:#fff!important;padding:11px 20px;border-radius:999px;opacity:1!important}
+.navcta:hover{background:var(--teal)}
+.menu{display:none;border:0;background:none;padding:10px;cursor:pointer}
+.menu span{display:block;width:24px;height:2px;background:var(--navy);margin:5px 0}
+
+/* ---- Article ---- */
+.arthero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;padding:66px 0 88px;position:relative;overflow:hidden}
+.arthero:after{content:"";position:absolute;right:-140px;top:-140px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(12,162,166,.35),transparent 60%)}
+.crumbs{font:600 .78rem var(--b);letter-spacing:.02em;color:rgba(255,255,255,.78);margin-bottom:22px}
+.crumbs a{color:rgba(255,255,255,.8);text-decoration:none}
+.crumbs a:hover{color:var(--green)}
+.pill{display:inline-block;background:var(--green);color:var(--navy2);font:800 .7rem var(--d);letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px}
+.arthero h1{font:900 clamp(2.1rem,5vw,3.6rem)/1.05 var(--d);margin:20px 0 16px;max-width:20ch;position:relative;z-index:1}
+.arthero .lede{font-size:clamp(1.05rem,2vw,1.32rem);color:rgba(255,255,255,.82);max-width:60ch;margin:0}
+.artmeta{display:flex;flex-wrap:wrap;gap:26px;margin-top:34px;font:600 .84rem var(--b);color:rgba(255,255,255,.72)}
+.artmeta b{color:#fff;font-weight:700}
+
+.article{max-width:760px;margin:0 auto;padding:56px 0 20px}
+.article p{font-size:1.09rem;margin:0 0 24px}
+.article h2{font:800 clamp(1.5rem,3vw,2.05rem)/1.15 var(--d);color:var(--navy);margin:52px 0 18px;letter-spacing:-.01em}
+.article h3{font:800 1.18rem var(--d);color:var(--navy);margin:34px 0 12px}
+.article strong{color:var(--navy)}
+.lead{font-size:1.24rem!important;color:var(--navy);font-weight:500}
+.dropcap::first-letter{font:900 4.2rem/.8 var(--d);float:left;color:var(--teal);margin:6px 12px 0 0}
+
+/* Big stat callouts */
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:38px 0}
+.stat{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:26px 22px;box-shadow:0 12px 34px rgba(21,50,68,.06)}
+.stat .num{font:900 2.7rem/1 var(--d);color:#0a7d80}
+.stat .num.g{color:#587d0e}
+.stat .num.y{color:#9a6f00}
+.stat .lab{color:var(--muted);font-size:.92rem;margin-top:10px}
+
+/* Figure / charts */
+.fig{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:30px 30px 24px;margin:34px 0;box-shadow:0 16px 44px rgba(21,50,68,.07)}
+.fig .cap{font:800 1.05rem var(--d);color:var(--navy);margin:0 0 4px}
+.fig .sub{color:var(--muted);font-size:.9rem;margin:0 0 20px}
+.fig .src{color:var(--muted);font-size:.78rem;margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+.bar-label{font:700 .82rem var(--b);fill:var(--ink)}
+.bar-val{font:800 .9rem var(--d);fill:var(--navy)}
+.axis{font:600 .74rem var(--b);fill:var(--muted)}
+
+/* MUP framework */
+.mup{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:30px 0}
+.mup .c{border-radius:20px;padding:26px;color:#fff}
+.mup .c:nth-child(1){background:var(--teal)}
+.mup .c:nth-child(2){background:var(--navy)}
+.mup .c:nth-child(3){background:var(--green);color:var(--navy2)}
+.mup .c b{font:900 2.4rem var(--d);display:block;line-height:1}
+.mup .c h3{color:inherit;margin:12px 0 8px;font-size:1.08rem}
+.mup .c p{font-size:.92rem;margin:0;opacity:.92}
+
+/* Refund scale */
+.scale{display:flex;border-radius:14px;overflow:hidden;margin:22px 0 8px;box-shadow:0 10px 28px rgba(21,50,68,.08)}
+.scale div{flex:1;padding:16px 10px;text-align:center;color:#fff;font:700 .78rem var(--b)}
+.scale div b{display:block;font:800 .96rem var(--d);margin-bottom:3px}
+.scaleleg{color:var(--muted);font-size:.82rem;text-align:center}
+
+/* Quote */
+.pull{border-left:4px solid var(--green);background:rgba(164,198,61,.09);padding:24px 28px;border-radius:0 16px 16px 0;margin:34px 0;font:600 1.22rem/1.5 var(--d);color:var(--navy)}
+.pull cite{display:block;font:600 .82rem var(--b);color:var(--muted);margin-top:12px;font-style:normal}
+
+/* Takeaways */
+.take{background:var(--navy);color:#fff;border-radius:24px;padding:38px 34px;margin:44px 0}
+.take h3{color:#fff;font:800 1.4rem var(--d);margin:0 0 20px}
+.take ol{margin:0;padding:0;list-style:none;counter-reset:t}
+.take li{counter-increment:t;padding:14px 0 14px 52px;position:relative;border-top:1px solid rgba(255,255,255,.12)}
+.take li:first-child{border-top:0}
+.take li:before{content:counter(t);position:absolute;left:0;top:12px;width:34px;height:34px;border-radius:50%;background:var(--green);color:var(--navy2);font:900 1rem var(--d);display:flex;align-items:center;justify-content:center}
+.take li b{color:var(--yellow)}
+
+/* CTA */
+.cta{background:var(--yellow);border-radius:28px;padding:44px;margin:48px 0 10px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}
+.cta h3{font:900 clamp(1.6rem,3vw,2.3rem)/1.05 var(--d);color:var(--navy2);margin:0}
+.cta p{margin:10px 0 0;color:var(--navy);max-width:44ch}
+.cta .btn{justify-self:end;background:var(--navy);color:#fff;text-decoration:none;padding:16px 30px;border-radius:999px;font:800 .96rem var(--d);white-space:nowrap;transition:.2s}
+.cta .btn:hover{background:var(--navy2);transform:translateY(-2px)}
+
+
+/* Footer */
+.footer{background:#061720;color:#fff;padding:66px 0 26px;margin-top:40px}
+.foot{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:36px}
+.footer img{width:210px}
+.footer h4{font:800 .72rem var(--d);text-transform:uppercase;letter-spacing:.12em;color:var(--green);margin:0 0 13px}
+.footer p,.footer a{color:rgba(255,255,255,.62);text-decoration:none}
+.footer a:hover{color:#fff}
+.fine{margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:.78rem;color:rgba(255,255,255,.38)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:.7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:820px){
+  .links{display:none}
+  .links.open{display:flex;flex-direction:column;align-items:flex-start;gap:16px;position:absolute;top:64px;right:20px;left:20px;background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+  .menu{display:block}
+  .statrow,.mup,.foot{grid-template-columns:1fr}
+  .cta{grid-template-columns:1fr}
+  .cta .btn{justify-self:start}
+  .scale{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+
+/* Pop-up: Faça parte da comunidade */
+.modal{position:fixed;inset:0;z-index:500;background:rgba(4,17,24,.72);backdrop-filter:blur(8px);display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:.25s}
+.modal.show{opacity:1;pointer-events:auto}
+.modalCard{position:relative;width:min(880px,100%);display:grid;grid-template-columns:.85fr 1.15fr;background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 35px 100px rgba(0,0,0,.35);transform:translateY(18px);transition:.3s}
+.modal.show .modalCard{transform:none}
+.modalVis{position:relative;background:linear-gradient(150deg,var(--teal),var(--navy));color:#fff;padding:40px 34px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;overflow:hidden}
+.modalVis:after{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:rgba(247,200,66,.18)}
+.modalVis .mpill{position:relative;z-index:1;align-self:flex-start;background:var(--green);color:var(--navy2);font:800 .68rem var(--d);letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.modalVis strong{position:relative;z-index:1;font:900 1.9rem/1.05 var(--d);max-width:14ch}
+.modalBody{padding:44px 40px;position:relative}
+.modalBody .mkicker{font:800 .69rem var(--d);letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin:0 0 8px}
+.modalBody h3{font:900 1.9rem/1.05 var(--d);color:var(--navy);margin:0 0 12px}
+.modalBody>p{color:var(--muted);margin:0;font-size:1rem}
+.mform{display:grid;gap:10px;margin-top:22px}
+.mform input{height:50px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font:500 .9rem var(--b)}
+.mform button{height:50px;border:0;border-radius:8px;background:var(--green);color:var(--navy2);font:800 .85rem var(--d);cursor:pointer;transition:.2s}
+.mform button:hover{background:var(--teal);color:#fff}
+.mform button:disabled{opacity:.6;cursor:default}
+.mnote{font-size:.73rem;color:var(--muted);margin-top:12px}
+.mnote a{color:var(--teal);font-weight:700}
+.mclose{position:absolute;right:16px;top:16px;z-index:3;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.92);font-size:1.3rem;line-height:1;cursor:pointer}
+@media(max-width:640px){.modalCard{grid-template-columns:1fr}.modalVis{min-height:140px}.modalBody{padding:34px 24px}.modalBody h3{font-size:1.6rem}}
+
+/* Opt-in: receber por e-mail */
+.emailcta{text-align:center;border:1px solid var(--line);border-radius:24px;padding:40px 34px;margin:44px 0;background:linear-gradient(180deg,#fff,rgba(164,198,61,.10));box-shadow:0 16px 44px rgba(21,50,68,.08)}
+.emailcta-ico{font-size:2rem;line-height:1;margin-bottom:10px}
+.emailcta h3{font:800 clamp(1.3rem,2.6vw,1.75rem)/1.15 var(--d);color:var(--navy);margin:0 0 10px}
+.emailcta p{color:var(--muted);max-width:52ch;margin:0 auto 22px;font-size:1.02rem}
+.emailcta-btn{display:inline-block;background:var(--navy);color:#fff;border:0;cursor:pointer;padding:15px 30px;border-radius:999px;font:800 .95rem var(--d);transition:.2s}
+.emailcta-btn:hover{background:var(--teal);transform:translateY(-2px)}
+.estudoForm{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:12px;text-align:left}
+.estudoForm input[type=text],.estudoForm input[type=email]{padding:13px 16px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff}
+.estudoForm .optin{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--muted);line-height:1.45;cursor:pointer}
+.estudoForm .optin input{margin-top:3px;flex-shrink:0}
+.estudoForm .consent{font-size:.78rem;color:var(--muted);text-align:center;margin:4px 0 0}
+.estudoForm button{margin-top:2px}
+</style>
+
+<meta name="description" content="Como se divide a responsabilidade entre plataforma e seller nas devoluções: o que o CDC diz, os quatro arranjos logísticos e onde o fluxo quebra.">
+<link rel="canonical" href="https://abrev.org/blog/logistica-reversa-no-marketplace.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Logística reversa no marketplace: quem responde pela devolução">
+<meta property="og:description" content="Como se divide a responsabilidade entre plataforma e seller nas devoluções: o que o CDC diz, os quatro arranjos logísticos e onde o fluxo quebra.">
+<meta property="og:url" content="https://abrev.org/blog/logistica-reversa-no-marketplace.html">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Logística reversa no marketplace: quem responde pela devolução", "description": "Como se divide a responsabilidade entre plataforma e seller nas devoluções: o que o CDC diz, os quatro arranjos logísticos e onde o fluxo quebra.", "inLanguage": "pt-BR", "datePublished": "2026-11-07", "dateModified": "2026-11-07", "author": {"@type": "Organization", "name": "ABREV", "url": "https://abrev.org/"}, "publisher": {"@type": "Organization", "name": "ABREV", "logo": {"@type": "ImageObject", "url": "https://abrev.org/blog/assets/abrev-logo.png"}}, "mainEntityOfPage": "https://abrev.org/blog/logistica-reversa-no-marketplace.html", "about": [{"@type": "Thing", "name": "Marketplace"}, {"@type": "Thing", "name": "Logística reversa"}, {"@type": "Thing", "name": "Devolução de produtos"}, {"@type": "Thing", "name": "Defesa do consumidor"}], "citation": [{"@type": "Legislation", "name": "Lei 8.078/1990 — Código de Defesa do Consumidor", "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm"}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://abrev.org/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://abrev.org/blog/"}, {"@type": "ListItem", "position": 3, "name": "Logística reversa no marketplace", "item": "https://abrev.org/blog/logistica-reversa-no-marketplace.html"}]}, {"@type": "FAQPage", "inLanguage": "pt-BR", "mainEntity": [{"@type": "Question", "name": "O marketplace responde pela devolução ou só o vendedor?", "acceptedAnswer": {"@type": "Answer", "text": "O Código de Defesa do Consumidor trata a cadeia de fornecimento como solidária: o parágrafo único do artigo 7º e o parágrafo 1º do artigo 25 dizem que, havendo mais de um responsável pelo dano, todos respondem solidariamente. Na prática, o que os tribunais costumam pesar é o grau de participação da plataforma na operação: vitrine, intermediação do pagamento, logística e canal de atendimento aproximam a plataforma da condição de fornecedora. Não é automático e depende do caso."}}, {"@type": "Question", "name": "O cliente precisa saber quem é o vendedor?", "acceptedAnswer": {"@type": "Answer", "text": "Para exercer seus direitos, não. A experiência de compra é uma só, e o consumidor não tem o dever de mapear a cadeia por trás dela. Operacionalmente, isso significa que o canal de atendimento precisa resolver, não encaminhar."}}, {"@type": "Question", "name": "De quem é o prazo de sete dias do arrependimento?", "acceptedAnswer": {"@type": "Answer", "text": "O prazo é do consumidor e corre contra a venda, não contra uma das partes. O que vale é a data em que ele manifestou a desistência, ainda que a manifestação chegue pela plataforma e o item volte para o seller."}}, {"@type": "Question", "name": "Quem paga o frete de retorno num marketplace?", "acceptedAnswer": {"@type": "Answer", "text": "Entre plataforma e seller, isso é contrato. Perante o consumidor que exerce o arrependimento, o entendimento predominante dos órgãos de defesa do consumidor é que o custo do retorno não é dele. O acordo comercial resolve o rateio depois; não pode ser condição para o cliente ser atendido."}}, {"@type": "Question", "name": "Quem é o comerciante para efeito de logística reversa pós-consumo?", "acceptedAnswer": {"@type": "Answer", "text": "É uma questão em aberto. A Política Nacional de Resíduos Sólidos atribui deveres a fabricantes, importadores, distribuidores e comerciantes, e o encaixe das plataformas nessa cadeia ainda é objeto de discussão. Quem vende por marketplace deve tratar as obrigações de pós-consumo do seu produto como suas, até que haja definição em contrário."}}]}]}</script>
+<style>.guide-toc{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;margin:0 0 36px}.guide-toc h2{margin:0 0 14px;font-size:1.2rem}.guide-toc a,.article a{color:#076f73;text-underline-offset:3px}.guide-toc ol{margin:0;padding-left:22px}.guide-toc li{margin:8px 0}.article h2{scroll-margin-top:110px}.table-scroll{overflow-x:auto;margin:28px 0}.guide-table{border-collapse:collapse;width:100%;font-size:.94rem}.guide-table caption{text-align:left;font-weight:700;margin-bottom:12px}.guide-table th,.guide-table td{border:1px solid #cad5d9;padding:14px;text-align:left;vertical-align:top}.guide-table th{background:#153244;color:white}.guide-table tr:nth-child(even){background:white}.article li{margin-bottom:12px}.guide-note{border-left:4px solid var(--green);padding:18px 22px;background:#fff;border-radius:0 14px 14px 0}</style>
+<script src="/assets/analytics.js?v=20261104-2" defer></script>
+<style>img{height:auto}footer a{display:inline-block;min-height:24px}</style>
+</head><body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- HEADER -->
+<header class="nav">
+  <div class="wrap navin">
+    <a class="brand" href="/"><img src="/assets/images/abrev-logo-420.webp" alt="ABREV — Associação Brasileira de Reversa do Varejo" width="1142" height="240" decoding="async" srcset="/assets/images/abrev-logo-210.webp 210w, /assets/images/abrev-logo-420.webp 420w, /assets/images/abrev-logo-630.webp 630w" sizes="210px"></a>
+    <button class="menu" aria-label="Abrir menu" aria-expanded="false" onclick="var l=document.querySelector('.links'),o=l.classList.toggle('open');this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Fechar menu':'Abrir menu')"><span></span><span></span><span></span></button>
+    <nav class="links" aria-label="Navegação principal">
+      <a href="/#sobre">Quem somos</a>
+      <a href="/#ecossistema">Ecossistema</a>
+      <a href="/#fluxo">Como funciona</a>
+      <a href="/blog/" aria-current="page" style="position:relative;font-weight:800;background:linear-gradient(transparent 58%,rgba(247,200,66,.75) 58%);padding:1px 4px;border-radius:3px">Blog</a><a href="/imprensa/">Na imprensa</a>
+      <a href="/colabore.html" rel="noopener" class="navcta">Quero colaborar com a ABREV</a>
+    </nav>
+  </div>
+</header>
+
+
+<div class="arthero"><div class="wrap"><nav class="crumbs" aria-label="Caminho de navegação"><a href="/">Início</a> › <a href="/blog/">Blog</a> › Reversa no marketplace</nav><span class="pill">Cadeia e responsabilidade</span><h1>Logística reversa no marketplace: quem responde pela devolução</h1><p class="lede">Três partes, um cliente e uma devolução só. Como o Código de Defesa do Consumidor enxerga a cadeia, como os quatro arranjos logísticos mudam o fluxo reverso e onde ele costuma quebrar.</p><div class="artmeta"><span>ABREV — Associação Brasileira de Reversa do Varejo</span><time datetime="2026-11-07">7 de novembro de 2026</time></div></div></div>
+<main id="conteudo" class="wrap"><article class="article">
+<p class="lead">No marketplace, uma única compra envolve pelo menos três partes: a plataforma que expõe a oferta, o vendedor que a cumpre e, muitas vezes, um operador logístico. Para o consumidor, nada disso existe — ele comprou em um lugar só. Essa assimetria entre a cadeia real e a experiência percebida é a origem de quase todo atrito na devolução.</p>
+
+<nav class="guide-toc" aria-label="Neste guia"><h2>Neste guia</h2><ol>
+<li><a href="#problema">Três partes, um cliente</a></li>
+<li><a href="#cadeia">O que o CDC diz sobre a cadeia</a></li>
+<li><a href="#arranjos">Os quatro arranjos logísticos</a></li>
+<li><a href="#matriz">Matriz de responsabilidade operacional</a></li>
+<li><a href="#gargalos">Onde o fluxo reverso quebra</a></li>
+<li><a href="#contrato">O que o seller precisa ter no contrato</a></li>
+<li><a href="#posconsumo">Pós-consumo: a questão em aberto</a></li>
+<li><a href="#duvidas">Dúvidas frequentes</a></li>
+</ol></nav>
+
+<h2 id="problema">Três partes, um cliente</h2>
+<p>A pergunta que chega ao atendimento nunca é “de quem é a responsabilidade contratual pelo frete reverso”. É “comprei aí e quero devolver”. Entre essa frase e a solução existe uma cadeia que o cliente não vê e não precisa ver.</p>
+<p>O erro mais caro é deixar que a divisão interna de responsabilidades apareça para o consumidor. Quando a plataforma diz “fale com o vendedor” e o vendedor diz “abra pela plataforma”, o caso deixou de ser logístico e virou reclamação.</p>
+
+<div class="pull">O cliente comprou em um lugar só. A cadeia por trás disso é problema de quem vende, não de quem comprou.</div>
+
+<h2 id="cadeia">O que o CDC diz sobre a cadeia</h2>
+<p>O Código de Defesa do Consumidor não trata fornecedores isoladamente. Dois dispositivos sustentam a leitura de cadeia:</p>
+<ul>
+<li><strong>Artigo 7º, parágrafo único:</strong> havendo mais de um autor da ofensa, todos respondem solidariamente pela reparação.</li>
+<li><strong>Artigo 25, parágrafo 1º:</strong> havendo mais de um responsável pela causação do dano, todos respondem solidariamente. O caput do mesmo artigo proíbe cláusula que impossibilite, exonere ou atenue a obrigação de indenizar.</li>
+</ul>
+<p>Esse último ponto merece atenção de quem redige contrato entre plataforma e seller: o acordo comercial distribui custo e operação entre as partes, mas <strong>não é oponível ao consumidor</strong> como forma de afastar a obrigação perante ele.</p>
+<p>Quando o problema é de serviço — e a intermediação é um serviço —, o artigo 20 dá ao consumidor a escolha entre reexecução sem custo adicional, restituição imediata do valor pago com correção monetária, ou abatimento proporcional do preço.</p>
+<p class="guide-note"><strong>O que este artigo deliberadamente não faz.</strong> A camada regulatória específica de plataformas digitais no Brasil está em movimento, entre normas recentes, projetos em tramitação e decisões judiciais. Não afirmamos aqui qual é o estado atual dessas regras, porque não foi possível confirmá-lo em fonte oficial no fechamento desta página. O que está acima vem do texto do Código de Defesa do Consumidor, conferido no Planalto em 7 de novembro de 2026. Antes de definir política ou contrato, consulte a assessoria jurídica da sua empresa sobre a norma vigente.</p>
+<p>Sobre o grau de participação da plataforma, o que se observa nas decisões é uma graduação: quanto mais a plataforma exibe a oferta como sua, intermedeia o pagamento, controla a logística e concentra o atendimento, mais ela se aproxima da posição de fornecedora. Um classificado que apenas aproxima as partes está numa ponta; um marketplace que vende, cobra, entrega e atende está na outra.</p>
+
+<h2 id="arranjos">Os quatro arranjos logísticos</h2>
+<p>Antes de discutir responsabilidade, é preciso saber qual arranjo está em jogo. Cada um gera um fluxo reverso diferente.</p>
+<div class="table-scroll">
+<table class="guide-table">
+<caption>Arranjos usuais e o caminho de volta em cada um</caption>
+<thead><tr><th>Arranjo</th><th>Quem estoca e expede</th><th>Para onde o item volta</th><th>Ponto de atenção na reversa</th></tr></thead>
+<tbody>
+<tr><td><strong>Expedição pelo seller</strong></td><td>O vendedor, do próprio estoque</td><td>Para o vendedor</td><td>A plataforma não vê a condição do item que voltou e não sabe se a solução saiu. O prazo some do radar.</td></tr>
+<tr><td><strong>Fulfillment da plataforma</strong></td><td>A plataforma, com estoque do seller em seu centro</td><td>Para o centro da plataforma</td><td>Triagem e decisão de destino ficam com quem não é dono do produto. Critério precisa estar acordado por escrito.</td></tr>
+<tr><td><strong>Cross-docking</strong></td><td>O seller separa, a plataforma consolida e entrega</td><td>Depende do contrato, e é onde mais se erra</td><td>Item que volta para o elo errado gera reprocesso e atraso no estorno.</td></tr>
+<tr><td><strong>Loja oficial dentro da plataforma</strong></td><td>O vendedor, com marca própria em evidência</td><td>Para o vendedor</td><td>A percepção de marca é do seller, mas a jornada de atendimento costuma ser da plataforma. As duas políticas precisam dizer a mesma coisa.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="matriz">Matriz de responsabilidade operacional</h2>
+<p>Perante o consumidor a responsabilidade é da cadeia. Entre as partes, o que resolve é combinar quem executa cada etapa — e registrar.</p>
+<div class="take"><h3>As seis decisões que precisam estar combinadas</h3><ol>
+<li><b>Quem abre e registra o pedido.</b> Idealmente a plataforma, com motivo classificado e data da manifestação carimbada, visível para os dois lados.</li>
+<li><b>Quem enquadra o caso.</b> Arrependimento, vício ou troca comercial mudam prazo, custo e solução. O enquadramento precisa ser único, não um por parte.</li>
+<li><b>Quem emite a etiqueta e o documento.</b> Inclui a <a href="/blog/declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html">declaração de conteúdo eletrônica</a> quando o remetente é pessoa física.</li>
+<li><b>Para onde o item volta</b> e quem confere no recebimento, com prazo acordado para a conferência.</li>
+<li><b>Quem decide o destino</b> do item que não pode voltar ao estoque disponível, por critério documentado.</li>
+<li><b>Quem estorna e em quanto tempo</b>, com gatilho automático e sem depender de a outra parte confirmar primeiro.</li>
+</ol></div>
+<p>A sexta decisão é a que mais trava. Quando o estorno depende de a plataforma esperar o seller confirmar o recebimento, e o seller espera a plataforma liberar, o cliente espera os dois. Separar o prazo de estorno do prazo de conferência resolve a maior parte desses casos: quem paga primeiro acerta depois.</p>
+
+<h2 id="gargalos">Onde o fluxo reverso quebra</h2>
+<ul>
+<li><strong>Duas políticas diferentes.</strong> A da plataforma e a do seller divergem em prazo ou condição, e o cliente encontra a divergência no pior momento.</li>
+<li><strong>Endereço de retorno errado.</strong> Em cross-docking, o item volta para o elo que não o espera e fica parado sem dono.</li>
+<li><strong>Prazo contado de formas diferentes.</strong> Um conta da entrega, outro da manifestação, outro da chegada física. Só uma dessas contagens corresponde ao que diz a lei sobre o <a href="/blog/direito-de-arrependimento-no-ecommerce.html">direito de arrependimento</a>.</li>
+<li><strong>Atendimento que encaminha em vez de resolver.</strong> Transferir o cliente entre plataforma e seller é a forma mais rápida de transformar devolução em reclamação formal.</li>
+<li><strong>Dado de motivo que não volta para o seller.</strong> Se a plataforma classifica o motivo e não devolve essa informação a quem fabrica ou anuncia, ninguém corrige a causa e o SKU continua devolvendo.</li>
+</ul>
+<p>Esse último ponto é estratégico e costuma passar batido. O motivo classificado é o insumo que transforma devolução em correção de catálogo, embalagem ou processo, como está detalhado no <a href="/blog/logistica-reversa-no-ecommerce.html">guia da reversa no e-commerce</a>.</p>
+
+<h2 id="contrato">O que o seller precisa ter no contrato</h2>
+<ul>
+<li>Endereço e prazo de retorno por arranjo logístico, escritos, não combinados por mensagem.</li>
+<li>Critério de triagem e quem decide o destino quando o item não volta vendável.</li>
+<li>Prazo de estorno e quem adianta o valor ao cliente, separado do acerto entre as partes.</li>
+<li>Rateio do frete reverso por tipo de caso — lembrando que isso organiza as partes, não o consumidor.</li>
+<li>Devolução do motivo classificado e dos indicadores ao seller, em periodicidade definida.</li>
+<li>Regra para item avariado no transporte sob gestão da plataforma.</li>
+</ul>
+
+<h2 id="posconsumo">Pós-consumo: a questão em aberto</h2>
+<p>Quase toda a discussão sobre marketplace e reversa fica no pós-venda. O pós-consumo — o retorno de produtos e embalagens depois do uso — recebe muito menos atenção, e é onde está uma pergunta ainda sem resposta consolidada: <strong>quem é o comerciante quando a venda acontece dentro de uma plataforma?</strong></p>
+<p>A Política Nacional de Resíduos Sólidos atribui deveres de logística reversa a fabricantes, importadores, distribuidores e comerciantes. O encaixe das plataformas nessa cadeia ainda é objeto de discussão, e a ABREV entende que essa é uma das definições que o setor precisa amadurecer.</p>
+<p>Enquanto isso, a postura prudente para quem vende por marketplace é tratar as obrigações de pós-consumo do próprio produto como suas, independentemente do canal. Os conceitos estão no <a href="/blog/glossario-logistica-reversa.html">glossário</a> e no <a href="/blog/logistica-reversa-no-varejo.html">guia do varejo</a>.</p>
+
+<h2 id="duvidas">Dúvidas frequentes</h2>
+<h3>O marketplace responde pela devolução ou só o vendedor?</h3><p>O Código de Defesa do Consumidor trata a cadeia de fornecimento como solidária: o parágrafo único do artigo 7º e o parágrafo 1º do artigo 25 dizem que, havendo mais de um responsável pelo dano, todos respondem solidariamente. Na prática, o que os tribunais costumam pesar é o grau de participação da plataforma na operação: vitrine, intermediação do pagamento, logística e canal de atendimento aproximam a plataforma da condição de fornecedora. Não é automático e depende do caso.</p>
+<h3>O cliente precisa saber quem é o vendedor?</h3><p>Para exercer seus direitos, não. A experiência de compra é uma só, e o consumidor não tem o dever de mapear a cadeia por trás dela. Operacionalmente, isso significa que o canal de atendimento precisa resolver, não encaminhar.</p>
+<h3>De quem é o prazo de sete dias do arrependimento?</h3><p>O prazo é do consumidor e corre contra a venda, não contra uma das partes. O que vale é a data em que ele manifestou a desistência, ainda que a manifestação chegue pela plataforma e o item volte para o seller.</p>
+<h3>Quem paga o frete de retorno num marketplace?</h3><p>Entre plataforma e seller, isso é contrato. Perante o consumidor que exerce o arrependimento, o entendimento predominante dos órgãos de defesa do consumidor é que o custo do retorno não é dele. O acordo comercial resolve o rateio depois; não pode ser condição para o cliente ser atendido.</p>
+<h3>Quem é o comerciante para efeito de logística reversa pós-consumo?</h3><p>É uma questão em aberto. A Política Nacional de Resíduos Sólidos atribui deveres a fabricantes, importadores, distribuidores e comerciantes, e o encaixe das plataformas nessa cadeia ainda é objeto de discussão. Quem vende por marketplace deve tratar as obrigações de pós-consumo do seu produto como suas, até que haja definição em contrário.</p>
+
+<h2>Continue explorando a reversa</h2>
+<ul>
+<li><a href="/blog/logistica-reversa-no-ecommerce.html">Logística reversa no e-commerce: devoluções, trocas e custos</a></li>
+<li><a href="/blog/direito-de-arrependimento-no-ecommerce.html">Direito de arrependimento no e-commerce: o que a lei exige do varejo</a></li>
+<li><a href="/blog/glossario-logistica-reversa.html">Glossário da logística reversa: 59 termos</a></li>
+<li><a href="/blog/logistica-reversa-no-varejo.html">Guia: logística reversa no varejo — o que é e como funciona</a></li>
+</ul>
+
+<h2>Referências</h2>
+<p>Os dispositivos citados são do <a href="https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm" rel="noopener">Código de Defesa do Consumidor</a> (Lei 8.078/1990), artigos 7º, 20 e 25, lidos no Planalto em 7 de novembro de 2026. As referências ao pós-consumo seguem a <a href="https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12305.htm" rel="noopener">Lei 12.305/2010</a>. A descrição dos arranjos logísticos e das decisões operacionais é síntese de gestão da ABREV e não constitui parecer jurídico. Esta página não afirma o estado atual da regulação específica de plataformas digitais; consulte a assessoria jurídica da sua empresa.</p>
+
+<section class="cta"><div><h3>Como a sua operação resolve isso?</h3><p>A divisão de responsabilidade no marketplace é uma das agendas que a ABREV quer amadurecer com o setor.</p></div><a class="btn" href="/colabore.html">Quero colaborar</a></section>
+</article></main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img src="/assets/images/abrev-logo-420.webp" alt="ABREV" width="1142" height="240" decoding="async" srcset="/assets/images/abrev-logo-210.webp 210w, /assets/images/abrev-logo-420.webp 420w, /assets/images/abrev-logo-630.webp 630w" sizes="210px">
+        <p>Conhecimento · conexão · transformação</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <p><a href="/#sobre">Quem somos</a><br><a href="/#ecossistema">Ecossistema</a><br><a href="/#fluxo">Como funciona</a><br><a href="/blog/">Blog</a><br><a href="/blog/logistica-reversa-no-varejo.html">Guia de logística reversa</a><br><a href="/imprensa/">Na imprensa</a></p>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <p><a href="mailto:adm@abrev.org">adm@abrev.org</a></p>
+      </div>
+    </div>
+    <div class="fine">© 2026 Associação Brasileira de Reversa do Varejo — ABREV.</div>
+  </div>
+</footer>
+
+<!-- POP-UP: FAÇA PARTE DA COMUNIDADE -->
+<script>
+// scroll reveal
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Back-end ABREV (Apps Script)
+var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyJPKHIzLvghLIkJpORZd7vYTGiDzSY_ybiAdnub3CX4bLLzPx5O-eTDc0hxpRc9DjIDw/exec';
+function postAS(payload){ return fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)}); }
+function canonUrl(){ var c=document.querySelector('link[rel=canonical]'); return (c&&c.href)||location.href; }
+function artigoTitulo(){ return (document.title.split('|')[0]||'').trim(); }
+function slugAtual(){ var p=canonUrl().split('?')[0].split('#')[0]; return p.substring(p.lastIndexOf('/')+1).replace(/\.html?$/,''); }
+
+
+
+// Bloco "Receber o estudo completo" (Leads-Estudo → E2; opt-in entra na Comunidade)
+(function(){
+  var form=document.getElementById('estudoForm');
+  if(!form) return;
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    var btn=form.querySelector('button[type="submit"]'), status=document.getElementById('eStatus'), label=btn.textContent;
+    var email=document.getElementById('eEmail').value.trim();
+    if(btn.disabled || !form.reportValidity()) return;
+    if(!email){ status.textContent='Informe um e-mail válido.'; return; }
+    btn.disabled=true; btn.textContent='Enviando…'; status.textContent='';
+    var payload={ action:'estudo', nome:document.getElementById('eName').value.trim(), email:email,
+      artigo:artigoTitulo(), artigo_url:canonUrl(), slug:slugAtual(),
+      opt_in:document.getElementById('eOptin').checked, origem:'blog' };
+    try{
+      await postAS(payload);
+      if(window.abrevAnalytics) window.abrevAnalytics.track('abrev_registration_request', {form_id:'study'});
+      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Solicitação enviada. Confira seu e-mail para receber o estudo completo. 📄</p>';
+    }catch(err){
+      if(window.abrevAnalytics) window.abrevAnalytics.track('abrev_registration_error', {form_id:'study'});
+      status.textContent='Não foi possível concluir agora. Tente novamente.';
+      btn.disabled=false; btn.textContent=label;
+    }
+  });
+})();
+</script>
+
+<script src="/assets/comunidade-popup.js?v=20261104-2" defer></script>
+</body>
+</html>
