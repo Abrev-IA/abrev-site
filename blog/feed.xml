@@ -6,7 +6,14 @@
   <link rel="self" type="application/atom+xml" href="https://abrev.org/blog/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://abrev.org/blog/"/>
   <author><name>ABREV — Associação Brasileira de Reversa do Varejo</name><uri>https://abrev.org/</uri></author>
-  <updated>2026-11-08T06:49:00-03:00</updated>
+  <updated>2026-11-08T06:50:44-03:00</updated>
+  <entry>
+    <id>https://abrev.org/blog/politica-de-trocas-e-devolucoes-modelo.html</id>
+    <title type="text">Política de trocas e devoluções: o que escrever e um modelo pronto</title>
+    <link rel="alternate" type="text/html" href="https://abrev.org/blog/politica-de-trocas-e-devolucoes-modelo.html"/>
+    <updated>2026-11-08T06:50:44-03:00</updated>
+    <summary type="text">Os doze pontos que a política precisa responder, os cinco erros que viram reclamação e um modelo completo e aberto para adaptar à sua operação.</summary>
+  </entry>
   <entry>
     <id>https://abrev.org/blog/direito-de-arrependimento-no-ecommerce.html</id>
     <title type="text">Direito de arrependimento no e-commerce: o que a lei exige do varejo</title>
@@ -34,13 +41,6 @@
     <link rel="alternate" type="text/html" href="https://abrev.org/blog/logistica-reversa-no-marketplace.html"/>
     <updated>2026-11-08T06:49:00-03:00</updated>
     <summary type="text">Como se divide a responsabilidade entre plataforma e seller nas devoluções: o que o CDC diz, os quatro arranjos logísticos e onde o fluxo quebra.</summary>
-  </entry>
-  <entry>
-    <id>https://abrev.org/blog/politica-de-trocas-e-devolucoes-modelo.html</id>
-    <title type="text">Política de trocas e devoluções: o que escrever e um modelo pronto</title>
-    <link rel="alternate" type="text/html" href="https://abrev.org/blog/politica-de-trocas-e-devolucoes-modelo.html"/>
-    <updated>2026-11-08T06:49:00-03:00</updated>
-    <summary type="text">Os doze pontos que a política precisa responder, os cinco erros que viram reclamação e um modelo completo e aberto para adaptar à sua operação.</summary>
   </entry>
   <entry>
     <id>https://abrev.org/blog/logistica-reversa-no-varejo.html</id>
