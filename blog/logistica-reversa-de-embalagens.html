@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta name="theme-color" content="#102b3b">
+<meta name="author" content="ABREV — Associação Brasileira de Reversa do Varejo">
+<title>Logística reversa de embalagens: regras e metas | ABREV</title>
+<link rel="preload" href="/assets/fonts/montserrat-latin-v1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin-v1.woff2" as="font" type="font/woff2" crossorigin>
+<style id="abrev-fonts">
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url(/assets/fonts/inter-latin-ext-v1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url(/assets/fonts/inter-latin-v1.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url(/assets/fonts/montserrat-latin-ext-v1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url(/assets/fonts/montserrat-latin-v1.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+
+<!-- Open Graph / SEO orgânico -->
+
+<meta property="og:site_name" content="ABREV">
+<meta property="og:locale" content="pt_BR">
+
+
+
+<meta property="og:image" content="https://abrev.org/blog/assets/abrev-logo.png">
+<meta name="twitter:card" content="summary_large_image">
+
+
+<!-- Schema.org: melhora indexação orgânica -->
+
+
+<style>
+:root{--navy:#153244;--navy2:#091d29;--green:#a4c63d;--teal:#0ca2a6;--yellow:#f7c842;--cream:#fbf8f0;--white:#fff;--ink:#183545;--muted:#607581;--line:rgba(21,50,68,.12);--d:'Montserrat',sans-serif;--b:'Inter',sans-serif;--shadow:0 24px 70px rgba(7,26,37,.16)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--b);line-height:1.7;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:min(1200px,calc(100% - 40px));margin:auto}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:16px;top:16px;z-index:9999;background:#fff;padding:10px 14px;border-radius:8px}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+
+/* ---- Header (idêntico ao site) ---- */
+.nav{position:sticky;top:0;z-index:100;background:rgba(251,248,240,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.navin{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand img{width:180px}
+.links{display:flex;gap:30px;align-items:center}
+.links a{font:600 .92rem var(--b);text-decoration:none;color:var(--ink);opacity:.82;transition:.2s}
+.links a:hover,.links a[aria-current]{opacity:1;color:var(--teal)}
+.navcta{background:var(--navy);color:#fff!important;padding:11px 20px;border-radius:999px;opacity:1!important}
+.navcta:hover{background:var(--teal)}
+.menu{display:none;border:0;background:none;padding:10px;cursor:pointer}
+.menu span{display:block;width:24px;height:2px;background:var(--navy);margin:5px 0}
+
+/* ---- Article ---- */
+.arthero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;padding:66px 0 88px;position:relative;overflow:hidden}
+.arthero:after{content:"";position:absolute;right:-140px;top:-140px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(12,162,166,.35),transparent 60%)}
+.crumbs{font:600 .78rem var(--b);letter-spacing:.02em;color:rgba(255,255,255,.78);margin-bottom:22px}
+.crumbs a{color:rgba(255,255,255,.8);text-decoration:none}
+.crumbs a:hover{color:var(--green)}
+.pill{display:inline-block;background:var(--green);color:var(--navy2);font:800 .7rem var(--d);letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px}
+.arthero h1{font:900 clamp(2.1rem,5vw,3.6rem)/1.05 var(--d);margin:20px 0 16px;max-width:20ch;position:relative;z-index:1}
+.arthero .lede{font-size:clamp(1.05rem,2vw,1.32rem);color:rgba(255,255,255,.82);max-width:60ch;margin:0}
+.artmeta{display:flex;flex-wrap:wrap;gap:26px;margin-top:34px;font:600 .84rem var(--b);color:rgba(255,255,255,.72)}
+.artmeta b{color:#fff;font-weight:700}
+
+.article{max-width:760px;margin:0 auto;padding:56px 0 20px}
+.article p{font-size:1.09rem;margin:0 0 24px}
+.article h2{font:800 clamp(1.5rem,3vw,2.05rem)/1.15 var(--d);color:var(--navy);margin:52px 0 18px;letter-spacing:-.01em}
+.article h3{font:800 1.18rem var(--d);color:var(--navy);margin:34px 0 12px}
+.article strong{color:var(--navy)}
+.lead{font-size:1.24rem!important;color:var(--navy);font-weight:500}
+.dropcap::first-letter{font:900 4.2rem/.8 var(--d);float:left;color:var(--teal);margin:6px 12px 0 0}
+
+/* Big stat callouts */
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:38px 0}
+.stat{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:26px 22px;box-shadow:0 12px 34px rgba(21,50,68,.06)}
+.stat .num{font:900 2.7rem/1 var(--d);color:#0a7d80}
+.stat .num.g{color:#587d0e}
+.stat .num.y{color:#9a6f00}
+.stat .lab{color:var(--muted);font-size:.92rem;margin-top:10px}
+
+/* Figure / charts */
+.fig{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:30px 30px 24px;margin:34px 0;box-shadow:0 16px 44px rgba(21,50,68,.07)}
+.fig .cap{font:800 1.05rem var(--d);color:var(--navy);margin:0 0 4px}
+.fig .sub{color:var(--muted);font-size:.9rem;margin:0 0 20px}
+.fig .src{color:var(--muted);font-size:.78rem;margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+.bar-label{font:700 .82rem var(--b);fill:var(--ink)}
+.bar-val{font:800 .9rem var(--d);fill:var(--navy)}
+.axis{font:600 .74rem var(--b);fill:var(--muted)}
+
+/* MUP framework */
+.mup{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:30px 0}
+.mup .c{border-radius:20px;padding:26px;color:#fff}
+.mup .c:nth-child(1){background:var(--teal)}
+.mup .c:nth-child(2){background:var(--navy)}
+.mup .c:nth-child(3){background:var(--green);color:var(--navy2)}
+.mup .c b{font:900 2.4rem var(--d);display:block;line-height:1}
+.mup .c h3{color:inherit;margin:12px 0 8px;font-size:1.08rem}
+.mup .c p{font-size:.92rem;margin:0;opacity:.92}
+
+/* Refund scale */
+.scale{display:flex;border-radius:14px;overflow:hidden;margin:22px 0 8px;box-shadow:0 10px 28px rgba(21,50,68,.08)}
+.scale div{flex:1;padding:16px 10px;text-align:center;color:#fff;font:700 .78rem var(--b)}
+.scale div b{display:block;font:800 .96rem var(--d);margin-bottom:3px}
+.scaleleg{color:var(--muted);font-size:.82rem;text-align:center}
+
+/* Quote */
+.pull{border-left:4px solid var(--green);background:rgba(164,198,61,.09);padding:24px 28px;border-radius:0 16px 16px 0;margin:34px 0;font:600 1.22rem/1.5 var(--d);color:var(--navy)}
+.pull cite{display:block;font:600 .82rem var(--b);color:var(--muted);margin-top:12px;font-style:normal}
+
+/* Takeaways */
+.take{background:var(--navy);color:#fff;border-radius:24px;padding:38px 34px;margin:44px 0}
+.take h3{color:#fff;font:800 1.4rem var(--d);margin:0 0 20px}
+.take ol{margin:0;padding:0;list-style:none;counter-reset:t}
+.take li{counter-increment:t;padding:14px 0 14px 52px;position:relative;border-top:1px solid rgba(255,255,255,.12)}
+.take li:first-child{border-top:0}
+.take li:before{content:counter(t);position:absolute;left:0;top:12px;width:34px;height:34px;border-radius:50%;background:var(--green);color:var(--navy2);font:900 1rem var(--d);display:flex;align-items:center;justify-content:center}
+.take li b{color:var(--yellow)}
+
+/* CTA */
+.cta{background:var(--yellow);border-radius:28px;padding:44px;margin:48px 0 10px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}
+.cta h3{font:900 clamp(1.6rem,3vw,2.3rem)/1.05 var(--d);color:var(--navy2);margin:0}
+.cta p{margin:10px 0 0;color:var(--navy);max-width:44ch}
+.cta .btn{justify-self:end;background:var(--navy);color:#fff;text-decoration:none;padding:16px 30px;border-radius:999px;font:800 .96rem var(--d);white-space:nowrap;transition:.2s}
+.cta .btn:hover{background:var(--navy2);transform:translateY(-2px)}
+
+
+/* Footer */
+.footer{background:#061720;color:#fff;padding:66px 0 26px;margin-top:40px}
+.foot{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:36px}
+.footer img{width:210px}
+.footer h4{font:800 .72rem var(--d);text-transform:uppercase;letter-spacing:.12em;color:var(--green);margin:0 0 13px}
+.footer p,.footer a{color:rgba(255,255,255,.62);text-decoration:none}
+.footer a:hover{color:#fff}
+.fine{margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:.78rem;color:rgba(255,255,255,.38)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:.7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:820px){
+  .links{display:none}
+  .links.open{display:flex;flex-direction:column;align-items:flex-start;gap:16px;position:absolute;top:64px;right:20px;left:20px;background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+  .menu{display:block}
+  .statrow,.mup,.foot{grid-template-columns:1fr}
+  .cta{grid-template-columns:1fr}
+  .cta .btn{justify-self:start}
+  .scale{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+
+/* Pop-up: Faça parte da comunidade */
+.modal{position:fixed;inset:0;z-index:500;background:rgba(4,17,24,.72);backdrop-filter:blur(8px);display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:.25s}
+.modal.show{opacity:1;pointer-events:auto}
+.modalCard{position:relative;width:min(880px,100%);display:grid;grid-template-columns:.85fr 1.15fr;background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 35px 100px rgba(0,0,0,.35);transform:translateY(18px);transition:.3s}
+.modal.show .modalCard{transform:none}
+.modalVis{position:relative;background:linear-gradient(150deg,var(--teal),var(--navy));color:#fff;padding:40px 34px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;overflow:hidden}
+.modalVis:after{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:rgba(247,200,66,.18)}
+.modalVis .mpill{position:relative;z-index:1;align-self:flex-start;background:var(--green);color:var(--navy2);font:800 .68rem var(--d);letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.modalVis strong{position:relative;z-index:1;font:900 1.9rem/1.05 var(--d);max-width:14ch}
+.modalBody{padding:44px 40px;position:relative}
+.modalBody .mkicker{font:800 .69rem var(--d);letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin:0 0 8px}
+.modalBody h3{font:900 1.9rem/1.05 var(--d);color:var(--navy);margin:0 0 12px}
+.modalBody>p{color:var(--muted);margin:0;font-size:1rem}
+.mform{display:grid;gap:10px;margin-top:22px}
+.mform input{height:50px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font:500 .9rem var(--b)}
+.mform button{height:50px;border:0;border-radius:8px;background:var(--green);color:var(--navy2);font:800 .85rem var(--d);cursor:pointer;transition:.2s}
+.mform button:hover{background:var(--teal);color:#fff}
+.mform button:disabled{opacity:.6;cursor:default}
+.mnote{font-size:.73rem;color:var(--muted);margin-top:12px}
+.mnote a{color:var(--teal);font-weight:700}
+.mclose{position:absolute;right:16px;top:16px;z-index:3;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.92);font-size:1.3rem;line-height:1;cursor:pointer}
+@media(max-width:640px){.modalCard{grid-template-columns:1fr}.modalVis{min-height:140px}.modalBody{padding:34px 24px}.modalBody h3{font-size:1.6rem}}
+
+/* Opt-in: receber por e-mail */
+.emailcta{text-align:center;border:1px solid var(--line);border-radius:24px;padding:40px 34px;margin:44px 0;background:linear-gradient(180deg,#fff,rgba(164,198,61,.10));box-shadow:0 16px 44px rgba(21,50,68,.08)}
+.emailcta-ico{font-size:2rem;line-height:1;margin-bottom:10px}
+.emailcta h3{font:800 clamp(1.3rem,2.6vw,1.75rem)/1.15 var(--d);color:var(--navy);margin:0 0 10px}
+.emailcta p{color:var(--muted);max-width:52ch;margin:0 auto 22px;font-size:1.02rem}
+.emailcta-btn{display:inline-block;background:var(--navy);color:#fff;border:0;cursor:pointer;padding:15px 30px;border-radius:999px;font:800 .95rem var(--d);transition:.2s}
+.emailcta-btn:hover{background:var(--teal);transform:translateY(-2px)}
+.estudoForm{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:12px;text-align:left}
+.estudoForm input[type=text],.estudoForm input[type=email]{padding:13px 16px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff}
+.estudoForm .optin{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--muted);line-height:1.45;cursor:pointer}
+.estudoForm .optin input{margin-top:3px;flex-shrink:0}
+.estudoForm .consent{font-size:.78rem;color:var(--muted);text-align:center;margin:4px 0 0}
+.estudoForm button{margin-top:2px}
+</style>
+
+<meta name="description" content="Embalagem não entrou automática no artigo 33 da PNRS. O que vale hoje para papel, vidro e plástico, as metas do decreto de 2025 e quem reporta.">
+<link rel="canonical" href="https://abrev.org/blog/logistica-reversa-de-embalagens.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Logística reversa de embalagens: o que vale hoje, por material">
+<meta property="og:description" content="Embalagem não entrou automática no artigo 33 da PNRS. O que vale hoje para papel, vidro e plástico, as metas do decreto de 2025 e quem reporta.">
+<meta property="og:url" content="https://abrev.org/blog/logistica-reversa-de-embalagens.html">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Logística reversa de embalagens: o que vale hoje, por material", "description": "Embalagem não entrou automática no artigo 33 da PNRS. O que vale hoje para papel, vidro e plástico, as metas do decreto de 2025 e quem reporta.", "inLanguage": "pt-BR", "datePublished": "2026-11-08", "dateModified": "2026-11-08", "author": {"@type": "Organization", "name": "ABREV", "url": "https://abrev.org/"}, "publisher": {"@type": "Organization", "name": "ABREV", "logo": {"@type": "ImageObject", "url": "https://abrev.org/blog/assets/abrev-logo.png"}}, "mainEntityOfPage": "https://abrev.org/blog/logistica-reversa-de-embalagens.html", "about": [{"@type": "Thing", "name": "Embalagens"}, {"@type": "Thing", "name": "Logística reversa"}, {"@type": "Thing", "name": "Política Nacional de Resíduos Sólidos"}, {"@type": "Thing", "name": "Reciclagem"}], "citation": [{"@type": "Legislation", "name": "Lei 12.305/2010 — Política Nacional de Resíduos Sólidos", "url": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12305.htm"}, {"@type": "Legislation", "name": "Decreto 10.936/2022", "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/decreto/d10936.htm"}, {"@type": "Legislation", "name": "Decreto 11.300/2022 — embalagens de vidro", "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/decreto/D11300.htm"}, {"@type": "Legislation", "name": "Decreto 11.413/2023 — certificados de reciclagem", "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11413.htm"}, {"@type": "Legislation", "name": "Decreto 12.688/2025 — embalagens de plástico", "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/d12688.htm"}], "isPartOf": {"@type": "CreativeWorkSeries", "name": "Série ABREV: sistemas setoriais de logística reversa"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://abrev.org/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://abrev.org/blog/"}, {"@type": "ListItem", "position": 3, "name": "Logística reversa de embalagens", "item": "https://abrev.org/blog/logistica-reversa-de-embalagens.html"}]}, {"@type": "FAQPage", "inLanguage": "pt-BR", "mainEntity": [{"@type": "Question", "name": "Embalagem é obrigada a ter logística reversa no Brasil?", "acceptedAnswer": {"@type": "Answer", "text": "Depende do material e do instrumento que alcança aquele material. O artigo 33 da Lei 12.305/2010 lista seis cadeias obrigatórias por força de lei, e embalagem em geral não está entre elas — só as embalagens de agrotóxico e as de óleo lubrificante. Embalagem em geral entrou pelo parágrafo 1º do mesmo artigo, por meio do Acordo Setorial de Embalagens em Geral de 2015; o vidro ganhou decreto próprio em 2022 e o plástico em 2025. Na prática, portanto, há obrigação — mas ela vem do instrumento, não diretamente da lista da lei."}}, {"@type": "Question", "name": "Qual é a meta de reciclagem de embalagens hoje?", "acceptedAnswer": {"@type": "Answer", "text": "Não há uma meta única. Para embalagens em geral, o Ministério do Meio Ambiente comunicou 22% para o ano de desempenho de 2023 e 30% para 2024, e registrou que a meta de 22% do acordo setorial é mínima. Para o vidro, o Decreto 11.300/2022 fixa reciclagem nacional de 27,25% em 2023 subindo a 40% em 2032. Para o plástico, o Decreto 12.688/2025 fixa recuperação nacional de 32% em 2026 chegando a 50% em 2040, além de uma meta separada de conteúdo reciclado."}}, {"@type": "Question", "name": "O que muda com o decreto das embalagens de plástico?", "acceptedAnswer": {"@type": "Answer", "text": "O Decreto 12.688/2025 passa a exigir duas coisas ao mesmo tempo e sem compensação entre elas: recuperar um percentual das embalagens colocadas no mercado e usar um mínimo de conteúdo reciclado na produção. A obrigação de conteúdo reciclado começou em janeiro de 2026 para empresas de grande porte e em julho de 2026 para pequenas e médias. O decreto também exige pontos de recebimento em quatro anos e cria um incentivo ao retornável: a cada 5% de embalagem retornável coletada, a meta de recuperação cai um ponto percentual, até metade da meta."}}, {"@type": "Question", "name": "Comprar certificado de reciclagem substitui operar a logística reversa?", "acceptedAnswer": {"@type": "Answer", "text": "O certificado é uma forma de comprovar cumprimento de meta, prevista no Decreto 11.413/2023, e a sua aquisição tem caráter voluntário. A meta em si continua obrigatória. Ou seja: a empresa pode escolher entre estruturar a operação, aderir a uma entidade gestora ou adquirir certificados, mas não pode escolher não cumprir."}}, {"@type": "Question", "name": "Embalagem mista, com plástico e papelão, entra no decreto do plástico?", "acceptedAnswer": {"@type": "Answer", "text": "Não. O artigo 2º do Decreto 12.688/2025 exclui as embalagens mistas que contenham papel ou papelão, assim como as já cobertas pelos regimes de agrotóxico e de óleo lubrificante. Ficar fora desse decreto não significa ficar sem obrigação: a embalagem mista continua no âmbito do Acordo Setorial de Embalagens em Geral."}}]}]}</script>
+<style>.guide-toc{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;margin:0 0 36px}.guide-toc h2{margin:0 0 14px;font-size:1.2rem}.guide-toc a,.article a{color:#076f73;text-underline-offset:3px}.guide-toc ol{margin:0;padding-left:22px}.guide-toc li{margin:8px 0}.article h2{scroll-margin-top:110px}.table-scroll{overflow-x:auto;margin:28px 0}.guide-table{border-collapse:collapse;width:100%;font-size:.94rem}.guide-table caption{text-align:left;font-weight:700;margin-bottom:12px}.guide-table th,.guide-table td{border:1px solid #cad5d9;padding:14px;text-align:left;vertical-align:top}.guide-table th{background:#153244;color:white}.guide-table tr:nth-child(even){background:white}.article li{margin-bottom:12px}.guide-note{border-left:4px solid var(--green);padding:18px 22px;background:#fff;border-radius:0 14px 14px 0}</style>
+<script src="/assets/analytics.js?v=20261104-2" defer></script>
+<style>img{height:auto}footer a{display:inline-block;min-height:24px}</style>
+</head><body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- HEADER -->
+<header class="nav">
+  <div class="wrap navin">
+    <a class="brand" href="/"><img src="/assets/images/abrev-logo-420.webp" alt="ABREV — Associação Brasileira de Reversa do Varejo" width="1142" height="240" decoding="async" srcset="/assets/images/abrev-logo-210.webp 210w, /assets/images/abrev-logo-420.webp 420w, /assets/images/abrev-logo-630.webp 630w" sizes="210px"></a>
+    <button class="menu" aria-label="Abrir menu" aria-expanded="false" onclick="var l=document.querySelector('.links'),o=l.classList.toggle('open');this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Fechar menu':'Abrir menu')"><span></span><span></span><span></span></button>
+    <nav class="links" aria-label="Navegação principal">
+      <a href="/#sobre">Quem somos</a>
+      <a href="/#ecossistema">Ecossistema</a>
+      <a href="/#fluxo">Como funciona</a>
+      <a href="/blog/" aria-current="page" style="position:relative;font-weight:800;background:linear-gradient(transparent 58%,rgba(247,200,66,.75) 58%);padding:1px 4px;border-radius:3px">Blog</a><a href="/imprensa/">Na imprensa</a>
+      <a href="/colabore.html" rel="noopener" class="navcta">Quero colaborar com a ABREV</a>
+    </nav>
+  </div>
+</header>
+
+
+<div class="arthero"><div class="wrap"><nav class="crumbs" aria-label="Caminho de navegação"><a href="/">Início</a> › <a href="/blog/">Blog</a> › Reversa de embalagens</nav><span class="pill">Pós-consumo e regulação</span><h1>Logística reversa de embalagens: o que vale hoje, por material</h1><p class="lede">Embalagem não é um sistema só. Papel, metal, vidro e plástico seguem instrumentos diferentes, com metas e prazos diferentes — e o decreto do plástico, de outubro de 2025, mudou o patamar.</p><div class="artmeta"><span>ABREV — Associação Brasileira de Reversa do Varejo</span><time datetime="2026-11-08">8 de novembro de 2026</time></div></div></div>
+<main id="conteudo" class="wrap"><article class="article">
+<p class="lead">Quem procura “logística reversa de embalagens” costuma esperar uma regra só. Não existe. Papel, metal, vidro e plástico chegaram ao sistema por caminhos diferentes, em anos diferentes, e hoje respondem a instrumentos diferentes — um acordo setorial de 2015 e dois decretos, um de 2022 e outro de 2025. Esta página separa o que vale para cada material.</p>
+
+<p class="guide-note"><strong>Série por setor.</strong> Esta é uma de três páginas sobre os sistemas setoriais de logística reversa: <strong>embalagens</strong>, <a href="/blog/logistica-reversa-de-eletroeletronicos.html">eletroeletrônicos</a> e <a href="/blog/logistica-reversa-de-medicamentos.html">medicamentos</a>. Cada setor tem norma própria, meta própria e prazo próprio — não dá para tratar os três como um bloco só.</p>
+
+<nav class="guide-toc" aria-label="Neste guia"><h2>Neste guia</h2><ol>
+<li><a href="#automatico">Por que embalagem não entrou na lista obrigatória</a></li>
+<li><a href="#instrumentos">Os três instrumentos e quem manda em quem</a></li>
+<li><a href="#mapa">O mapa por material</a></li>
+<li><a href="#plastico">O decreto do plástico, em detalhe</a></li>
+<li><a href="#certificados">Os certificados: CCRLR, CERE e massa futura</a></li>
+<li><a href="#numeros">O que os números de 2023 mostram</a></li>
+<li><a href="#varejo">O que cabe ao varejo</a></li>
+<li><a href="#duvidas">Dúvidas frequentes</a></li>
+</ol></nav>
+
+<h2 id="automatico">Por que embalagem não entrou na lista obrigatória</h2>
+<p>O artigo 33 da Política Nacional de Resíduos Sólidos lista seis cadeias que têm de estruturar logística reversa independentemente do serviço público de limpeza urbana: agrotóxicos, pilhas e baterias, pneus, óleos lubrificantes, lâmpadas e produtos eletroeletrônicos.</p>
+<p>Embalagem aparece nessa lista em dois pontos, e só em dois: as embalagens de agrotóxicos, no inciso I, e as embalagens de óleos lubrificantes, no inciso IV. <strong>Embalagem em geral não está lá.</strong></p>
+<p>O que existe é o parágrafo 1º do mesmo artigo: a logística reversa <em>poderá ser estendida</em> a produtos comercializados em embalagens plásticas, metálicas ou de vidro, e a outros produtos e embalagens, por regulamento, acordo setorial ou termo de compromisso. A prioridade, diz o texto, vai para os produtos de maior impacto à saúde e ao meio ambiente.</p>
+<div class="pull">A obrigação de embalagem não nasce da lei direto. Ela nasce do instrumento que estende a lei àquele material. É por isso que a resposta muda conforme o material.</div>
+<p>Essa diferença não é acadêmica. Ela explica por que uma empresa pode estar em dia com um material e descoberta em outro, e por que a pergunta “minha empresa é obrigada?” só tem resposta depois de saber qual embalagem ela coloca no mercado.</p>
+
+<h2 id="instrumentos">Os três instrumentos e quem manda em quem</h2>
+<p>O Decreto 10.936/2022, que regulamenta a PNRS, organiza o assunto. O artigo 18 nomeia os três instrumentos pelos quais um sistema pode ser instituído:</p>
+<ul>
+<li><strong>Acordo setorial</strong> — ato de natureza contratual entre o poder público e o setor empresarial.</li>
+<li><strong>Regulamento</strong> editado pelo Poder Executivo — na prática, o decreto.</li>
+<li><strong>Termo de compromisso</strong> — cabível quando não há acordo setorial nem regulamento na mesma área, ou para estabelecer metas mais exigentes (artigo 25).</li>
+</ul>
+<p>O artigo 19 resolve o conflito entre eles por abrangência: instrumento de âmbito nacional prevalece sobre o regional, distrital ou estadual, e estes prevalecem sobre o municipal. Os de menor abrangência precisam ser compatíveis com os maiores.</p>
+<p>Na prática isso importa muito para quem vende em vários estados: existe regulação estadual de embalagens com metas próprias, e ela não substitui a nacional — soma-se a ela, dentro dos limites do artigo 19.</p>
+<p>Quem não assina um acordo setorial não fica de fora: os artigos 28 e 29 do mesmo decreto dizem que o não signatário deve estruturar o próprio sistema e fica sujeito às penalidades da legislação ambiental.</p>
+
+<h2 id="mapa">O mapa por material</h2>
+<p>Este é o resumo do que vale hoje, com a norma que cria cada obrigação.</p>
+<div class="table-scroll">
+<table class="guide-table">
+<caption>Embalagens: instrumento, meta e referência por material</caption>
+<thead><tr><th>Material</th><th>Instrumento</th><th>Meta de referência</th><th>Observação</th></tr></thead>
+<tbody>
+<tr><td><strong>Embalagens em geral</strong> (papel, papelão, plástico, metal, vidro)</td><td>Acordo Setorial de Embalagens em Geral, de 2015</td><td>22% para o ano de desempenho 2023 e 30% para 2024</td><td>Os percentuais estão no Comunicado 001/2024-DGR/MMA, que também diz que a meta de 22% “é mínima”.</td></tr>
+<tr><td><strong>Vidro</strong></td><td>Decreto 11.300/2022</td><td>Reciclagem nacional de 27,25% em 2023 subindo a 40% em 2032; conteúdo reciclado de 26% a 35% no mesmo período</td><td>Tem entidade gestora própria, metas regionais e revisão prevista até 30 de junho de 2031.</td></tr>
+<tr><td><strong>Plástico</strong></td><td>Decreto 12.688/2025</td><td>Recuperação nacional de 32% em 2026 subindo a 50% em 2040; conteúdo reciclado de 22% em 2026 a 40% em 2040</td><td>É a mudança mais recente e a de maior impacto operacional. Detalhada na seção seguinte.</td></tr>
+<tr><td><strong>Embalagem de agrotóxico</strong></td><td>Artigo 33, inciso I, da PNRS</td><td>Sistema obrigatório por força de lei</td><td>Não depende de acordo setorial. Regime próprio, fora do escopo desta página.</td></tr>
+<tr><td><strong>Embalagem de óleo lubrificante</strong></td><td>Artigo 33, inciso IV, da PNRS</td><td>Sistema obrigatório por força de lei</td><td>Também com regime próprio.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="plastico">O decreto do plástico, em detalhe</h2>
+<p>O Decreto 12.688, de 21 de outubro de 2025, instituiu o sistema de logística reversa de embalagens de plástico. É a norma que mais muda a rotina de quem coloca plástico no mercado, porque traz duas metas que correm juntas e começam a valer agora.</p>
+
+<h3>As duas metas</h3>
+<p><strong>Recuperação.</strong> O índice nacional parte de 32% em 2026 e chega a 50% em 2040, com metas regionais bem desiguais — o Sudeste começa em 15,63% e o Norte em 2,15% em 2026.</p>
+<p><strong>Conteúdo reciclado.</strong> O mínimo nacional vai de 22% em 2026 a 40% em 2040. Essa obrigação recai sobre fabricantes e importadores, e não se aplica a embalagens com regulamentação específica, incluindo as de alimentos.</p>
+<p>O artigo 38 deixa claro que as duas têm de ser cumpridas em conjunto. Não há compensação de uma pela outra.</p>
+
+<h3>Quando começa</h3>
+<p>A obrigação de conteúdo reciclado começa em janeiro de 2026 para as empresas de grande porte e em julho de 2026 para as pequenas e médias.</p>
+
+<h3>Pontos de recebimento</h3>
+<p>Município com até dez mil habitantes precisa de pelo menos um ponto. Acima disso, um ponto a cada dez mil habitantes. O prazo é de quatro anos contados da publicação.</p>
+
+<h3>O incentivo ao retornável</h3>
+<p>Um dispositivo que passa despercebido e vale dinheiro: a cada 5% de embalagem retornável coletada, a meta de recuperação cai um ponto percentual, até o limite de metade da meta. Para quem já opera retornável, isso muda a conta.</p>
+
+<h3>O que o decreto deixa de fora</h3>
+<p>Pelo artigo 2º, ficam fora as embalagens já cobertas pelos regimes específicos de agrotóxico e de óleo lubrificante, e as embalagens mistas que contenham papel ou papelão.</p>
+<p class="guide-note"><strong>Atenção à embalagem mista.</strong> Uma embalagem com camada de papelão não entra no decreto do plástico — o que não significa que esteja livre. Ela continua no guarda-chuva do Acordo Setorial de Embalagens em Geral. A pergunta certa não é “estou fora do decreto?”, é “então estou dentro de qual instrumento?”.</p>
+
+<h3>Quem responde pelo quê</h3>
+<ul>
+<li><strong>Fabricantes e importadores:</strong> cumprem as metas e reportam resultados anualmente.</li>
+<li><strong>Entidades gestoras do modelo coletivo:</strong> precisam de autorização do Ministério do Meio Ambiente e assumem as obrigações das empresas aderentes.</li>
+<li><strong>Distribuidores:</strong> informam o varejo, separam retornável de não retornável e priorizam cooperativas.</li>
+<li><strong>Comerciantes:</strong> disponibilizam ponto de entrega, orientam o consumidor e removem ou alteram rótulos antes do descarte.</li>
+<li><strong>Consumidores:</strong> descartam no ponto de entrega ou na coleta seletiva.</li>
+</ul>
+<p>O descumprimento sujeita às sanções da Lei 9.605/1998, pelo artigo 40.</p>
+
+<h2 id="certificados">Os certificados: CCRLR, CERE e massa futura</h2>
+<p>O Decreto 11.413, de 13 de fevereiro de 2023, criou três certificados para comprovar cumprimento de meta. Ele revogou o Decreto 11.044/2022, que tratava do mesmo assunto.</p>
+<ul>
+<li><strong>CCRLR</strong> — Certificado de Crédito de Reciclagem de Logística Reversa. Comprova que massa equivalente de produtos ou embalagens voltou ao ciclo produtivo.</li>
+<li><strong>CERE</strong> — Certificado de Estruturação e Reciclagem de Embalagens em Geral. Vinculado a investimento em projetos estruturantes, como equipamento e capacitação de cooperativas.</li>
+<li><strong>Certificado de Crédito de Massa Futura</strong> — comprova antecipadamente massa que será reintroduzida na cadeia.</li>
+</ul>
+<p>Os três são emitidos por entidade gestora registrada no Sinir e podem ser adquiridos por fabricantes, importadores, distribuidores e comerciantes. O artigo 2º, parágrafo 2º, é explícito: pedir e adquirir esses certificados tem <strong>caráter voluntário</strong>.</p>
+<p>Voluntário aqui quer dizer que o certificado é um caminho, não o caminho. A meta continua obrigatória; o que é optativo é comprá-la em vez de operá-la.</p>
+
+<h2 id="numeros">O que os números de 2023 mostram</h2>
+<p>O relatório da Coalizão Embalagens para o ano de 2023, protocolado no Sinir, permite ver o tamanho real do sistema de embalagens em geral:</p>
+<ul>
+<li>Meta ponderada do período: <strong>22,28%</strong>, resultado da combinação entre os 22% do acordo setorial e os 25% do decreto do vidro.</li>
+<li>Recuperação em 2023: <strong>220.268,24 toneladas</strong>, das quais 215.787,57 vieram de investimentos do próprio ano e 4.480,67 de massa futura declarada antes — e essa última parcela, diz o relatório, não foi computada como resultado de 2023, por já ter sido registrada em relatórios anteriores.</li>
+<li>Alcance: <strong>467 municípios</strong> em 27 unidades da federação.</li>
+<li>Acumulado de 2018 a 2023: <strong>1.764.534,50 toneladas</strong>.</li>
+</ul>
+<p class="guide-note"><strong>Um detalhe que explica uma queda.</strong> O próprio relatório registra que a recuperação caiu em 2023, e dá o motivo: com a criação da entidade gestora do vidro pelo Decreto 11.300/2022, o vidro de duas associações passou a ser reportado por ela, e não mais pela Coalizão. É mudança de contabilização, não retrocesso de coleta. Quem compara séries históricas de embalagem sem notar isso chega à conclusão errada.</p>
+<p>A medição também mudou de método no caminho: de 2012 a 2017 ela se baseava no desvio de massa dos aterros; desde 2018 é feita diretamente nos operadores. Séries antes e depois de 2018 não são comparáveis sem ressalva.</p>
+
+<h2 id="varejo">O que cabe ao varejo</h2>
+<p>Para quem vende, e não fabrica, a leitura prática é curta:</p>
+<ol>
+<li><strong>Descubra em qual instrumento você cai.</strong> Por material de embalagem, não por setor de atuação. Uma mesma empresa pode estar em três ao mesmo tempo.</li>
+<li><strong>Verifique a adesão.</strong> Se a empresa participa de entidade gestora, confirme que a adesão cobre todos os materiais que ela coloca no mercado — não só o principal.</li>
+<li><strong>Prepare o ponto de entrega.</strong> O decreto do plástico dá quatro anos, e quatro anos passam rápido quando a obrigação é por município atendido.</li>
+<li><strong>Olhe o rótulo.</strong> A remoção ou alteração de rótulo antes do descarte é obrigação expressa do comerciante no decreto do plástico.</li>
+<li><strong>Guarde a nota.</strong> A comprovação nos sistemas de certificado se apoia em notas fiscais eletrônicas verificadas. Reconciliação fiscal vira prova ambiental.</li>
+</ol>
+
+<h2 id="duvidas">Dúvidas frequentes</h2>
+<h3>Embalagem é obrigada a ter logística reversa no Brasil?</h3><p>Depende do material e do instrumento que alcança aquele material. O artigo 33 da Lei 12.305/2010 lista seis cadeias obrigatórias por força de lei, e embalagem em geral não está entre elas — só as embalagens de agrotóxico e as de óleo lubrificante. Embalagem em geral entrou pelo parágrafo 1º do mesmo artigo, por meio do Acordo Setorial de Embalagens em Geral de 2015; o vidro ganhou decreto próprio em 2022 e o plástico em 2025. Na prática, portanto, há obrigação — mas ela vem do instrumento, não diretamente da lista da lei.</p>
+<h3>Qual é a meta de reciclagem de embalagens hoje?</h3><p>Não há uma meta única. Para embalagens em geral, o Ministério do Meio Ambiente comunicou 22% para o ano de desempenho de 2023 e 30% para 2024, e registrou que a meta de 22% do acordo setorial é mínima. Para o vidro, o Decreto 11.300/2022 fixa reciclagem nacional de 27,25% em 2023 subindo a 40% em 2032. Para o plástico, o Decreto 12.688/2025 fixa recuperação nacional de 32% em 2026 chegando a 50% em 2040, além de uma meta separada de conteúdo reciclado.</p>
+<h3>O que muda com o decreto das embalagens de plástico?</h3><p>O Decreto 12.688/2025 passa a exigir duas coisas ao mesmo tempo e sem compensação entre elas: recuperar um percentual das embalagens colocadas no mercado e usar um mínimo de conteúdo reciclado na produção. A obrigação de conteúdo reciclado começou em janeiro de 2026 para empresas de grande porte e em julho de 2026 para pequenas e médias. O decreto também exige pontos de recebimento em quatro anos e cria um incentivo ao retornável: a cada 5% de embalagem retornável coletada, a meta de recuperação cai um ponto percentual, até metade da meta.</p>
+<h3>Comprar certificado de reciclagem substitui operar a logística reversa?</h3><p>O certificado é uma forma de comprovar cumprimento de meta, prevista no Decreto 11.413/2023, e a sua aquisição tem caráter voluntário. A meta em si continua obrigatória. Ou seja: a empresa pode escolher entre estruturar a operação, aderir a uma entidade gestora ou adquirir certificados, mas não pode escolher não cumprir.</p>
+<h3>Embalagem mista, com plástico e papelão, entra no decreto do plástico?</h3><p>Não. O artigo 2º do Decreto 12.688/2025 exclui as embalagens mistas que contenham papel ou papelão, assim como as já cobertas pelos regimes de agrotóxico e de óleo lubrificante. Ficar fora desse decreto não significa ficar sem obrigação: a embalagem mista continua no âmbito do Acordo Setorial de Embalagens em Geral.</p>
+
+<h2>Continue explorando a reversa</h2>
+<ul>
+<li><a href="/blog/logistica-reversa-de-eletroeletronicos.html">Logística reversa de eletroeletrônicos: o que o varejo tem de cumprir</a></li>
+<li><a href="/blog/logistica-reversa-de-medicamentos.html">Logística reversa de medicamentos: o que farmácias e drogarias precisam fazer</a></li>
+<li><a href="/blog/logistica-reversa-no-varejo.html">Guia: logística reversa no varejo — o que é e como funciona</a></li>
+<li><a href="/blog/glossario-logistica-reversa.html">Glossário da logística reversa: 59 termos</a></li>
+<li><a href="/blog/logistica-reversa-no-marketplace.html">Logística reversa no marketplace: quem responde pela devolução</a></li>
+<li><a href="/blog/logistica-reversa-no-ecommerce.html">Logística reversa no e-commerce: devoluções, trocas e custos</a></li>
+</ul>
+
+<h2>Referências</h2>
+<p>Normas lidas no Planalto em 8 de novembro de 2026: <a href="https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12305.htm" rel="noopener">Lei 12.305/2010</a> (artigos 3º, 30, 31 e 33), <a href="https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/decreto/d10936.htm" rel="noopener">Decreto 10.936/2022</a> (artigos 14, 18, 19, 20, 25, 28 e 29), <a href="https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/decreto/D11300.htm" rel="noopener">Decreto 11.300/2022</a> (embalagens de vidro), <a href="https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11413.htm" rel="noopener">Decreto 11.413/2023</a> (certificados) e <a href="https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/d12688.htm" rel="noopener">Decreto 12.688/2025</a> (embalagens de plástico). Os percentuais do acordo setorial vêm do Comunicado 001/2024-DGR/MMA, publicado pelo Sinir. Os números de 2023 vêm do relatório da Coalizão Embalagens protocolado no Sinir. A leitura operacional é síntese de gestão da ABREV e não constitui parecer jurídico.</p>
+
+<section class="cta"><div><h3>Sua empresa já sabe em qual instrumento cai?</h3><p>Mapear obrigação de embalagem por material é uma das agendas que a ABREV quer amadurecer com o setor.</p></div><a class="btn" href="/colabore.html">Quero colaborar</a></section>
+
+</article></main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img src="/assets/images/abrev-logo-420.webp" alt="ABREV" width="1142" height="240" decoding="async" srcset="/assets/images/abrev-logo-210.webp 210w, /assets/images/abrev-logo-420.webp 420w, /assets/images/abrev-logo-630.webp 630w" sizes="210px">
+        <p>Conhecimento · conexão · transformação</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <p><a href="/#sobre">Quem somos</a><br><a href="/#ecossistema">Ecossistema</a><br><a href="/#fluxo">Como funciona</a><br><a href="/blog/">Blog</a><br><a href="/blog/logistica-reversa-no-varejo.html">Guia de logística reversa</a><br><a href="/imprensa/">Na imprensa</a></p>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <p><a href="mailto:adm@abrev.org">adm@abrev.org</a></p>
+      </div>
+    </div>
+    <div class="fine">© 2026 Associação Brasileira de Reversa do Varejo — ABREV.</div>
+  </div>
+</footer>
+
+<!-- POP-UP: FAÇA PARTE DA COMUNIDADE -->
+<script>
+// scroll reveal
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Back-end ABREV (Apps Script)
+var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyJPKHIzLvghLIkJpORZd7vYTGiDzSY_ybiAdnub3CX4bLLzPx5O-eTDc0hxpRc9DjIDw/exec';
+function postAS(payload){ return fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)}); }
+function canonUrl(){ var c=document.querySelector('link[rel=canonical]'); return (c&&c.href)||location.href; }
+function artigoTitulo(){ return (document.title.split('|')[0]||'').trim(); }
+function slugAtual(){ var p=canonUrl().split('?')[0].split('#')[0]; return p.substring(p.lastIndexOf('/')+1).replace(/\.html?$/,''); }
+
+
+
+// Bloco "Receber o estudo completo" (Leads-Estudo → E2; opt-in entra na Comunidade)
+(function(){
+  var form=document.getElementById('estudoForm');
+  if(!form) return;
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    var btn=form.querySelector('button[type="submit"]'), status=document.getElementById('eStatus'), label=btn.textContent;
+    var email=document.getElementById('eEmail').value.trim();
+    if(btn.disabled || !form.reportValidity()) return;
+    if(!email){ status.textContent='Informe um e-mail válido.'; return; }
+    btn.disabled=true; btn.textContent='Enviando…'; status.textContent='';
+    var payload={ action:'estudo', nome:document.getElementById('eName').value.trim(), email:email,
+      artigo:artigoTitulo(), artigo_url:canonUrl(), slug:slugAtual(),
+      opt_in:document.getElementById('eOptin').checked, origem:'blog' };
+    try{
+      await postAS(payload);
+      if(window.abrevAnalytics) window.abrevAnalytics.track('abrev_registration_request', {form_id:'study'});
+      form.innerHTML='<p style="color:var(--navy);font-weight:600;margin:0">Solicitação enviada. Confira seu e-mail para receber o estudo completo. 📄</p>';
+    }catch(err){
+      if(window.abrevAnalytics) window.abrevAnalytics.track('abrev_registration_error', {form_id:'study'});
+      status.textContent='Não foi possível concluir agora. Tente novamente.';
+      btn.disabled=false; btn.textContent=label;
+    }
+  });
+})();
+</script>
+
+<script src="/assets/comunidade-popup.js?v=20261104-2" defer></script>
+</body>
+</html>
