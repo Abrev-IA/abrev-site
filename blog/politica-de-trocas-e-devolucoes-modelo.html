@@ -371,14 +371,21 @@ a{color:inherit}
 <script>
 (function(){
   var b=document.querySelector('[data-copiar]');
-  if(!b||!navigator.clipboard){ if(b){b.hidden=true;} return; }
+  if(!b) return;
+  var el=document.getElementById(b.dataset.copiar);
+  if(!el){ b.hidden=true; return; }
+  b.dataset.label=b.textContent;
+  function aviso(msg){ b.textContent=msg; setTimeout(function(){ b.textContent=b.dataset.label; },3000); }
+  function selecionar(){
+    try{ var r=document.createRange(); r.selectNodeContents(el);
+      var sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(r); return true;
+    }catch(_){ return false; }
+  }
+  function alternativa(){ aviso(selecionar()?'Texto selecionado: use Ctrl+C':'Selecione o texto e copie'); }
   b.addEventListener('click',function(){
-    var el=document.getElementById(b.dataset.copiar);
-    if(!el) return;
-    navigator.clipboard.writeText(el.innerText).then(function(){
-      var t=b.textContent; b.textContent='Modelo copiado';
-      setTimeout(function(){ b.textContent=t; },2500);
-    }).catch(function(){ b.textContent='N\u00e3o foi poss\u00edvel copiar'; });
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(el.innerText).then(function(){ aviso('Modelo copiado'); }).catch(alternativa);
+    } else { alternativa(); }
   });
 })();
 </script>
