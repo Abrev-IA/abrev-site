@@ -28,8 +28,9 @@ jobs:
           node-version: '22'
       - name: Validar regras e gerar sitemap público
         run: |
-          node --test automation/seo/sitemap.test.mjs automation/seo/feed.test.mjs automation/seo/related.test.mjs
+          node --test automation/seo/sitemap.test.mjs automation/seo/feed.test.mjs automation/seo/related.test.mjs automation/seo/report.test.mjs
           node automation/seo/related.mjs --check
+          node automation/seo/report.mjs --check
           node automation/seo/sitemap.mjs
           node automation/seo/feed.mjs
       - name: Salvar somente se houver alteração e publicar

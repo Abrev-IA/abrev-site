@@ -1,0 +1,13 @@
+{
+  "inicio": "2026-11-04",
+  "fim": "2026-11-10",
+  "coletadoEm": "2026-11-13",
+  "origem": "Search Console, propriedade https://abrev.org/, relatório de Desempenho, tipo de pesquisa Web (texto)",
+  "totaisDeclarados": {
+    "cliques": 19,
+    "impressoes": 322,
+    "ctr": "5,9%",
+    "posicao": 8.6
+  },
+  "observacao": "Primeira coleta. O recorte de 3 meses no Search Console devolve apenas 04/11 a 10/11 porque a propriedade não tem dados anteriores, e o relatório fica cerca de três dias atrás da data de hoje."
+}
