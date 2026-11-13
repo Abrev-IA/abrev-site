@@ -6,7 +6,35 @@
   <link rel="self" type="application/atom+xml" href="https://abrev.org/blog/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://abrev.org/blog/"/>
   <author><name>ABREV — Associação Brasileira de Reversa do Varejo</name><uri>https://abrev.org/</uri></author>
-  <updated>2026-11-13T20:12:20-03:00</updated>
+  <updated>2026-11-13T20:41:59-03:00</updated>
+  <entry>
+    <id>https://abrev.org/blog/a-reversa-entra-no-planejamento-do-pico.html</id>
+    <title type="text">A reversa entra no planejamento do pico</title>
+    <link rel="alternate" type="text/html" href="https://abrev.org/blog/a-reversa-entra-no-planejamento-do-pico.html"/>
+    <updated>2026-11-13T20:41:59-03:00</updated>
+    <summary type="text">Capacidade, processo e atendimento precisam conversar antes do pico.</summary>
+  </entry>
+  <entry>
+    <id>https://abrev.org/blog/declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html</id>
+    <title type="text">Declaração de conteúdo eletrônica: o que muda na reversa do varejo</title>
+    <link rel="alternate" type="text/html" href="https://abrev.org/blog/declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html"/>
+    <updated>2026-11-13T20:41:59-03:00</updated>
+    <summary type="text">A declaração de conteúdo tornou-se eletrônica e muda a documentação das devoluções. A ABREV reúne o que muda, o que permanece obrigatório e o que revisar.</summary>
+  </entry>
+  <entry>
+    <id>https://abrev.org/blog/glossario-logistica-reversa.html</id>
+    <title type="text">Glossário da logística reversa</title>
+    <link rel="alternate" type="text/html" href="https://abrev.org/blog/glossario-logistica-reversa.html"/>
+    <updated>2026-11-13T20:41:59-03:00</updated>
+    <summary type="text">Dicionário de 59 termos da logística reversa: pós-venda, pós-consumo, operação, indicadores e base legal, cada um com definição curta e âncora própria.</summary>
+  </entry>
+  <entry>
+    <id>https://abrev.org/blog/logistica-reversa-no-varejo.html</id>
+    <title type="text">Logística reversa no varejo: o que é e como funciona</title>
+    <link rel="alternate" type="text/html" href="https://abrev.org/blog/logistica-reversa-no-varejo.html"/>
+    <updated>2026-11-13T20:41:59-03:00</updated>
+    <summary type="text">Entenda a logística reversa no varejo e no e-commerce: trocas, devoluções, pós-consumo, etapas da operação e indicadores de recuperação de valor.</summary>
+  </entry>
   <entry>
     <id>https://abrev.org/blog/da-devolucao-ao-encantamento.html</id>
     <title type="text">Da devolução ao encantamento</title>
@@ -15,25 +43,11 @@
     <summary type="text">A logística reversa deixou de ser custo operacional para virar alavanca de fidelização. Dados mostram como devoluções de baixo esforço elevam a recompra de 9% para 42%.</summary>
   </entry>
   <entry>
-    <id>https://abrev.org/blog/declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html</id>
-    <title type="text">Declaração de conteúdo eletrônica: o que muda na reversa do varejo</title>
-    <link rel="alternate" type="text/html" href="https://abrev.org/blog/declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html"/>
-    <updated>2026-11-13T20:12:20-03:00</updated>
-    <summary type="text">A declaração de conteúdo tornou-se eletrônica e muda a documentação das devoluções. A ABREV reúne o que muda, o que permanece obrigatório e o que revisar.</summary>
-  </entry>
-  <entry>
     <id>https://abrev.org/blog/direito-de-arrependimento-no-ecommerce.html</id>
     <title type="text">Direito de arrependimento no e-commerce: o que a lei exige do varejo</title>
     <link rel="alternate" type="text/html" href="https://abrev.org/blog/direito-de-arrependimento-no-ecommerce.html"/>
     <updated>2026-11-13T20:12:20-03:00</updated>
     <summary type="text">Prazo de sete dias, contagem, estorno e frete de retorno. Os deveres do varejo digital no direito de arrependimento, pelo CDC e pelo Decreto 7.962/2013.</summary>
-  </entry>
-  <entry>
-    <id>https://abrev.org/blog/glossario-logistica-reversa.html</id>
-    <title type="text">Glossário da logística reversa</title>
-    <link rel="alternate" type="text/html" href="https://abrev.org/blog/glossario-logistica-reversa.html"/>
-    <updated>2026-11-13T20:12:20-03:00</updated>
-    <summary type="text">Dicionário de 59 termos da logística reversa: pós-venda, pós-consumo, operação, indicadores e base legal, cada um com definição curta e âncora própria.</summary>
   </entry>
   <entry>
     <id>https://abrev.org/blog/logistica-reversa-de-eletroeletronicos.html</id>
@@ -76,13 +90,6 @@
     <link rel="alternate" type="text/html" href="https://abrev.org/blog/logistica-reversa-no-marketplace.html"/>
     <updated>2026-11-13T20:12:20-03:00</updated>
     <summary type="text">Como se divide a responsabilidade entre plataforma e seller nas devoluções: o que o CDC diz, os quatro arranjos logísticos e onde o fluxo quebra.</summary>
-  </entry>
-  <entry>
-    <id>https://abrev.org/blog/logistica-reversa-no-varejo.html</id>
-    <title type="text">Logística reversa no varejo: o que é e como funciona</title>
-    <link rel="alternate" type="text/html" href="https://abrev.org/blog/logistica-reversa-no-varejo.html"/>
-    <updated>2026-11-13T20:12:20-03:00</updated>
-    <summary type="text">Entenda a logística reversa no varejo e no e-commerce: trocas, devoluções, pós-consumo, etapas da operação e indicadores de recuperação de valor.</summary>
   </entry>
   <entry>
     <id>https://abrev.org/blog/politica-de-trocas-e-devolucoes-modelo.html</id>
