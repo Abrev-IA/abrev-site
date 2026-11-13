@@ -1,0 +1,49 @@
+name: Blog — newsletter agendada de 27 de novembro
+on:
+  schedule:
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: abrev-cockpit-blog-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verificar data e proteção contra duplicação
+        run: |
+          node --test automation/blog/scheduled-newsletter.test.mjs
+          node automation/blog/scheduled-newsletter.mjs
+      - name: Publicar o artigo uma única vez e atualizar descoberta
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          target=blog/black-friday-e-a-onda-de-devolucoes.html
+          if [ -z "$(git status --porcelain -- "$target" blog/index.html)" ]; then
+            echo 'Sem alteração a publicar.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$target" blog/index.html
+          git commit -m 'Blog: newsletter de 27/11 [cockpit:no-broadcast]'
+          node automation/seo/sitemap.mjs
+          node automation/seo/feed.mjs
+          git add sitemap.xml blog/feed.xml
+          if ! git diff --cached --quiet; then
+            git commit -m 'SEO: registrar newsletter de 27/11 no sitemap e feed'
+          fi
+          git push origin HEAD:main
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" --silent
