@@ -49,6 +49,26 @@
     "logistica-reversa-na-era-do-comercio-agentico.html",
     "a-reversa-entra-no-planejamento-do-pico.html"
   ],
+  "relatorio": {
+    "rotulos": {
+      "hub": "Hubs (pilar e glossário)",
+      "ecommerce": "E-commerce e consumidor",
+      "posconsumo": "Pós-consumo e regulatório",
+      "experiencia": "Experiência e tendências",
+      "operacao": "Operação e fiscal",
+      "institucional": "Institucional",
+      "imprensa": "Imprensa",
+      "outros": "Fora do mapa"
+    },
+    "caminhos": {
+      "/": "institucional",
+      "/colabore.html": "institucional",
+      "/evento.html": "institucional",
+      "/politica-privacidade.html": "institucional",
+      "/termos-de-uso.html": "institucional",
+      "/imprensa/": "imprensa"
+    }
+  },
   "titulos": {
     "logistica-reversa-no-varejo.html": "Logística reversa no varejo: o que é e como funciona",
     "glossario-logistica-reversa.html": "Glossário da logística reversa: 59 termos",
