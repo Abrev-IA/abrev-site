@@ -1,0 +1,64 @@
+{
+  "titulo": "Continue explorando a reversa",
+  "limite": 6,
+  "limitePorArtigo": {
+    "logistica-reversa-no-varejo.html": 11,
+    "glossario-logistica-reversa.html": 11
+  },
+  "fixos": [
+    {
+      "href": "/imprensa/",
+      "titulo": "ABREV na imprensa: dados e debate sobre o setor"
+    }
+  ],
+  "clusters": {
+    "hub": [
+      "logistica-reversa-no-varejo.html",
+      "glossario-logistica-reversa.html"
+    ],
+    "ecommerce": [
+      "logistica-reversa-no-ecommerce.html",
+      "direito-de-arrependimento-no-ecommerce.html",
+      "politica-de-trocas-e-devolucoes-modelo.html",
+      "logistica-reversa-no-marketplace.html"
+    ],
+    "posconsumo": [
+      "logistica-reversa-de-embalagens.html",
+      "logistica-reversa-de-eletroeletronicos.html",
+      "logistica-reversa-de-medicamentos.html"
+    ],
+    "experiencia": [
+      "da-devolucao-ao-encantamento.html",
+      "logistica-reversa-na-era-do-comercio-agentico.html"
+    ],
+    "operacao": [
+      "declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html"
+    ]
+  },
+  "ordemDeCompletar": [
+    "logistica-reversa-no-ecommerce.html",
+    "politica-de-trocas-e-devolucoes-modelo.html",
+    "logistica-reversa-de-embalagens.html",
+    "logistica-reversa-no-marketplace.html",
+    "direito-de-arrependimento-no-ecommerce.html",
+    "logistica-reversa-de-eletroeletronicos.html",
+    "logistica-reversa-de-medicamentos.html",
+    "declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html",
+    "da-devolucao-ao-encantamento.html",
+    "logistica-reversa-na-era-do-comercio-agentico.html"
+  ],
+  "titulos": {
+    "logistica-reversa-no-varejo.html": "Logística reversa no varejo: o que é e como funciona",
+    "glossario-logistica-reversa.html": "Glossário da logística reversa: 59 termos",
+    "logistica-reversa-no-ecommerce.html": "Logística reversa no e-commerce: devoluções, trocas e custos",
+    "direito-de-arrependimento-no-ecommerce.html": "Direito de arrependimento no e-commerce: o que a lei exige do varejo",
+    "politica-de-trocas-e-devolucoes-modelo.html": "Política de trocas e devoluções: o que escrever e um modelo pronto",
+    "logistica-reversa-no-marketplace.html": "Logística reversa no marketplace: quem responde pela devolução",
+    "logistica-reversa-de-embalagens.html": "Logística reversa de embalagens: o que vale hoje, por material",
+    "logistica-reversa-de-eletroeletronicos.html": "Logística reversa de eletroeletrônicos: o que o varejo tem de cumprir",
+    "logistica-reversa-de-medicamentos.html": "Logística reversa de medicamentos: o que farmácias e drogarias precisam fazer",
+    "da-devolucao-ao-encantamento.html": "Da devolução ao encantamento: reversa e fidelização",
+    "logistica-reversa-na-era-do-comercio-agentico.html": "Logística reversa na era do comércio agêntico",
+    "declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html": "Declaração de conteúdo eletrônica na reversa do varejo"
+  }
+}
