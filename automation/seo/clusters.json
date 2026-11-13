@@ -2,8 +2,8 @@
   "titulo": "Continue explorando a reversa",
   "limite": 6,
   "limitePorArtigo": {
-    "logistica-reversa-no-varejo.html": 11,
-    "glossario-logistica-reversa.html": 11
+    "logistica-reversa-no-varejo.html": 12,
+    "glossario-logistica-reversa.html": 12
   },
   "fixos": [
     {
@@ -32,7 +32,8 @@
       "logistica-reversa-na-era-do-comercio-agentico.html"
     ],
     "operacao": [
-      "declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html"
+      "declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html",
+      "a-reversa-entra-no-planejamento-do-pico.html"
     ]
   },
   "ordemDeCompletar": [
@@ -45,7 +46,8 @@
     "logistica-reversa-de-medicamentos.html",
     "declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html",
     "da-devolucao-ao-encantamento.html",
-    "logistica-reversa-na-era-do-comercio-agentico.html"
+    "logistica-reversa-na-era-do-comercio-agentico.html",
+    "a-reversa-entra-no-planejamento-do-pico.html"
   ],
   "titulos": {
     "logistica-reversa-no-varejo.html": "Logística reversa no varejo: o que é e como funciona",
@@ -59,6 +61,7 @@
     "logistica-reversa-de-medicamentos.html": "Logística reversa de medicamentos: o que farmácias e drogarias precisam fazer",
     "da-devolucao-ao-encantamento.html": "Da devolução ao encantamento: reversa e fidelização",
     "logistica-reversa-na-era-do-comercio-agentico.html": "Logística reversa na era do comércio agêntico",
-    "declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html": "Declaração de conteúdo eletrônica na reversa do varejo"
+    "declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html": "Declaração de conteúdo eletrônica na reversa do varejo",
+    "a-reversa-entra-no-planejamento-do-pico.html": "A reversa entra no planejamento do pico"
   }
 }

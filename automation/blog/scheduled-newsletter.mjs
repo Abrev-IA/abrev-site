@@ -7,7 +7,7 @@ export function planPublication(item,index,existing,now=new Date()) {
  if(now.getTime()<Date.parse(item.publishAt))return null;
  const marker='<!-- ABREV_NEWSLETTER:2026-11-27 -->';
  if(existing!==null){
-  if(existing===item.html&&index.includes('data-newsletter="2026-11-27"'))return null;
+  if(existing.includes(marker)&&index.includes('data-newsletter="2026-11-27"'))return null;
   throw Error('Destino já existente ou publicação incompleta; revisão necessária. Nada sobrescrito.');
  }
  if(index.includes('black-friday-e-a-onda-de-devolucoes.html'))throw Error('Já existe referência desta edição no índice.');
@@ -23,6 +23,14 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).hr
  else{
   await writeFile(item.path,result.html);
   await writeFile('blog/index.html',result.index);
+  const configPath='automation/seo/clusters.json';
+  const config=JSON.parse(await readFile(configPath,'utf8'));
+  const slug=item.path.slice(5);
+  if(!Object.values(config.clusters).flat().includes(slug))config.clusters.operacao.push(slug);
+  config.titulos[slug]='Black Friday e a onda de devoluções';
+  if(!config.ordemDeCompletar.includes(slug))config.ordemDeCompletar.push(slug);
+  for(const hub of config.clusters.hub)config.limitePorArtigo[hub]=Object.values(config.clusters).flat().length-1;
+  await writeFile(configPath,JSON.stringify(config,null,2)+'\n');
   console.log('Edição de 27/11 preparada para publicação no blog. Nenhum disparo de email.');
  }
 }

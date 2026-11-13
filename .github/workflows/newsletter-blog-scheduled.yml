@@ -37,7 +37,9 @@ jobs:
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add "$target" blog/index.html
+          node automation/seo/related.mjs
+          node --test automation/seo/related.test.mjs
+          git add blog/*.html automation/seo/clusters.json
           git commit -m 'Blog: newsletter de 27/11 [cockpit:no-broadcast]'
           node automation/seo/sitemap.mjs
           node automation/seo/feed.mjs
