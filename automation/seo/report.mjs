@@ -185,9 +185,14 @@ export async function relatorioDe(root,mes) {
  const periodo=JSON.parse(await readFile(join(dir,'periodo.json'),'utf8'));
  const paginas=await lerCsv(dir,/p[aá]ginas\.csv$/i);
  const consultas=await lerCsv(dir,/consultas\.csv$/i);
+ // O checkout no Windows materializa o .md em CRLF. Sem acompanhar a quebra do
+ // arquivo, o --check compararia LF com CRLF e acusaria desatualizado para sempre.
+ const destino=join(root,'automation/seo/relatorios',mes+'.md');
+ const anterior=await readFile(destino,'utf8').catch(erro=>{if(erro.code==='ENOENT')return '';throw erro;});
+ const markdown=renderRelatorio({periodo,paginas,consultas,config});
  return {
-  markdown:renderRelatorio({periodo,paginas,consultas,config}),
-  destino:join(root,'automation/seo/relatorios',mes+'.md'),
+  markdown:anterior.includes('\r\n')?markdown.replace(/\n/g,'\r\n'):markdown,
+  destino,
   clusters:agrupar(paginas,config).length,
   paginas:paginas.length,
   consultas:consultas.length,

@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {parseNumero,parseCsv,lerTabela,clusterDe,posicaoPonderada,agrupar,renderRelatorio,relatorioDe,mesesComDados} from './report.mjs';
 import {lerConfig} from './related.mjs';
-import {readFile} from 'node:fs/promises';
+import {readFile,writeFile,mkdtemp,mkdir,cp,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 
 const root=new URL('../..',import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1');
@@ -79,6 +80,30 @@ test('todo cluster tem rótulo no relatório',()=>{
   assert.ok(config.relatorio.rotulos[cluster],'sem rótulo: '+cluster);
  for(const cluster of Object.values(config.relatorio.caminhos))
   assert.ok(config.relatorio.rotulos[cluster],'sem rótulo: '+cluster);
+});
+
+test('acompanha a quebra de linha do arquivo, senão o --check acusa sempre no Windows',async()=>{
+ const temporario=await mkdtemp(join(tmpdir(),'abrev-relatorio-'));
+ try{
+  await mkdir(join(temporario,'automation/seo/relatorios'),{recursive:true});
+  await cp(join(root,'automation/seo/clusters.json'),join(temporario,'automation/seo/clusters.json'));
+  await cp(join(root,'automation/seo/dados/2026-11'),join(temporario,'automation/seo/dados/2026-11'),{recursive:true});
+  const destino=join(temporario,'automation/seo/relatorios/2026-11.md');
+
+  const semArquivo=await relatorioDe(temporario,'2026-11');
+  assert.equal(semArquivo.markdown.includes('\r\n'),false,'sem arquivo anterior deve sair em LF');
+
+  await writeFile(destino,semArquivo.markdown.replace(/\n/g,'\r\n'));
+  const comCrlf=await relatorioDe(temporario,'2026-11');
+  assert.ok(comCrlf.markdown.includes('\r\n'),'arquivo em CRLF deve ser regerado em CRLF');
+  assert.equal(comCrlf.markdown,await readFile(destino,'utf8'),'o --check acusaria desatualizado sem motivo');
+
+  await writeFile(destino,semArquivo.markdown);
+  const comLf=await relatorioDe(temporario,'2026-11');
+  assert.equal(comLf.markdown.includes('\r\n'),false,'arquivo em LF deve continuar em LF');
+ } finally {
+  await rm(temporario,{recursive:true,force:true});
+ }
 });
 
 test('os relatórios publicados estão em dia com os dados e com o gerador',async()=>{
