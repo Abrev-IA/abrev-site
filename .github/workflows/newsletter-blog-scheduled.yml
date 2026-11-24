@@ -1,7 +1,8 @@
-name: Blog — newsletter agendada de 27 de novembro
+name: Blog — calendário de newsletters da ABREV
 on:
   schedule:
     - cron: '0 10 * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 permissions:
   contents: write
@@ -10,7 +11,23 @@ concurrency:
   group: abrev-cockpit-blog-publication
   cancel-in-progress: false
 jobs:
+  calendario:
+    if: vars.NEWSLETTER_CALENDAR_ENABLED == 'true'
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Processar edições pelo fluxo do blog no cockpit
+        run: |
+          set -euo pipefail
+          jwt=$(curl -fsS -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=abrev-newsletter-tick" | jq -er .value)
+          echo "::add-mask::$jwt"
+          curl -fsS --max-time 900 -H "Authorization: Bearer $jwt" -H 'Content-Type: application/json' --data '{}' 'https://abrev-agentes.tiny-book-1851.chatgpt.site/api/newsletter/calendar' > "$RUNNER_TEMP/newsletter.json"
+          jq -e 'type == "array" and all(.[]; .state != "erro")' "$RUNNER_TEMP/newsletter.json"
   publish:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 10 * * *'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
