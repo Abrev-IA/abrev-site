@@ -24,7 +24,15 @@ jobs:
           set -euo pipefail
           jwt=$(curl -fsS -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=abrev-newsletter-tick" | jq -er .value)
           echo "::add-mask::$jwt"
-          curl -fsS --max-time 900 -H "Authorization: Bearer $jwt" -H 'Content-Type: application/json' --data '{}' 'https://abrev-agentes.tiny-book-1851.chatgpt.site/api/newsletter/calendar' > "$RUNNER_TEMP/newsletter.json"
+          result="$RUNNER_TEMP/newsletter.json"
+          transport=0
+          status=$(curl -sS --max-time 900 --output "$result" --write-out '%{http_code}' \
+            -H "Authorization: Bearer $jwt" -H 'Content-Type: application/json' --data '{}' \
+            'https://abrev-agentes.tiny-book-1851.chatgpt.site/api/newsletter/calendar') || transport=$?
+          printf 'Calendário HTTP %s\n' "$status"
+          if [ -s "$result" ]; then cat "$result"; printf '\n'; fi
+          if [ "$transport" -ne 0 ]; then exit "$transport"; fi
+          case "$status" in 2??) ;; *) exit 1 ;; esac
           jq -e 'type == "array" and all(.[]; .state != "erro")' "$RUNNER_TEMP/newsletter.json"
   publish:
     if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 10 * * *'
