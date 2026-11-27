@@ -2,8 +2,8 @@
   "titulo": "Continue explorando a reversa",
   "limite": 6,
   "limitePorArtigo": {
-    "logistica-reversa-no-varejo.html": 12,
-    "glossario-logistica-reversa.html": 12
+    "logistica-reversa-no-varejo.html": 13,
+    "glossario-logistica-reversa.html": 13
   },
   "fixos": [
     {
@@ -33,7 +33,8 @@
     ],
     "operacao": [
       "declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html",
-      "a-reversa-entra-no-planejamento-do-pico.html"
+      "a-reversa-entra-no-planejamento-do-pico.html",
+      "black-friday-e-a-onda-de-devolucoes.html"
     ]
   },
   "ordemDeCompletar": [
@@ -47,7 +48,8 @@
     "declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html",
     "da-devolucao-ao-encantamento.html",
     "logistica-reversa-na-era-do-comercio-agentico.html",
-    "a-reversa-entra-no-planejamento-do-pico.html"
+    "a-reversa-entra-no-planejamento-do-pico.html",
+    "black-friday-e-a-onda-de-devolucoes.html"
   ],
   "relatorio": {
     "rotulos": {
@@ -82,6 +84,7 @@
     "da-devolucao-ao-encantamento.html": "Da devolução ao encantamento: reversa e fidelização",
     "logistica-reversa-na-era-do-comercio-agentico.html": "Logística reversa na era do comércio agêntico",
     "declaracao-de-conteudo-eletronica-o-que-muda-na-reversa-do-varejo.html": "Declaração de conteúdo eletrônica na reversa do varejo",
-    "a-reversa-entra-no-planejamento-do-pico.html": "A reversa entra no planejamento do pico"
+    "a-reversa-entra-no-planejamento-do-pico.html": "A reversa entra no planejamento do pico",
+    "black-friday-e-a-onda-de-devolucoes.html": "Black Friday e a onda de devoluções"
   }
 }
